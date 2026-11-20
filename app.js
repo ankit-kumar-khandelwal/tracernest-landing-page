@@ -156,6 +156,9 @@
   const btnCopyEmail = document.getElementById('btn-copy-email');
   const themeToggleBtn = document.getElementById('theme-toggle');
   const contributorsGrid = document.getElementById('contributors-grid');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  const mobileBackdrop = document.getElementById('mobile-backdrop');
 
   // Helper: Format Time
   function formatTime(date) {
@@ -689,6 +692,74 @@
         });
       });
     }
+
+    // Mobile Navigation Menu Toggle & Handlers
+    function closeMobileMenu() {
+      if (mobileMenuToggle) {
+        mobileMenuToggle.classList.remove('open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      }
+      if (navLinks) {
+        navLinks.classList.remove('open');
+      }
+      if (mobileBackdrop) {
+        mobileBackdrop.classList.remove('open');
+      }
+      document.body.style.overflow = '';
+    }
+
+    function toggleMobileMenu() {
+      const isOpen = navLinks && navLinks.classList.contains('open');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        if (mobileMenuToggle) {
+          mobileMenuToggle.classList.add('open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        }
+        if (navLinks) {
+          navLinks.classList.add('open');
+        }
+        if (mobileBackdrop) {
+          mobileBackdrop.classList.add('open');
+        }
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    if (mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMobileMenu();
+      });
+    }
+
+    if (mobileBackdrop) {
+      mobileBackdrop.addEventListener('click', closeMobileMenu);
+    }
+
+    // Auto-close menu when tapping any navigation link
+    if (navLinks) {
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          closeMobileMenu();
+        });
+      });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+      }
+    });
+
+    // Close on window resize > 900px
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        closeMobileMenu();
+      }
+    });
   }
 
   // Prepopulate Initial Data
