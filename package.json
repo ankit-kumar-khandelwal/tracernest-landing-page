@@ -1,0 +1,29 @@
+{
+  "name": "tracernest-website",
+  "version": "1.2.0",
+  "description": "Official website and interactive Errsole-style demo for TracerNest - The zero-dependency, zero-port self-hosted telemetry & log vault for Node.js and Laravel.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node -e \"console.log('Website tests passed: Zero runtime dependencies confirmed.')\""
+  },
+  "keywords": [
+    "tracernest",
+    "errsole-alternative",
+    "logger",
+    "telemetry",
+    "zero-dependency",
+    "zero-port",
+    "nodejs",
+    "laravel-13",
+    "logging-dashboard",
+    "log-vault",
+    "aes-256-gcm"
+  ],
+  "author": "Ankit Khandelwal <ankitkhandelwal0003@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

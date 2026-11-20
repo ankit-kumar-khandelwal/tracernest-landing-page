@@ -1,0 +1,46 @@
+# TracerNest (tracernest-logger)
+
+> Zero-dependency, zero-port self-hosted telemetry flight recorder, AES-256-GCM encrypted log vault, and interactive Errsole-style dashboard for Node.js and Laravel 13.
+> Star on GitHub: https://github.com/ankit-kumar-khandelwal/tracernest-logger (1,400+ stars)
+
+## Maintainer & Creator
+- **Author**: Ankit Khandelwal
+- **Email**: ankitkhandelwal0003@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/ankit-khandelwal-3068a9194/
+- **GitHub Repository**: https://github.com/ankit-kumar-khandelwal/tracernest-logger
+- **NPM Package**: https://www.npmjs.com/package/tracernest-logger
+
+## What is TracerNest?
+TracerNest is a modern, privacy-first, self-hosted observability and logging platform designed as a lightweight, zero-dependency alternative to Errsole, Winston, and cloud SaaS platforms like Datadog and Sentry. It provides an embedded real-time web dashboard without opening an external TCP port.
+
+## Star on GitHub
+Help grow open-source telemetry! Give TracerNest a star on GitHub:
+Repository: https://github.com/ankit-kumar-khandelwal/tracernest-logger
+
+## Core Capabilities & Technical Highlights
+- **Zero Extra Ports**: Attaches directly to existing Express, Koa, Fastify, or Laravel HTTP pipelines without requiring extra ingress rules, firewall holes, or security group ports.
+- **Zero Runtime Dependencies**: `dependencies: {}` in `package.json`. Built purely using native Node.js standard libraries (`node:crypto`, `node:http`, `node:fs`, `node:sqlite`). Immune to supply-chain attacks.
+- **Hardware AES-256-GCM Encryption**: All request/response payloads, headers, and metadata are encrypted at rest with tamper-proof 128-bit authentication tags.
+- **Persistent Storage Until TTL Completion**: Terminal and server logs are never held purely in volatile RAM; they are safely persisted to disk/DB (SQLite or MySQL) and survive container and process restarts until your configured TTL expires.
+- **SQLite to MySQL Auto-Migration**: Zero-downtime migration that detects missing tables, applies non-destructive DDL (`ALTER TABLE ... ADD COLUMN ...`), transfers log data, and cleans up legacy SQLite files while strictly preserving `.master.key`.
+- **Laravel 13 PHP Bridge**: First-class PHP 8.2+ middleware and controller for Laravel 13 applications.
+
+## TracerNest vs. Errsole Comparison
+- **Port Usage**: Errsole requires a separate open TCP port; TracerNest mounts on the host app port (0 extra ports).
+- **Dependencies**: Errsole pulls ~45+ transitive npm packages; TracerNest has 0 runtime dependencies.
+- **Encryption**: Errsole stores plaintext payloads; TracerNest encrypts payloads at rest with AES-256-GCM.
+- **Data Migration**: Errsole requires manual setup for database switches; TracerNest features automated zero-downtime SQLite-to-MySQL migration with schema drift detection.
+- **Cost**: 100% free and self-hosted with zero external SaaS egress costs.
+
+## Quick Installation
+```bash
+npm install tracernest-logger
+```
+
+## Contributing Guidelines
+1. Fork and clone `https://github.com/ankit-kumar-khandelwal/tracernest-logger`.
+2. Strictly maintain the zero-dependency rule (`dependencies: {}`).
+3. Verify test suite with `npm test`.
+4. Open a pull request against `main`.
+
+For full documentation and technical deep dives, read `llms-full.txt`.

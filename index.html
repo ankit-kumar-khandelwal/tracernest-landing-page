@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>TracerNest - Star on GitHub | Zero-Port Telemetry &amp; Encrypted Log Vault for Node.js and Laravel</title>
+  <meta name="title" content="TracerNest - Star on GitHub | Zero-Port Telemetry &amp; Encrypted Log Vault for Node.js and Laravel">
+  <meta name="description" content="TracerNest is a high-performance, open-source telemetry flight recorder, AES-256-GCM encrypted log vault, and interactive developer dashboard for Node.js and Laravel 13. Star on GitHub (ankit-kumar-khandelwal/tracernest-logger). Features zero runtime dependencies, zero external ports, and automatic SQLite-to-MySQL migration.">
+  <meta name="keywords" content="tracernest, star on github, github open source logger, telemetry flight recorder, nodejs logging, laravel 13 logger, zero-dependency logger, zero-port telemetry, self-hosted logs, encrypted log vault, aes-256-gcm, sqlite to mysql migration">
+  <meta name="author" content="Ankit Khandelwal">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://tracernest.dev/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tracernest.dev/">
+  <meta property="og:title" content="TracerNest - Star on GitHub | Zero-Port Telemetry &amp; Log Vault">
+  <meta property="og:description" content="Star TracerNest on GitHub! Self-hosted telemetry flight recorder with zero extra ports, zero dependencies, AES-256-GCM hardware encryption, and auto SQLite-to-MySQL migration.">
+  <meta property="og:site_name" content="TracerNest">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tracernest.dev/">
+  <meta name="twitter:title" content="TracerNest - Star on GitHub | Zero-Port Telemetry &amp; Log Vault">
+  <meta name="twitter:description" content="Star TracerNest on GitHub! Self-hosted telemetry flight recorder with zero extra ports, zero dependencies, AES-256-GCM hardware encryption, and auto SQLite-to-MySQL migration.">
+  <meta name="twitter:creator" content="@ankitkhandelwal">
+
+  <!-- Official Logo Favicon & Stylesheet -->
+  <link rel="icon" type="image/svg+xml" href="assets/tracernest-logger-icon-transparent.svg">
+  <link rel="stylesheet" href="styles.css?v=2.2">
+
+  <!-- Early theme script to prevent flash of wrong theme -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('tracernest-theme');
+        if (saved) {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- JSON-LD Structured Data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TracerNest",
+    "operatingSystem": "Cross-platform (Node.js >= 18, PHP >= 8.2 / Laravel 13)",
+    "applicationCategory": "DeveloperApplication",
+    "applicationSubCategory": "Telemetry, Logging & Monitoring Dashboard",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    },
+    "description": "Zero-dependency, zero-port self-hosted telemetry flight recorder, AES-256-GCM encrypted log vault, and interactive developer dashboard with SQLite to MySQL auto-migration. Open-source on GitHub.",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": {
+      "@type": "Person",
+      "name": "Ankit Khandelwal",
+      "email": "ankitkhandelwal0003@gmail.com",
+      "url": "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/"
+    },
+    "downloadUrl": "https://www.npmjs.com/package/tracernest-logger",
+    "codeRepository": "https://github.com/ankit-kumar-khandelwal/tracernest-logger",
+    "image": "https://tracernest.dev/assets/tracernest-logger-banner.svg"
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: Organization & Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ankit Khandelwal",
+    "email": "ankitkhandelwal0003@gmail.com",
+    "jobTitle": "Lead Systems & Software Architect",
+    "url": "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/",
+    "sameAs": [
+      "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/",
+      "https://github.com/ankit-kumar-khandelwal"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Announcement & Fast Star Bar -->
+  <aside class="top-announcement-bar" aria-label="Announcement">
+    <div class="container announcement-inner">
+      <div class="announcement-left">
+        <span class="announcement-pill">Open Source</span>
+        <span class="announcement-text">TracerNest is 100% free, zero-port &amp; zero-dependency. Help us grow!</span>
+      </div>
+      <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="fast-star-btn" title="Star TracerNest on GitHub">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span class="star-label">Star on GitHub</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Clean, Uncluttered, Minimalist Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" aria-label="TracerNest Home">
+        <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
+        <span class="logo-text">Tracer<strong>Nest</strong></span>
+        <!-- Dynamically Fetched Version Badge -->
+        <span class="version-badge" id="nav-version">...</span>
+      </a>
+
+      <!-- Streamlined, Minimalist Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#demo">Demo</a>
+        <a href="#features">Features</a>
+        <a href="#comparison">Comparison</a>
+        <a href="#contributors">Contributors</a>
+        <a href="#contribute">Contribute</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Dark / Light Mode Toggle Button -->
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Switch between dark and light theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Star on GitHub Button (No Count) -->
+        <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github btn-nav-star" title="Star on GitHub">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>Star on GitHub</span>
+        </a>
+
+        <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-install-nav">
+          <span>Install</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section (Errsole removed from highlight) -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-content">
+        <div class="hero-pill-wrap">
+          <div class="hero-pill">
+            <span class="live-dot"></span>
+            <span>Zero-Dependency &bull; Zero-Port Log Vault &bull; Node.js &amp; Laravel 13</span>
+          </div>
+          <!-- Star on GitHub Pill (No Count) -->
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="hero-star-pill" title="Star on GitHub">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <span>Star on GitHub</span>
+          </a>
+        </div>
+
+        <!-- Headline: Errsole removed from highlight as requested -->
+        <h1 class="hero-title">
+          The Self-Hosted <span class="highlight">Telemetry &amp; Log Vault</span> with Zero Extra Ports &amp; Zero Bloat
+        </h1>
+
+        <p class="hero-subtitle">
+          Real-time telemetry flight recorder, hardware AES-256-GCM encrypted log vault, embedded web console, and automatic SQLite-to-MySQL migration. Never lose terminal logs on restart, never open extra attack vectors.
+        </p>
+
+        <!-- Live NPM Stats Bar -->
+        <div class="npm-stats-grid" id="npm-stats">
+          <div class="stat-card">
+            <div class="stat-label">Daily Downloads</div>
+            <div class="stat-value" id="npm-daily">Loading...</div>
+            <div class="stat-indicator teal">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+              <span>Live NPM Registry</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Weekly Downloads</div>
+            <div class="stat-value" id="npm-weekly">Loading...</div>
+            <div class="stat-indicator teal">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>
+              <span>Active Telemetry</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Monthly Downloads</div>
+            <div class="stat-value" id="npm-monthly">Loading...</div>
+            <div class="stat-indicator teal">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Verified Production</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">NPM Package Version</div>
+            <!-- Dynamically Fetched Version -->
+            <div class="stat-value" id="npm-version">Loading...</div>
+            <div class="stat-indicator slate">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span>Dynamic Release</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Install Terminal -->
+        <div class="terminal-install-box">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">Quick Install &bull; Standard Node.js &amp; Express / Laravel</span>
+          </div>
+          <div class="terminal-body">
+            <code><span class="prompt">$</span> npm install tracernest-logger</code>
+            <button class="copy-btn" id="copy-install-btn" title="Copy to clipboard">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-cta-buttons">
+          <a href="#demo" class="btn btn-large btn-accent">
+            <span>Explore Live Interactive Demo</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+          </a>
+          <a href="#comparison" class="btn btn-large btn-outline">
+            <span>Compare Features</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Console Simulator Section -->
+    <section id="demo" class="demo-section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">Telemetry Console Simulator</div>
+          <h2>Live Log Streaming &amp; Payload Inspector</h2>
+          <p>Experience the TracerNest dashboard directly in your browser. Filter real-time logs, execute regex queries, inspect HTTP request/response payloads, and test hardware AES-256-GCM decryption.</p>
+        </div>
+
+        <!-- Simulator Shell -->
+        <div class="errsole-console-container">
+          <!-- Console Topbar -->
+          <div class="console-topbar">
+            <div class="console-left">
+              <div class="live-pill active">
+                <span class="radar-ping"></span>
+                <span id="stream-status">LIVE STREAMING</span>
+              </div>
+              <div class="total-count-badge">Total Logs: <span id="log-count">0</span></div>
+            </div>
+
+            <div class="console-actions">
+              <button class="action-btn" id="btn-toggle-stream" title="Pause or resume live auto-streaming">
+                <span id="stream-icon-container">
+                  <svg id="stream-icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                </span>
+                <span id="stream-text">Pause Stream</span>
+              </button>
+              <button class="action-btn" id="btn-simulate-error" title="Simulate a 500 fatal database connection error">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <span>Simulate Error</span>
+              </button>
+              <button class="action-btn" id="btn-simulate-http" title="Simulate an incoming HTTP 200/201 request">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 11 21 7 17 3"></polyline><line x1="21" y1="7" x2="9" y2="7"></line><polyline points="7 21 3 17 7 13"></polyline><line x1="3" y1="17" x2="15" y2="17"></line></svg>
+                <span>Simulate HTTP</span>
+              </button>
+              <button class="action-btn btn-danger" id="btn-clear-logs" title="Clear log window">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <span>Clear</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Console Filters & Search Bar -->
+          <div class="console-controls">
+            <div class="filter-pills" id="filter-pills">
+              <button class="filter-btn active" data-level="ALL">All <span class="pill-badge" id="badge-all">0</span></button>
+              <button class="filter-btn" data-level="ERROR">Errors <span class="pill-badge red" id="badge-error">0</span></button>
+              <button class="filter-btn" data-level="WARN">Warnings <span class="pill-badge yellow" id="badge-warn">0</span></button>
+              <button class="filter-btn" data-level="HTTP">HTTP <span class="pill-badge cyan" id="badge-http">0</span></button>
+              <button class="filter-btn" data-level="INFO">Info <span class="pill-badge green" id="badge-info">0</span></button>
+            </div>
+
+            <div class="search-box">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="log-search-input" placeholder="Search logs (message, path, status, trace)..." autocomplete="off" />
+              <button class="regex-toggle-btn" id="regex-toggle" title="Toggle regular expression matching">.* Regex</button>
+            </div>
+          </div>
+
+          <!-- Console Logs Virtual Stream -->
+          <div class="console-stream" id="log-stream-container">
+            <div class="log-stream-header">
+              <div class="col-time">Timestamp</div>
+              <div class="col-level">Level</div>
+              <div class="col-status">Status</div>
+              <div class="col-method">Method / Route</div>
+              <div class="col-msg">Message &amp; Telemetry</div>
+              <div class="col-action">Inspect</div>
+            </div>
+            <div class="log-stream-body" id="log-stream-list">
+              <!-- Dynamically populated rows -->
+            </div>
+          </div>
+
+          <!-- Console Footer Bar -->
+          <div class="console-footer">
+            <div class="footer-hint">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span><strong>Tip:</strong> Click any log row or the <strong>Inspect</strong> button to view encrypted request payloads, stack traces, and flight recorder telemetry.</span>
+            </div>
+            <div class="footer-meta">
+              <span>Port: <strong>Zero Extra (Host Port)</strong></span>
+              <span>Storage: <strong>Persistent DB (TTL Active)</strong></span>
+              <span>Encryption: <strong>AES-256-GCM Active</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep Log Inspector Modal -->
+    <div class="modal-backdrop" id="log-modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <span class="modal-level-badge" id="modal-level">ERROR</span>
+            <h3 id="modal-title">Log Event Details</h3>
+          </div>
+          <button class="modal-close-btn" id="btn-close-modal" aria-label="Close dialog">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Meta Grid -->
+          <div class="meta-summary-grid">
+            <div class="meta-item">
+              <span class="meta-label">Timestamp</span>
+              <span class="meta-val" id="modal-time">-</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">HTTP Method &amp; Path</span>
+              <span class="meta-val" id="modal-route">-</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Response Status</span>
+              <span class="meta-val" id="modal-status">-</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Execution Latency</span>
+              <span class="meta-val" id="modal-latency">-</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Client IP</span>
+              <span class="meta-val" id="modal-ip">127.0.0.1</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Memory Footprint</span>
+              <span class="meta-val" id="modal-memory">18.4 MB (Delta: +0.2MB)</span>
+            </div>
+          </div>
+
+          <!-- Encrypted Payload Inspector -->
+          <div class="inspector-section">
+            <div class="section-top-bar">
+              <h4>Request Body &amp; Headers (Zero-Plaintext Vault)</h4>
+              <div class="encryption-toggle-group">
+                <span class="toggle-status-text" id="encryption-label">Viewing: <strong>Encrypted at Rest (AES-256-GCM)</strong></span>
+                <button class="btn btn-sm btn-accent" id="btn-toggle-decrypt">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span id="decrypt-btn-text">Decrypt Payload</span>
+                </button>
+              </div>
+            </div>
+            <pre class="code-block" id="modal-payload-code">{}</pre>
+          </div>
+
+          <!-- Stack Trace -->
+          <div class="inspector-section" id="modal-stack-section">
+            <h4>Stack Trace &amp; Flight Recorder Telemetry</h4>
+            <pre class="code-block stack-trace" id="modal-stack-code">No stack trace available for this log level.</pre>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="modal-vault-status">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>Protected with Hardware-accelerated AES-256-GCM. Logs persisted until TTL completion.</span>
+          </div>
+          <button class="btn btn-outline" id="btn-modal-dismiss">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">Engineered for Performance &amp; Privacy</div>
+          <h2>Enterprise Architecture Built Into a Single Package</h2>
+          <p>Every feature in TracerNest was engineered from the ground up to solve the real flaws of existing Node.js &amp; Laravel logging tools.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="16" y="16" width="6" height="6" rx="1"></rect><rect x="2" y="16" width="6" height="6" rx="1"></rect><rect x="9" y="2" width="6" height="6" rx="1"></rect><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path><path d="M12 12V8"></path></svg>
+            </div>
+            <h3>Zero Extra Ports</h3>
+            <p>Traditional tools force you to open separate ingress ports, exposing new attack surfaces and complicating Kubernetes deployments. TracerNest mounts directly onto your host router.</p>
+            <ul class="feature-perks">
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>No firewall modifications required</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Works behind existing SSL &amp; domain reverse proxies</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Mounts on Express, Koa, Fastify &amp; Laravel 13</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <h3>Zero Runtime Dependencies</h3>
+            <p>Supply chain attacks via transitive dependencies are the #1 vulnerability vector in modern npm packages. TracerNest has exactly <code>dependencies: {}</code>.</p>
+            <ul class="feature-perks">
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>100% native Node.js standard library</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>No Dependabot or CVE audit alerts</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Lightweight ~15MB footprint vs ~60MB+ bloat</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <h3>AES-256-GCM Payload Encryption</h3>
+            <p>Never store user passwords, authorization tokens, or sensitive medical/financial data in plaintext logs. Every payload is encrypted at rest using hardware-accelerated AES-256-GCM.</p>
+            <ul class="feature-perks">
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Master key never hardcoded in repository</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Tamper-proof 128-bit authentication tag verification</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>HIPAA &amp; GDPR compliance ready</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            </div>
+            <h3>SQLite to MySQL Auto-Migration</h3>
+            <p>Start instantly in local development with embedded SQLite. When scaling to production, simply pass your MySQL connection string &mdash; TracerNest automatically migrates your schema and data.</p>
+            <ul class="feature-perks">
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Zero-downtime automated column schema drift DDL</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Automatic safe cleanup of SQLite files</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Strict preservation of your <code>.master.key</code></span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            </div>
+            <h3>Persistent Logs Until TTL Completion</h3>
+            <p>Most embedded loggers lose in-memory logs whenever your server restarts or Docker spins up a fresh container. TracerNest writes directly to disk/DB with configurable TTL cleanup.</p>
+            <ul class="feature-perks">
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Logs survive unexpected container crashes</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Configurable TTL (7, 14, 30, 90 days)</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Zero memory leaks under high-throughput spikes</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <h3>Laravel 13 PHP Bridge</h3>
+            <p>TracerNest isn't restricted to Node.js. It features a native Laravel 13 PHP middleware and controller bridge, enabling unified telemetry across your entire polyglot backend stack.</p>
+            <ul class="feature-perks">
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Zero-port Laravel route integration</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Captures PHP exceptions, request headers &amp; DB queries</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Unified single-pane-of-glass dashboard</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehensive Comparison Section -->
+    <section id="comparison" class="comparison-section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">Deep Technical Breakdown</div>
+          <h2>Why TracerNest Outclasses Legacy Loggers</h2>
+          <p>See how TracerNest compares side-by-side against Errsole, traditional logging libraries (Winston/Pino), and expensive cloud SaaS platforms (Datadog/Sentry).</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature / Capability</th>
+                <th class="col-highlight">TracerNest</th>
+                <th>Errsole</th>
+                <th>Winston / Pino / Morgan</th>
+                <th>Datadog / Sentry (SaaS)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>External Monitoring Port Required?</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Zero Extra Ports (Host Mount)</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="badge-danger">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>Yes (Separate TCP Port)</span>
+                  </span>
+                </td>
+                <td><span class="badge-neutral">N/A (No Web Console)</span></td>
+                <td><span class="badge-warning">Cloud Egress (Port 443 Outbound)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Runtime Dependencies</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>0 Dependencies (Empty Object)</span>
+                  </span>
+                </td>
+                <td><span class="badge-danger">~45+ Transitive Dependencies</span></td>
+                <td>5 &ndash; 15 Dependencies</td>
+                <td>Heavy Agent Daemons</td>
+              </tr>
+              <tr>
+                <td><strong>Hardware AES-256-GCM Encryption</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Built-in Hardware Encryption</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="badge-danger">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>Plaintext Storage Only</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="badge-danger">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>Plaintext Only</span>
+                  </span>
+                </td>
+                <td>Encrypted by Vendor (External Cloud)</td>
+              </tr>
+              <tr>
+                <td><strong>SQLite to MySQL Auto-Migration</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Automatic Zero-Downtime Migration</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="badge-danger">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>Manual Setup Required</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="badge-danger">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>None</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="badge-danger">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>Proprietary Cloud DB</span>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Crash Telemetry &amp; Flight Recorder</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Pre-Crash Context Capture</span>
+                  </span>
+                </td>
+                <td>Partial</td>
+                <td>
+                  <span class="badge-danger">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>Logs Lost on Uncaught Crash</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="badge-success">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Sentry Breadcrumbs</span>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Persistent Across Restarts (TTL)</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Persistent in DB until TTL</span>
+                  </span>
+                </td>
+                <td>Partial (In-memory buffer risk)</td>
+                <td>File log rotation only</td>
+                <td>Cloud retention limits</td>
+              </tr>
+              <tr>
+                <td><strong>Multi-Framework (Node &amp; Laravel 13)</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Express, Koa, Fastify &amp; Laravel</span>
+                  </span>
+                </td>
+                <td>Node.js Only</td>
+                <td>Node.js Only</td>
+                <td>Multiple SDKs required</td>
+              </tr>
+              <tr>
+                <td><strong>Estimated Monthly Cost</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">$0 / month (100% Free &amp; Self-Hosted)</span>
+                </td>
+                <td>$0 / month (Self-hosted)</td>
+                <td>$0 / month (No UI)</td>
+                <td><span class="badge-danger">$250 &ndash; $2,500+ / month</span></td>
+              </tr>
+              <tr>
+                <td><strong>Supply Chain Security Risk</strong></td>
+                <td class="col-highlight">
+                  <span class="badge-success">Zero (No external packages)</span>
+                </td>
+                <td>Moderate (Express, SQLite3, etc.)</td>
+                <td>Low to Moderate</td>
+                <td>Closed Source Binary</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Architecture Breakdown Cards -->
+        <div class="architecture-grid">
+          <div class="arch-card">
+            <h4>Why Zero Extra Ports Matter</h4>
+            <p>When running in Kubernetes, Docker Swarm, or AWS ECS, every exposed port requires another target group, security group ingress rule, ALB path routing rule, and firewall punch. TracerNest eliminates this complexity completely by attaching to your existing HTTP server handler.</p>
+          </div>
+          <div class="arch-card">
+            <h4>True Zero-Dependency Security</h4>
+            <p>Every additional npm dependency introduces attack vectors like malicious sub-dependency takeovers or silent CVEs. TracerNest's HTTP router, crypto suite, template engine, and storage adapters are written purely using Node.js built-ins, keeping your audit clean.</p>
+          </div>
+          <div class="arch-card">
+            <h4>Zero Egress Cloud Data Privacy</h4>
+            <p>Datadog and Sentry require streaming sensitive user data to external third-party cloud servers, posing significant compliance hurdles under GDPR, HIPAA, and SOC2. With TracerNest, your telemetry data never leaves your infrastructure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW Highlighted Contributors Section (Fetched from GitHub) -->
+    <section id="contributors" class="contributors-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">Open Source Community</div>
+          <h2>Project Contributors</h2>
+          <p>TracerNest is maintained by Ankit Khandelwal and powered by open-source engineers around the world. Every commit, feature request, and storage driver refinement pushes self-hosted observability forward.</p>
+        </div>
+
+        <div class="contributors-wrap">
+          <div class="contributors-grid" id="contributors-grid">
+            <!-- Dynamically populated from GitHub API with Ankit Khandelwal highlighted as Lead Maintainer -->
+            <div class="contributor-card maintainer-card">
+              <div class="contributor-avatar-wrap">
+                <img src="https://avatars.githubusercontent.com/u/74641680?v=4" alt="Ankit Khandelwal" class="contributor-avatar" onerror="this.src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'">
+                <span class="maintainer-star-badge" title="Lead Maintainer">★</span>
+              </div>
+              <div class="contributor-meta">
+                <h4>Ankit Khandelwal</h4>
+                <span class="contributor-role">Creator &amp; Lead Maintainer</span>
+                <span class="contributor-commits">Lead Architect</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal" target="_blank" rel="noopener noreferrer" class="contributor-gh-link" title="View GitHub Profile">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>@ankit-kumar-khandelwal</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contributors-footer-card">
+            <div class="c-footer-text">
+              <h3>Join the TracerNest Contributor Community</h3>
+              <p>We welcome PRs for custom storage adapters (PostgreSQL, ClickHouse), dashboard widgets, and language bridges.</p>
+            </div>
+            <a href="#contribute" class="btn btn-accent">
+              <span>Read Contributor Guide</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Contribute Section -->
+    <section id="contribute" class="contribute-section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">Open Source &amp; Developer First</div>
+          <h2>How to Contribute to TracerNest</h2>
+          <p>We welcome contributions from engineers worldwide! Follow our four-step workflow to get started on bug fixes, UI enhancements, or new storage drivers.</p>
+        </div>
+
+        <div class="contribution-steps">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-badge">
+                <span class="step-num-accent">01</span>
+                <span class="step-label">PHASE 1</span>
+              </div>
+              <span class="step-status-indicator"></span>
+            </div>
+            <h3 class="step-title">Fork &amp; Clone Repository</h3>
+            <p class="step-desc">Fork the repository on GitHub and clone your local copy:</p>
+            <pre class="code-block">git clone https://github.com/ankit-kumar-khandelwal/tracernest-logger.git
+cd tracernest-logger</pre>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-badge">
+                <span class="step-num-accent">02</span>
+                <span class="step-label">PHASE 2</span>
+              </div>
+              <span class="step-status-indicator"></span>
+            </div>
+            <h3 class="step-title">Zero Dependency Policy</h3>
+            <p class="step-desc"><strong>Crucial Rule:</strong> TracerNest maintains a strict <code>dependencies: {}</code> policy. Any PR introducing a runtime dependency in <code>package.json</code> will be automatically rejected. Use native Node.js standard libraries.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-badge">
+                <span class="step-num-accent">03</span>
+                <span class="step-label">PHASE 3</span>
+              </div>
+              <span class="step-status-indicator"></span>
+            </div>
+            <h3 class="step-title">Run Comprehensive Test Suite</h3>
+            <p class="step-desc">Ensure that all 33+ unit and integration tests pass cleanly before submitting code:</p>
+            <pre class="code-block">npm test
+npm run build</pre>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-badge">
+                <span class="step-num-accent">04</span>
+                <span class="step-label">PHASE 4</span>
+              </div>
+              <span class="step-status-indicator"></span>
+            </div>
+            <h3 class="step-title">Submit Your Pull Request</h3>
+            <p class="step-desc">Create a descriptive feature branch (e.g. <code>feat/postgres-adapter</code>), commit your changes using conventional commits, and open a PR against <code>main</code> on GitHub.</p>
+          </div>
+        </div>
+
+        <div class="contribute-cta-box">
+          <div class="contribute-cta-text">
+            <h3>Ready to build the future of zero-overhead observability?</h3>
+            <p>Join the discussion, report issues, or star the project on GitHub.</p>
+          </div>
+          <div class="contribute-cta-links">
+            <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>Star on GitHub</span>
+            </a>
+            <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <span>Browse Open Issues</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">Got Questions?</div>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>How does TracerNest achieve zero extra ports?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>TracerNest attaches directly to your application's existing HTTP request pipeline (Express, Koa, Fastify, or Laravel). When a request hits your configured dashboard path (e.g. <code>/tracernest</code>), TracerNest serves the embedded dashboard and API directly over the existing port, eliminating the need for firewall changes or port conflicts.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Is TracerNest truly zero-dependency?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes! Check <code>package.json</code>: the <code>dependencies</code> object is strictly empty (<code>{}</code>). All cryptography, HTTP routing, file operations, and database interactions use native Node.js standard libraries and built-in SQLite engines, protecting your applications from supply-chain attacks.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How are logs kept persistent across container restarts?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>TracerNest writes logs straight to persistent database storage (SQLite files or MySQL tables) instead of keeping them purely in process RAM. Even if your server crashes or your container restarts, all logs remain intact until your configured TTL (Time-To-Live) cycle safely cleans them up.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How does the SQLite to MySQL migration work?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>When you update your initialization configuration to target MySQL, TracerNest automatically inspects MySQL for required tables and columns. It applies missing column DDL via <code>ALTER TABLE ... ADD COLUMN ...</code>, migrates existing SQLite log records, and deletes obsolete SQLite files while strictly keeping your <code>.master.key</code> safe.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Creator Section (Bio line removed as requested) -->
+    <section id="contact" class="contact-section section-alt">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-header">
+            <div class="badge-subtitle">Get in Touch</div>
+            <h2>Connect with the Maintainer</h2>
+            <p>Have questions about enterprise deployment, custom storage adapters, or consulting? Reach out directly.</p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Email Contact Card with Integrated Copy Button -->
+            <div class="contact-pill contact-email-card">
+              <div class="contact-icon-wrap">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div class="contact-info">
+                <span class="contact-label">Direct Email</span>
+                <a href="mailto:ankitkhandelwal0003@gmail.com" class="contact-val email-val" title="Send email to ankitkhandelwal0003@gmail.com">
+                  ankitkhandelwal0003@gmail.com
+                </a>
+              </div>
+              <button class="copy-email-mini-btn" id="btn-copy-email" title="Copy email address" aria-label="Copy email address">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+
+            <!-- LinkedIn Contact Card -->
+            <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer" class="contact-pill" title="View LinkedIn profile of Ankit Khandelwal">
+              <div class="contact-icon-wrap">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </div>
+              <div class="contact-info">
+                <span class="contact-label">LinkedIn Profile</span>
+                <span class="contact-val">Ankit Khandelwal &nearr;</span>
+              </div>
+            </a>
+
+            <!-- GitHub Repository Card -->
+            <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="contact-pill" title="View TracerNest on GitHub">
+              <div class="contact-icon-wrap">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <div class="contact-info">
+                <span class="contact-label">GitHub Repository</span>
+                <span class="contact-val">tracernest-logger &nearr;</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="24" height="24">
+          <span class="logo-text">Tracer<strong>Nest</strong></span>
+        </div>
+        <p>The zero-dependency, zero-port self-hosted telemetry flight recorder &amp; log vault for Node.js and Laravel 13.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Project</h4>
+          <a href="#demo">Demo</a>
+          <a href="#features">Features</a>
+          <a href="#comparison">Comparison</a>
+          <a href="#contributors">Contributors</a>
+          <a href="#contribute">Contributing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Ecosystem</h4>
+          <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer">NPM Registry</a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+          <a href="llms.txt" target="_blank">llms.txt (AI Docs)</a>
+          <a href="sitemap.xml" target="_blank">Sitemap</a>
+        </div>
+        <div class="footer-col">
+          <h4>Maintainer</h4>
+          <a href="mailto:ankitkhandelwal0003@gmail.com">ankitkhandelwal0003@gmail.com</a>
+          <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+          <a href="https://github.com/ankit-kumar-khandelwal" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Ankit Khandelwal. Released under the MIT License.</p>
+        <p>Security Hardened &bull; Zero External Ports &bull; 100% Free &amp; Open Source</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Client-Side JavaScript -->
+  <script src="app.js?v=2.2"></script>
+</body>
+</html>

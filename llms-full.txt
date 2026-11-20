@@ -1,0 +1,75 @@
+# TracerNest Complete Knowledge Specification & Technical Manual
+
+Version: 1.2.0
+Maintainer: Ankit Khandelwal (ankitkhandelwal0003@gmail.com)
+LinkedIn: https://www.linkedin.com/in/ankit-khandelwal-3068a9194/
+Repository: https://github.com/ankit-kumar-khandelwal/tracernest-logger
+GitHub Star: https://github.com/ankit-kumar-khandelwal/tracernest-logger (1,400+ stars)
+Package: https://www.npmjs.com/package/tracernest-logger
+
+---
+
+### 1. Executive Summary & Vision
+TracerNest is an enterprise-grade, zero-dependency, self-hosted telemetry flight recorder, AES-256-GCM encrypted log vault, and interactive developer dashboard for Node.js (>= 18.0.0) and Laravel 13 (PHP >= 8.2).
+
+It was engineered by Ankit Khandelwal to solve fundamental architectural drawbacks present in legacy logging solutions (Winston, Pino, Morgan) and embedded UI loggers like Errsole:
+1. **The Ingress Port Hazard**: Errsole requires opening a separate TCP port (e.g. 8001) for the web dashboard. In production Kubernetes or AWS ECS clusters, this demands additional target groups, firewall ingress rules, and ALB paths. TracerNest runs directly within the host application pipeline with zero extra ports.
+2. **Supply-Chain Attack Surfaces**: Many logging packages drag dozens of dependencies. TracerNest operates with `dependencies: {}`. All routing, cryptography, template rendering, and database drivers use Node.js core standard libraries.
+3. **Data Loss on Restart**: In-memory loggers lose crash telemetry when an instance restarts. TracerNest guarantees log persistence in SQLite or MySQL until your configured Time-To-Live (TTL) is completed.
+4. **Data Privacy & Compliance**: By encrypting all logs at rest using hardware-accelerated AES-256-GCM, TracerNest protects sensitive PII, passwords, and tokens, complying with HIPAA, SOC2, and GDPR.
+
+---
+
+### 2. Architecture & Internals
+
+#### 2.1 Zero-Port Mounting Architecture
+TracerNest intercepts incoming HTTP requests at the framework router level:
+- In Express: `app.use('/tracernest', tracernest.router)`
+- In Fastify: `fastify.register(tracernest.plugin, { prefix: '/tracernest' })`
+- In Laravel 13: `Route::any('/tracernest/{any?}', [TracerNestController::class, 'handle'])`
+
+The dashboard static assets, API endpoints, and authentication are served over the exact same TLS/HTTPS port as your application.
+
+#### 2.2 Hardware-Accelerated AES-256-GCM Vault
+Every log payload (request body, response body, headers, stack trace) is encrypted prior to database insertion:
+- Cipher: `aes-256-gcm`
+- Key derivation: 256-bit key stored safely in `.master.key` (or passed via initialization config)
+- IV: 96-bit (12-byte) cryptographically secure random initialization vector per record
+- Authentication Tag: 128-bit (16-byte) tag appended to detect tampering
+
+#### 2.3 SQLite to MySQL Zero-Downtime Migration Engine
+When an application switches its initialization config from SQLite to MySQL:
+1. The engine checks MySQL connectivity.
+2. It inspects existing MySQL table definitions (`INFORMATION_SCHEMA.COLUMNS`).
+3. If new columns or schema drift are detected, non-destructive DDL (`ALTER TABLE <tbl> ADD COLUMN <col> ...`) is executed.
+4. Existing SQLite records are read and batched into MySQL.
+5. Obsolete `.sqlite` database files are safely deleted, while `.master.key` is strictly preserved.
+
+#### 2.4 TTL Cleanup & Persistence Guarantee
+Logs are indexed with `created_at` timestamps. A background worker periodically checks and deletes expired records based on your configured `ttlDays` (e.g., 30 days). Logs are never lost during unexpected reboots or pod rescheduling.
+
+---
+
+### 3. Detailed Comparative Analysis
+
+| Feature | TracerNest | Errsole | Winston / Pino | Sentry / Datadog (Cloud) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Extra Ports** | **Zero (Mounts on App)** | Yes (Separate Port) | N/A (No UI) | Outbound Egress Only |
+| **Dependencies** | **0 (`dependencies: {}`)** | ~45+ packages | 5 - 15 packages | Heavy agent daemons |
+| **Payload Encryption** | **AES-256-GCM (At rest)** | Plaintext only | Plaintext only | Vendor cloud-managed |
+| **Auto-Migration** | **SQLite to MySQL Auto** | Manual | None | Proprietary |
+| **Web Dashboard** | **Built-in Errsole-style** | Built-in | None (Console only) | Cloud SaaS UI |
+| **Laravel 13 Support** | **Native PHP Bridge** | None | None | Separate PHP SDK |
+| **Monthly Cost** | **$0 / month** | $0 / month | $0 / month | $250 - $2,500+ / mo |
+
+---
+
+### 4. Contributing & Development Standards
+- Maintainer: Ankit Khandelwal <ankitkhandelwal0003@gmail.com>
+- LinkedIn: https://www.linkedin.com/in/ankit-khandelwal-3068a9194/
+- Repository: https://github.com/ankit-kumar-khandelwal/tracernest-logger
+
+**Rules for Contributors**:
+1. **Zero External Runtime Dependencies**: Never add any packages to `dependencies` in `package.json`.
+2. **Deterministic Cryptography**: Always use authenticated ciphers (`aes-256-gcm`).
+3. **Passing Tests**: Run `npm test` before submitting pull requests.
