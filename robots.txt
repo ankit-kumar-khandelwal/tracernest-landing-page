@@ -30,4 +30,4 @@ User-agent: CCBot
 Allow: /
 
 # Sitemap Location
-Sitemap: https://tracernest.dev/sitemap.xml
+Sitemap: https://tracernest.info/sitemap.xml
