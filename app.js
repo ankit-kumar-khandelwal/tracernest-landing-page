@@ -500,7 +500,7 @@
     }
   }
 
-  // Fetch GitHub Contributors dynamically with Lead Maintainer pinned
+  // Fetch GitHub Contributors dynamically with Lead Maintainer pinned and Join card appended
   async function fetchContributors() {
     if (!contributorsGrid) return;
     const repoUrl = 'https://api.github.com/repos/ankit-kumar-khandelwal/tracernest-logger/contributors';
@@ -527,10 +527,10 @@
         </div>
         <div class="contributor-meta">
           <h4>Ankit Khandelwal</h4>
-          <span class="contributor-role">Lead Maintainer &amp; Creator</span>
+          <span class="contributor-role">Creator &amp; Lead Maintainer</span>
           <span class="contributor-commits">${maintainerItem ? maintainerItem.contributions + ' commits' : 'Project Creator'}</span>
         </div>
-        <a href="https://github.com/ankit-kumar-khandelwal" target="_blank" rel="noopener noreferrer" class="contributor-gh-link">
+        <a href="https://github.com/ankit-kumar-khandelwal" target="_blank" rel="noopener noreferrer" class="contributor-gh-link" title="View GitHub Profile">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           <span>@ankit-kumar-khandelwal</span>
         </a>
@@ -551,15 +551,35 @@
             <span class="contributor-role">Contributor</span>
             <span class="contributor-commits">${c.contributions} ${c.contributions === 1 ? 'commit' : 'commits'}</span>
           </div>
-          <a href="${c.html_url}" target="_blank" rel="noopener noreferrer" class="contributor-gh-link">
+          <a href="${c.html_url}" target="_blank" rel="noopener noreferrer" class="contributor-gh-link" title="View GitHub Profile">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span>@${c.login}</span>
           </a>
         `;
         contributorsGrid.appendChild(card);
       });
+
+      // Join Contributor Invitation Card
+      const joinCard = document.createElement('div');
+      joinCard.className = 'contributor-card join-contributor-card';
+      joinCard.innerHTML = `
+        <div class="contributor-avatar-wrap">
+          <div class="avatar-placeholder-dashed" title="Become a contributor">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
+        </div>
+        <div class="contributor-meta">
+          <h4>Your Name Here</h4>
+          <span class="contributor-role">Future Contributor</span>
+          <span class="contributor-commits">Submit your first PR</span>
+        </div>
+        <a href="#contribute" class="contributor-gh-link join-link">
+          <span>View Open Tracks &darr;</span>
+        </a>
+      `;
+      contributorsGrid.appendChild(joinCard);
     } catch (e) {
-      // Fallback is already preserved in static HTML
+      // Fallback is preserved in static HTML
     }
   }
 
@@ -597,6 +617,30 @@
     btnSimulateError.addEventListener('click', () => {
       const errorTemplate = SAMPLE_LOG_TEMPLATES.find((t) => t.level === 'ERROR');
       pushLog(createLogRecord(errorTemplate), true);
+
+      // Friendly community hint in live console
+      if (!state.hasSimulatedCommunityHint) {
+        state.hasSimulatedCommunityHint = true;
+        setTimeout(() => {
+          pushLog({
+            id: 'star_' + Date.now().toString(36),
+            timestamp: formatTime(new Date()),
+            level: 'INFO',
+            service: 'community',
+            method: 'STAR',
+            path: '/repos/ankit-kumar-khandelwal/tracernest-logger',
+            statusCode: 200,
+            duration: 0.2,
+            ip: '127.0.0.1',
+            memory: '0.0MB',
+            payload: {
+              message: "⭐ Zero-port telemetry captured! If TracerNest saves you debugging time, consider starring on GitHub & contributing!",
+              repo: "https://github.com/ankit-kumar-khandelwal/tracernest-logger"
+            },
+            isNew: true
+          }, false);
+        }, 900);
+      }
     });
 
     // Simulate HTTP Button
@@ -770,6 +814,53 @@
     renderLogs();
   }
 
+  // Floating Star Toast Notification
+  function initFloatingStarToast() {
+    const toast = document.getElementById('floating-star-toast');
+    const closeBtn = document.getElementById('toast-close-btn');
+    const starBtn = document.getElementById('toast-star-btn');
+    const contributeBtn = document.getElementById('toast-contribute-btn');
+    if (!toast) return;
+
+    const DISMISS_KEY = 'tracernest_star_toast_dismissed';
+    try {
+      const dismissedAt = localStorage.getItem(DISMISS_KEY);
+      // Re-prompt after 7 days if previously dismissed
+      if (dismissedAt && Date.now() - parseInt(dismissedAt, 10) < 7 * 24 * 60 * 60 * 1000) {
+        return;
+      }
+    } catch (e) {}
+
+    // Display toast after a short delay (3.5 seconds)
+    setTimeout(() => {
+      toast.style.display = 'block';
+    }, 3500);
+
+    function dismissToast() {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(12px)';
+      toast.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 250);
+      try {
+        localStorage.setItem(DISMISS_KEY, Date.now().toString());
+      } catch (e) {}
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', dismissToast);
+    if (starBtn) {
+      starBtn.addEventListener('click', () => {
+        setTimeout(dismissToast, 1200);
+      });
+    }
+    if (contributeBtn) {
+      contributeBtn.addEventListener('click', () => {
+        setTimeout(dismissToast, 600);
+      });
+    }
+  }
+
   // Initialize Application
   function init() {
     initTheme();
@@ -779,6 +870,7 @@
     fetchDynamicVersion();
     fetchNpmStats();
     fetchContributors();
+    initFloatingStarToast();
   }
 
   if (document.readyState === 'loading') {
