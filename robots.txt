@@ -1,31 +1,48 @@
 # Robots.txt for TracerNest Official Landing & Documentation
-# Optimized for Google, Bing, and AI Search Agents (ChatGPT, Claude, Perplexity, Copilot, Gemini)
+# Optimized for Google, Bing, and AI Search Discovery (OpenAI, Claude, Perplexity, Gemini, Apple)
 
 User-agent: *
 Allow: /
 
-# Explicit AI Agent Allowances
+# OpenAI Crawlers & Search Discovery
+# GPTBot: Potential model training & knowledge retrieval
 User-agent: GPTBot
 Allow: /
 
+# OAI-SearchBot: Search discovery & search engine indexing
+User-agent: OAI-SearchBot
+Allow: /
+
+# ChatGPT-User: User-requested interactive website visits in ChatGPT
 User-agent: ChatGPT-User
 Allow: /
 
+# Anthropic Crawlers
 User-agent: ClaudeBot
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
+# Perplexity AI & Search Engine
 User-agent: PerplexityBot
+Allow: /
+
+# Google Search & AI
+User-agent: Googlebot
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
+# Apple Search & AI
+User-agent: Applebot
+Allow: /
+
 User-agent: Applebot-Extended
 Allow: /
 
+# Common Crawl & Open Web
 User-agent: CCBot
 Allow: /
 
