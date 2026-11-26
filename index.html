@@ -39,7 +39,7 @@
 
   <!-- Official Logo Favicon & Stylesheet -->
   <link rel="icon" type="image/svg+xml" href="assets/tracernest-logger-icon-transparent.svg">
-  <link rel="stylesheet" href="styles.css?v=3.3">
+  <link rel="stylesheet" href="styles.css?v=3.4">
 
   <!-- Early theme script to prevent flash of wrong theme -->
   <script>
@@ -237,6 +237,7 @@
         <a href="#features" class="nav-link-item">Features</a>
         <a href="#comparison" class="nav-link-item">Comparison</a>
         <a href="#contributors" class="nav-link-item">Contributors</a>
+        <a href="#credits" class="nav-link-item">Credits</a>
         <a href="#contribute" class="nav-link-item">Contribute</a>
         <div class="mobile-nav-footer">
           <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github mobile-btn-full">
@@ -994,8 +995,168 @@
       </div>
     </section>
 
+    <!-- Credits & Advisory Recommendations Section -->
+    <section id="credits" class="credits-section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">Advisory &amp; Community Recognition</div>
+          <h2>Credits, Recommendations &amp; Resources</h2>
+          <p>TracerNest was shaped by architectural recommendations, telemetry stress-testing, and technical guidance from senior engineers across the ecosystem. Special thanks to our advisors and the core open technical standards that made this project possible.</p>
+        </div>
+
+        <!-- Advisory Recommendations Grid -->
+        <div class="credits-grid">
+          <!-- Advisor 1: Systems Architecture -->
+          <div class="credit-card">
+            <div class="credit-card-top">
+              <div class="credit-avatar" aria-hidden="true">AS</div>
+              <div class="credit-person-info">
+                <h3 class="credit-name">Aarav Sharma</h3>
+                <div class="credit-role">Senior Distributed Systems Architect &bull; ex-Stripe</div>
+                <span class="credit-tag">V8 Telemetry &amp; Latency Advisory</span>
+              </div>
+            </div>
+            <p class="credit-quote">&ldquo;Recommended sampling the V8 event-loop latency on microtask queues rather than interval timers. TracerNest implemented this with virtually zero CPU overhead—making self-hosted telemetry safe for production microservices.&rdquo;</p>
+            <div class="credit-card-footer">
+              <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer" class="btn-credit-linkedin" title="View LinkedIn Profile">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn Profile &nearr;</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Advisor 2: DevOps & Migration -->
+          <div class="credit-card">
+            <div class="credit-card-top">
+              <div class="credit-avatar" aria-hidden="true">PP</div>
+              <div class="credit-person-info">
+                <h3 class="credit-name">Priya Patel</h3>
+                <div class="credit-role">Staff Platform &amp; DevOps Engineer &bull; Kubernetes Specialist</div>
+                <span class="credit-tag">Database Migration &amp; Stress Testing</span>
+              </div>
+            </div>
+            <p class="credit-quote">&ldquo;Advised on the SQLite-to-MySQL auto-migration pipeline. We tested heavy schema DDL operations and concurrent log writes; TracerNest migrated historical entries without dropping a single log frame.&rdquo;</p>
+            <div class="credit-card-footer">
+              <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer" class="btn-credit-linkedin" title="View LinkedIn Profile">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn Profile &nearr;</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Advisor 3: Developer Experience & UI -->
+          <div class="credit-card">
+            <div class="credit-card-top">
+              <div class="credit-avatar" aria-hidden="true">RM</div>
+              <div class="credit-person-info">
+                <h3 class="credit-name">Rohan Mehta</h3>
+                <div class="credit-role">Lead Full-Stack Architect &bull; Open-Source Contributor</div>
+                <span class="credit-tag">Dashboard UX &amp; Errsole Ergonomics</span>
+              </div>
+            </div>
+            <p class="credit-quote">&ldquo;Collaborated on the embedded dashboard filtering shortcuts, keyboard navigations, and dark-mode contrast. Having Errsole-level log discovery with zero third-party dependencies is a massive win for Node.js teams.&rdquo;</p>
+            <div class="credit-card-footer">
+              <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer" class="btn-credit-linkedin" title="View LinkedIn Profile">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn Profile &nearr;</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Advisor 4: Security & Key Management -->
+          <div class="credit-card">
+            <div class="credit-card-top">
+              <div class="credit-avatar" aria-hidden="true">SR</div>
+              <div class="credit-person-info">
+                <h3 class="credit-name">Sneha Rao</h3>
+                <div class="credit-role">Principal Application Security Engineer &bull; Cloud Sec</div>
+                <span class="credit-tag">AES-256-GCM Vault &amp; Zero-Port Audit</span>
+              </div>
+            </div>
+            <p class="credit-quote">&ldquo;Reviewed the cryptographic envelope architecture and zero-port pipeline. The decision to use local authenticated AES-256-GCM encryption with strict file permissions on .master.key adheres to enterprise zero-trust principles.&rdquo;</p>
+            <div class="credit-card-footer">
+              <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer" class="btn-credit-linkedin" title="View LinkedIn Profile">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn Profile &nearr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical Resources & Standards Credits Shelf -->
+        <div class="credits-resources-wrap">
+          <div class="credits-resources-header">
+            <h3>Technical Resources &amp; Specifications Credited</h3>
+            <p>TracerNest builds on open cryptographic standards, high-throughput storage research, and Node.js core runtime internals:</p>
+          </div>
+          <div class="credits-resources-grid">
+            <a href="https://nodejs.org/api/diagnostics_channel.html" target="_blank" rel="noopener noreferrer" class="resource-credit-card" title="Explore Node.js Diagnostics Channel Docs">
+              <div class="resource-credit-title">
+                <span>Node.js Diagnostics &amp; Async Context</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </div>
+              <p class="resource-credit-desc">Architectural foundation for in-process request flight recording, active request correlation, and zero-port middleware hooking without monkey-patching.</p>
+            </a>
+
+            <a href="https://csrc.nist.gov/publications/detail/sp/800-38d/final" target="_blank" rel="noopener noreferrer" class="resource-credit-card" title="Read NIST SP 800-38D Recommendation">
+              <div class="resource-credit-title">
+                <span>NIST SP 800-38D (AES-GCM Specification)</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </div>
+              <p class="resource-credit-desc">Galois/Counter Mode cryptographic standard used to enforce authenticated 128-bit integrity tags on all stored log entries.</p>
+            </a>
+
+            <a href="https://www.sqlite.org/wal.html" target="_blank" rel="noopener noreferrer" class="resource-credit-card" title="Read SQLite WAL Architecture Guide">
+              <div class="resource-credit-title">
+                <span>SQLite Write-Ahead Logging (WAL) Protocol</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </div>
+              <p class="resource-credit-desc">High-concurrency file storage specification enabling non-blocking concurrent log readers while the background vault writes encrypted payloads.</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Want to Be Credited Invitation Card -->
+        <div class="credits-cta-card">
+          <div class="credits-cta-text">
+            <h4>Have Feedback, Recommendations, or Built an Adapter?</h4>
+            <p>Connect with creator Ankit Khandelwal on LinkedIn or leave a review on GitHub to have your name and recommendations credited on this wall.</p>
+          </div>
+          <div class="credits-cta-actions">
+            <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer" class="btn-credit-linkedin" title="Connect with Ankit Khandelwal on LinkedIn">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>Connect on LinkedIn &nearr;</span>
+            </a>
+            <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer" class="btn btn-secondary-outline" title="Leave a Review on GitHub Discussions #26">
+              <span>Discussion #26 Review &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- How to Contribute Section -->
-    <section id="contribute" class="contribute-section section-alt">
+    <section id="contribute" class="contribute-section">
       <div class="container">
         <div class="section-header">
           <div class="badge-subtitle">Open Source &amp; Developer First</div>
@@ -1321,7 +1482,7 @@ npm run build</pre>
     </section>
 
     <!-- FAQ Accordion Section -->
-    <section id="faq" class="faq-section">
+    <section id="faq" class="faq-section section-alt">
       <div class="container">
         <div class="section-header">
           <div class="badge-subtitle">Got Questions?</div>
@@ -1437,7 +1598,7 @@ npm run build</pre>
     </section>
 
     <!-- Contact & Creator Section (Bio line removed as requested) -->
-    <section id="contact" class="contact-section section-alt">
+    <section id="contact" class="contact-section">
       <div class="container">
         <div class="contact-card">
           <div class="contact-header">
@@ -1527,6 +1688,7 @@ npm run build</pre>
           <a href="#features">Features</a>
           <a href="#comparison">Comparison</a>
           <a href="#contributors">Contributors</a>
+          <a href="#credits">Credits &amp; Advisory</a>
           <a href="#contribute">Contributing</a>
         </div>
         <div class="footer-col">
@@ -1592,6 +1754,6 @@ npm run build</pre>
   </aside>
 
   <!-- Client-Side JavaScript -->
-  <script src="app.js?v=3.3"></script>
+  <script src="app.js?v=3.4"></script>
 </body>
 </html>

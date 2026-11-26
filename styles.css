@@ -1902,6 +1902,287 @@ section {
   flex-wrap: wrap;
 }
 
+/* ================= Credits & Advisory Recommendations Section ================= */
+.credits-section {
+  position: relative;
+}
+
+.credits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.credit-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+}
+
+.credit-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--teal-500);
+  box-shadow: var(--shadow-teal);
+}
+
+.credit-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.credit-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal-500), var(--teal-700));
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+}
+
+[data-theme="dark"] .credit-avatar {
+  background: linear-gradient(135deg, var(--teal-400), var(--teal-600));
+  color: #041412;
+}
+
+.credit-person-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.credit-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 0.2rem;
+}
+
+.credit-role {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0 0 0.45rem;
+  line-height: 1.35;
+}
+
+.credit-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: var(--teal-50);
+  color: var(--teal-800);
+  border: 1px solid var(--teal-200);
+}
+
+[data-theme="dark"] .credit-tag {
+  background: rgba(13, 148, 136, 0.15);
+  color: var(--teal-300);
+  border-color: rgba(45, 212, 191, 0.3);
+}
+
+.credit-quote {
+  font-size: 0.885rem;
+  color: var(--text-body);
+  line-height: 1.55;
+  margin: 0 0 1.25rem;
+  font-style: italic;
+  position: relative;
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--teal-400);
+}
+
+.credit-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: auto;
+}
+
+.btn-credit-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: #0a66c2 !important;
+  background: rgba(10, 102, 194, 0.08);
+  border: 1px solid rgba(10, 102, 194, 0.25);
+  transition: all var(--transition-fast);
+}
+
+.btn-credit-linkedin svg {
+  color: #0a66c2;
+  transition: transform var(--transition-fast);
+}
+
+.btn-credit-linkedin:hover {
+  background: #0a66c2;
+  color: #ffffff !important;
+  border-color: #0a66c2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.25);
+}
+
+.btn-credit-linkedin:hover svg {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .btn-credit-linkedin {
+  color: #70b5f9 !important;
+  background: rgba(112, 181, 249, 0.1);
+  border-color: rgba(112, 181, 249, 0.25);
+}
+
+[data-theme="dark"] .btn-credit-linkedin svg {
+  color: #70b5f9;
+}
+
+[data-theme="dark"] .btn-credit-linkedin:hover {
+  background: #0a66c2;
+  color: #ffffff !important;
+  border-color: #0a66c2;
+  box-shadow: 0 4px 14px rgba(10, 102, 194, 0.4);
+}
+
+[data-theme="dark"] .btn-credit-linkedin:hover svg {
+  color: #ffffff;
+}
+
+/* Resources & Standards Grid */
+.credits-resources-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.25rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+}
+
+.credits-resources-header {
+  margin-bottom: 1.5rem;
+}
+
+.credits-resources-header h3 {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+}
+
+.credits-resources-header p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.credits-resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.resource-credit-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.resource-credit-card:hover {
+  border-color: var(--teal-500);
+  background: var(--bg-card);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.resource-credit-title {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.resource-credit-title svg {
+  color: var(--text-dim);
+  flex-shrink: 0;
+  transition: color var(--transition-fast);
+}
+
+.resource-credit-card:hover .resource-credit-title svg {
+  color: var(--teal-600);
+}
+
+.resource-credit-desc {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Callout for submitting recommendations */
+.credits-cta-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.credits-cta-text h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 0.25rem;
+}
+
+.credits-cta-text p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.credits-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
 /* ================= Contribute Section ================= */
 .contribution-steps {
   display: grid;
@@ -3774,6 +4055,36 @@ html:not([data-theme="dark"]) .badge-launch-light {
   }
 
   .c-footer-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .credits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .credits-resources-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .credits-resources-wrap {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .credits-cta-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .credits-cta-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .credits-cta-actions .btn,
+  .credits-cta-actions .btn-credit-linkedin {
     width: 100% !important;
     justify-content: center !important;
   }
