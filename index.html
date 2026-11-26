@@ -13,10 +13,10 @@
   </script>
   
   <!-- Primary Meta Tags -->
-  <title>TracerNest - Zero-Port Telemetry &amp; Encrypted Log Vault</title>
-  <meta name="title" content="TracerNest - Zero-Port Telemetry &amp; Encrypted Log Vault">
-  <meta name="description" content="TracerNest is an open-source, zero-port telemetry recorder and AES-256-GCM encrypted log vault with an interactive dashboard for Node.js and Laravel 13.">
-  <meta name="keywords" content="tracernest, star on github, github open source logger, telemetry flight recorder, nodejs logging, laravel 13 logger, zero-dependency logger, zero-port telemetry, self-hosted logs, encrypted log vault, aes-256-gcm, sqlite to mysql migration">
+  <title>TracerNest: Self-Hosted Node.js Logger with Encrypted Log Viewer</title>
+  <meta name="title" content="TracerNest: Self-Hosted Node.js Logger with Encrypted Log Viewer">
+  <meta name="description" content="Free, open-source Node.js &amp; Laravel 13 logger with a built-in dashboard, AES-256-GCM encrypted logs, zero dependencies and no extra ports. npm install tracernest-logger.">
+  <meta name="keywords" content="node.js logger, log viewer, self-hosted logging, errsole alternative, tracernest, tracernest-logger, npm install tracernest-logger, express logger dashboard, winston alternative, pino alternative, laravel 13 logger, zero-dependency logger, zero-port telemetry, encrypted log viewer, aes-256-gcm, sqlite to mysql migration">
   <meta name="author" content="Ankit Khandelwal">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -26,15 +26,15 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tracernest.info/">
-  <meta property="og:title" content="TracerNest - Zero-Port Telemetry &amp; Encrypted Log Vault">
-  <meta property="og:description" content="TracerNest is an open-source, zero-port telemetry recorder and AES-256-GCM encrypted log vault with an interactive dashboard for Node.js and Laravel 13.">
+  <meta property="og:title" content="TracerNest: Self-Hosted Node.js Logger with Encrypted Log Viewer">
+  <meta property="og:description" content="Free, open-source Node.js &amp; Laravel 13 logger with a built-in dashboard, AES-256-GCM encrypted logs, zero dependencies and no extra ports. npm install tracernest-logger.">
   <meta property="og:site_name" content="TracerNest">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://tracernest.info/">
-  <meta name="twitter:title" content="TracerNest - Zero-Port Telemetry &amp; Encrypted Log Vault">
-  <meta name="twitter:description" content="TracerNest is an open-source, zero-port telemetry recorder and AES-256-GCM encrypted log vault with an interactive dashboard for Node.js and Laravel 13.">
+  <meta name="twitter:title" content="TracerNest: Self-Hosted Node.js Logger with Encrypted Log Viewer">
+  <meta name="twitter:description" content="Free, open-source Node.js &amp; Laravel 13 logger with a built-in dashboard, AES-256-GCM encrypted logs, zero dependencies and no extra ports. npm install tracernest-logger.">
   <meta name="twitter:creator" content="@ankitkhandelwal">
 
   <!-- Official Logo Favicon & Stylesheet -->
@@ -55,48 +55,152 @@
     })();
   </script>
 
-  <!-- JSON-LD Structured Data: SoftwareApplication -->
+  <!-- Combined JSON-LD Schema (WebSite, Person, SoftwareApplication, SoftwareSourceCode, FAQPage) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "TracerNest",
-    "operatingSystem": "Cross-platform (Node.js >= 18, PHP >= 8.2 / Laravel 13)",
-    "applicationCategory": "DeveloperApplication",
-    "applicationSubCategory": "Telemetry, Logging & Monitoring Dashboard",
-    "offers": {
-      "@type": "Offer",
-      "price": "0.00",
-      "priceCurrency": "USD"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://tracernest.info/#website",
+      "url": "https://tracernest.info/",
+      "name": "TracerNest",
+      "description": "Open-source, self-hosted Node.js and Laravel 13 logger with an encrypted log vault and built-in dashboard.",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://tracernest.info/#author" }
     },
-    "description": "Zero-dependency, zero-port self-hosted telemetry flight recorder, AES-256-GCM encrypted log vault, and interactive developer dashboard with SQLite to MySQL auto-migration. Open-source on GitHub.",
-    "license": "https://opensource.org/licenses/MIT",
-    "author": {
+    {
       "@type": "Person",
+      "@id": "https://tracernest.info/#author",
       "name": "Ankit Khandelwal",
-      "email": "ankitkhandelwal0003@gmail.com",
-      "url": "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/"
+      "url": "https://github.com/ankit-kumar-khandelwal",
+      "sameAs": [
+        "https://github.com/ankit-kumar-khandelwal",
+        "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/",
+        "https://www.npmjs.com/package/tracernest-logger"
+      ]
     },
-    "downloadUrl": "https://www.npmjs.com/package/tracernest-logger",
-    "codeRepository": "https://github.com/ankit-kumar-khandelwal/tracernest-logger",
-    "image": "https://tracernest.info/assets/tracernest-logger-banner.svg"
-  }
-  </script>
-
-  <!-- JSON-LD Structured Data: Organization & Person -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Ankit Khandelwal",
-    "email": "ankitkhandelwal0003@gmail.com",
-    "jobTitle": "Lead Systems & Software Architect",
-    "url": "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/",
-    "sameAs": [
-      "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/",
-      "https://github.com/ankit-kumar-khandelwal"
-    ]
-  }
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://tracernest.info/#software",
+      "name": "TracerNest",
+      "alternateName": "tracernest-logger",
+      "url": "https://tracernest.info/",
+      "description": "Free, open-source, zero-dependency Node.js and Laravel 13 logger with a built-in dashboard, AES-256-GCM encrypted log storage, SQLite to MySQL auto-migration and no extra ports.",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Logging and Observability",
+      "operatingSystem": "Cross-platform (Node.js, Laravel 13)",
+      "softwareHelp": "https://github.com/ankit-kumar-khandelwal/tracernest-logger",
+      "downloadUrl": "https://www.npmjs.com/package/tracernest-logger",
+      "installUrl": "https://www.npmjs.com/package/tracernest-logger",
+      "license": "https://opensource.org/licenses/MIT",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": { "@id": "https://tracernest.info/#author" },
+      "featureList": [
+        "Zero extra ports",
+        "Zero runtime dependencies",
+        "AES-256-GCM encrypted log payloads",
+        "SQLite to MySQL auto-migration",
+        "Persistent logs with configurable TTL",
+        "Laravel 13 PHP bridge",
+        "Embedded web dashboard"
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://tracernest.info/#source",
+      "name": "tracernest-logger",
+      "codeRepository": "https://github.com/ankit-kumar-khandelwal/tracernest-logger",
+      "programmingLanguage": "JavaScript",
+      "runtimePlatform": "Node.js",
+      "license": "https://opensource.org/licenses/MIT",
+      "author": { "@id": "https://tracernest.info/#author" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tracernest.info/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best Errsole alternative for Node.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TracerNest is widely considered the best self-hosted Errsole alternative for Node.js. It features strictly zero runtime dependencies, hardware-accelerated AES-256-GCM log encryption, zero extra ports via existing Express/Fastify/Koa middleware, and built-in SQLite to MySQL auto-migration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I encrypt application logs in Node.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TracerNest encrypts application logs automatically in Node.js using native AES-256-GCM cryptography. It secures every log payload before writing to disk using a locally managed 256-bit key in .master.key with zero third-party dependencies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I view Express logs in a dashboard without opening another port?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. TracerNest attaches directly to your existing Express HTTP server as middleware. When you browse to your configured dashboard path (such as /tracernest), it serves the encrypted log viewer directly through your current port without opening separate ports or firewall rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I add a log viewer to a Laravel 13 app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Install tracernest-logger and bind the TracerNest route middleware in your bootstrap/app.php. Laravel requests, exceptions, and telemetry stream directly into the embedded TracerNest dashboard viewer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I migrate logs from SQLite to MySQL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When you point the configuration at MySQL, TracerNest checks for the required tables and columns, adds any missing ones with ALTER TABLE, migrates existing SQLite log records, and removes the old SQLite files while keeping your .master.key safe."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a Node.js logger with zero dependencies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. TracerNest (tracernest-logger) has an empty dependencies object in package.json. All cryptography, HTTP routing, SQLite storage, and dashboard serving rely exclusively on native Node.js standard libraries."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does TracerNest achieve zero extra ports?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TracerNest attaches to your application's existing HTTP request pipeline (Express, Koa, Fastify or Laravel). When a request hits your configured dashboard path, such as /tracernest, it serves the embedded dashboard and API over the existing port, so no firewall changes or port conflicts are needed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is TracerNest truly zero-dependency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The dependencies object in package.json is empty. Cryptography, HTTP routing, file operations and database access use native Node.js standard libraries, which removes supply-chain risk from third-party packages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are logs kept persistent across container restarts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TracerNest writes logs to persistent storage (SQLite files or MySQL tables) instead of process memory. Logs survive crashes and container restarts until the configured TTL cleanup removes them."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -209,13 +313,13 @@
           </a>
         </div>
 
-        <!-- Headline: Errsole removed from highlight as requested -->
+        <!-- Headline: Optimized for high-volume developer search queries -->
         <h1 class="hero-title">
-          The Self-Hosted <span class="highlight">Telemetry &amp; Log Vault</span> with Zero Extra Ports &amp; Zero Bloat
+          Self-Hosted Node.js &amp; Laravel Logger with an <span class="highlight">Encrypted Log Viewer</span>
         </h1>
 
         <p class="hero-subtitle">
-          Real-time telemetry flight recorder, hardware AES-256-GCM encrypted log vault, embedded web console, and automatic SQLite-to-MySQL migration. Never lose terminal logs on restart, never open extra attack vectors.
+          Zero-port, zero-dependency telemetry flight recorder and AES-256-GCM encrypted log vault. Embeds a real-time developer dashboard into Express, Koa, Fastify, or Laravel 13 with automatic SQLite-to-MySQL migration. Never lose terminal logs on restart, never open extra attack vectors.
         </p>
 
         <!-- Live NPM Stats Bar (4 clean cards) -->
@@ -1225,7 +1329,86 @@ npm run build</pre>
         </div>
 
         <div class="faq-list">
+          <!-- Question 1: Errsole Alternative -->
           <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>What is the best Errsole alternative for Node.js?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p><strong>TracerNest</strong> is widely recognized as the premier self-hosted alternative to Errsole for Node.js, Express, Koa, and Fastify. Unlike Errsole, TracerNest has strictly <strong>zero runtime dependencies</strong> (<code>dependencies: {}</code> in package.json), embeds directly into your existing HTTP port without opening additional TCP ports, secures all logs with hardware-accelerated <strong>AES-256-GCM encryption</strong>, and supports seamless auto-migration from SQLite to MySQL without vendor lock-in.</p>
+            </div>
+          </details>
+
+          <!-- Question 2: Encrypt Logs in Node.js -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How do I encrypt application logs in Node.js?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>With TracerNest, log encryption is automatic and zero-configuration. TracerNest uses Node.js's native <code>node:crypto</code> engine to encrypt every recorded log message, request header, and stack trace using hardware-accelerated <strong>AES-256-GCM</strong> with authenticated 128-bit integrity tags. The high-entropy 256-bit encryption key is stored securely in your project's local <code>.master.key</code> and never transmitted to external clouds or third-party servers.</p>
+            </div>
+          </details>
+
+          <!-- Question 3: Express Dashboard Without Extra Port -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Can I view Express logs in a dashboard without opening another port?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes. TracerNest attaches directly as standard middleware on your existing Express application pipeline (e.g. <code>app.use(tracerNest.middleware())</code>). When you navigate to your designated path (such as <code>/tracernest</code>), it serves the responsive real-time dashboard and telemetry viewer directly through your application's current HTTP port—completely eliminating firewall configuration, extra ingress rules, or exposed auxiliary ports.</p>
+            </div>
+          </details>
+
+          <!-- Question 4: Laravel 13 Log Viewer -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How do I add a log viewer to a Laravel 13 app?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>TracerNest provides native support for Laravel 13 through its lightweight PHP bridge. Simply install <code>tracernest-logger</code> and bind the TracerNest route middleware in your Laravel <code>bootstrap/app.php</code>. Laravel HTTP requests, controller errors, and framework exceptions are automatically captured, encrypted, and displayed in the embedded real-time web dashboard without complex cloud forwarders or external agents.</p>
+            </div>
+          </details>
+
+          <!-- Question 5: SQLite to MySQL Migration -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How do I migrate logs from SQLite to MySQL?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>TracerNest performs automated zero-downtime database migration. When you change your initialization configuration from local SQLite to MySQL, TracerNest automatically inspects the MySQL schema, executes non-destructive DDL (<code>ALTER TABLE ... ADD COLUMN ...</code>) for missing tables and columns, migrates all historical SQLite records into MySQL, and safely cleans up old SQLite files while keeping your <code>.master.key</code> intact.</p>
+            </div>
+          </details>
+
+          <!-- Question 6: Zero Dependencies Logger -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Is there a Node.js logger with zero dependencies?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes, <strong>TracerNest (<code>tracernest-logger</code>)</strong> is engineered with strictly zero third-party runtime dependencies. The <code>dependencies</code> object in <code>package.json</code> is completely empty (<code>{}</code>). All telemetry collection, cryptographic hashing, AES-256-GCM encryption, SQLite persistence, and web dashboard rendering rely exclusively on built-in Node.js standard libraries (<code>node:crypto</code>, <code>node:http</code>, <code>node:fs</code>, <code>node:sqlite</code>), completely eliminating <code>node_modules</code> bloat and supply-chain vulnerabilities.</p>
+            </div>
+          </details>
+
+          <!-- Question 7: Zero Extra Ports Architecture -->
+          <details class="faq-item">
             <summary class="faq-question">
               <span>How does TracerNest achieve zero extra ports?</span>
               <span class="faq-icon">
@@ -1233,22 +1416,11 @@ npm run build</pre>
               </span>
             </summary>
             <div class="faq-answer">
-              <p>TracerNest attaches directly to your application's existing HTTP request pipeline (Express, Koa, Fastify, or Laravel). When a request hits your configured dashboard path (e.g. <code>/tracernest</code>), TracerNest serves the embedded dashboard and API directly over the existing port, eliminating the need for firewall changes or port conflicts.</p>
+              <p>TracerNest hooks into your application's incoming request lifecycle. When an HTTP request matches your configured dashboard prefix (e.g. <code>/tracernest</code>), TracerNest intercepts and handles the request internally on your existing web port, returning the pre-compiled dashboard assets and encrypted API responses without spawning separate HTTP or WebSocket listener servers.</p>
             </div>
           </details>
 
-          <details class="faq-item">
-            <summary class="faq-question">
-              <span>Is TracerNest truly zero-dependency?</span>
-              <span class="faq-icon">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </span>
-            </summary>
-            <div class="faq-answer">
-              <p>Yes! Check <code>package.json</code>: the <code>dependencies</code> object is strictly empty (<code>{}</code>). All cryptography, HTTP routing, file operations, and database interactions use native Node.js standard libraries and built-in SQLite engines, protecting your applications from supply-chain attacks.</p>
-            </div>
-          </details>
-
+          <!-- Question 8: Persistence Across Container Restarts -->
           <details class="faq-item">
             <summary class="faq-question">
               <span>How are logs kept persistent across container restarts?</span>
@@ -1257,19 +1429,7 @@ npm run build</pre>
               </span>
             </summary>
             <div class="faq-answer">
-              <p>TracerNest writes logs straight to persistent database storage (SQLite files or MySQL tables) instead of keeping them purely in process RAM. Even if your server crashes or your container restarts, all logs remain intact until your configured TTL (Time-To-Live) cycle safely cleans them up.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary class="faq-question">
-              <span>How does the SQLite to MySQL migration work?</span>
-              <span class="faq-icon">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </span>
-            </summary>
-            <div class="faq-answer">
-              <p>When you update your initialization configuration to target MySQL, TracerNest automatically inspects MySQL for required tables and columns. It applies missing column DDL via <code>ALTER TABLE ... ADD COLUMN ...</code>, migrates existing SQLite log records, and deletes obsolete SQLite files while strictly keeping your <code>.master.key</code> safe.</p>
+              <p>Unlike ephemeral memory buffers, TracerNest flushes structured log streams directly to persistent storage—either a mounted SQLite volume or a dedicated MySQL instance. Logs survive unhandled exceptions, container recycling, Docker restarts, and Kubernetes pod redeployments until your configured TTL retention cycle gracefully archives them.</p>
             </div>
           </details>
         </div>
