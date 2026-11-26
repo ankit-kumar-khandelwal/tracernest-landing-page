@@ -819,6 +819,7 @@
     const toast = document.getElementById('floating-star-toast');
     const closeBtn = document.getElementById('toast-close-btn');
     const starBtn = document.getElementById('toast-star-btn');
+    const reviewBtn = document.getElementById('toast-review-btn');
     const contributeBtn = document.getElementById('toast-contribute-btn');
     if (!toast) return;
 
@@ -849,6 +850,11 @@
     }
 
     if (closeBtn) closeBtn.addEventListener('click', dismissToast);
+    if (reviewBtn) {
+      reviewBtn.addEventListener('click', () => {
+        setTimeout(dismissToast, 1200);
+      });
+    }
     if (starBtn) {
       starBtn.addEventListener('click', () => {
         setTimeout(dismissToast, 1200);
