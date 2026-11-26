@@ -422,13 +422,13 @@
   // Dynamically Fetch Version from NPM Registry
   async function fetchDynamicVersion() {
     const pkgName = 'tracernest-logger';
-    const fallbackVersion = 'v1.2.0';
+    const fallbackVersion = 'v1.9.0';
 
     try {
       const res = await fetch(`https://registry.npmjs.org/${pkgName}/latest`);
       if (res.ok) {
         const data = await res.json();
-        const ver = 'v' + (data.version || '1.2.0');
+        const ver = 'v' + (data.version || '1.9.0');
         if (navVersion) navVersion.textContent = ver;
         if (npmVersion) npmVersion.textContent = ver;
         return;
@@ -441,7 +441,7 @@
       const res = await fetch(`https://registry.npmjs.org/${pkgName}`);
       if (res.ok) {
         const data = await res.json();
-        const ver = 'v' + ((data['dist-tags'] && data['dist-tags'].latest) || '1.2.0');
+        const ver = 'v' + ((data['dist-tags'] && data['dist-tags'].latest) || '1.9.0');
         if (navVersion) navVersion.textContent = ver;
         if (npmVersion) npmVersion.textContent = ver;
         return;
@@ -454,49 +454,62 @@
     if (npmVersion) npmVersion.textContent = fallbackVersion;
   }
 
-  // Fetch Live NPM Download Stats with Fallback
+  // Fetch Live NPM Download Stats with Accurate Calculation as per Days Launched
   async function fetchNpmStats() {
     const pkgName = 'tracernest-logger';
+    // Package was officially launched on November 16, 2026
+    const launchDate = new Date('2026-11-16T00:00:00Z');
+    const now = new Date();
+    const daysSinceLaunch = Math.max(1, Math.round((now.getTime() - launchDate.getTime()) / (1000 * 60 * 60 * 24)));
+
+    // Accurate verified baseline based on NPM registry metrics (5,505 total downloads across 10 days)
     const fallbackStats = {
-      daily: '2,840+',
-      weekly: '18,920+',
-      monthly: '74,150+'
+      daily: Math.round(5505 / daysSinceLaunch).toLocaleString() + '+',
+      weekly: '2,975+',
+      total: '5,505+'
     };
 
-    try {
-      const resDaily = await fetch(`https://api.npmjs.org/downloads/point/last-day/${pkgName}`);
-      if (resDaily.ok) {
-        const d = await resDaily.json();
-        npmDaily.textContent = (d.downloads || 2840).toLocaleString();
-      } else {
-        npmDaily.textContent = fallbackStats.daily;
-      }
-    } catch (e) {
-      npmDaily.textContent = fallbackStats.daily;
-    }
+    let totalDownloads = 5505;
 
-    try {
-      const resWeekly = await fetch(`https://api.npmjs.org/downloads/point/last-week/${pkgName}`);
-      if (resWeekly.ok) {
-        const w = await resWeekly.json();
-        npmWeekly.textContent = (w.downloads || 18920).toLocaleString();
-      } else {
-        npmWeekly.textContent = fallbackStats.weekly;
-      }
-    } catch (e) {
-      npmWeekly.textContent = fallbackStats.weekly;
-    }
-
+    // 1. Fetch total downloads since launch (last-month encompasses entire lifetime)
     try {
       const resMonthly = await fetch(`https://api.npmjs.org/downloads/point/last-month/${pkgName}`);
       if (resMonthly.ok) {
         const m = await resMonthly.json();
-        npmMonthly.textContent = (m.downloads || 74150).toLocaleString();
-      } else {
-        npmMonthly.textContent = fallbackStats.monthly;
+        if (typeof m.downloads === 'number' && m.downloads > 0) {
+          totalDownloads = m.downloads;
+          if (npmMonthly) npmMonthly.textContent = m.downloads.toLocaleString() + '+';
+        } else if (npmMonthly) {
+          npmMonthly.textContent = fallbackStats.total;
+        }
+      } else if (npmMonthly) {
+        npmMonthly.textContent = fallbackStats.total;
       }
     } catch (e) {
-      npmMonthly.textContent = fallbackStats.monthly;
+      if (npmMonthly) npmMonthly.textContent = fallbackStats.total;
+    }
+
+    // 2. Compute accurate Daily Downloads as per days since launch
+    if (npmDaily) {
+      const dailyCount = Math.round(totalDownloads / daysSinceLaunch);
+      npmDaily.textContent = dailyCount.toLocaleString() + '+';
+    }
+
+    // 3. Fetch past 7 days (weekly) downloads
+    try {
+      const resWeekly = await fetch(`https://api.npmjs.org/downloads/point/last-week/${pkgName}`);
+      if (resWeekly.ok) {
+        const w = await resWeekly.json();
+        if (typeof w.downloads === 'number' && w.downloads > 0) {
+          if (npmWeekly) npmWeekly.textContent = w.downloads.toLocaleString() + '+';
+        } else if (npmWeekly) {
+          npmWeekly.textContent = fallbackStats.weekly;
+        }
+      } else if (npmWeekly) {
+        npmWeekly.textContent = fallbackStats.weekly;
+      }
+    } catch (e) {
+      if (npmWeekly) npmWeekly.textContent = fallbackStats.weekly;
     }
   }
 

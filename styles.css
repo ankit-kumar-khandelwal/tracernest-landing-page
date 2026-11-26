@@ -1914,6 +1914,15 @@ section {
   margin-bottom: 2.5rem;
 }
 
+.credits-status {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.credits-status[hidden] {
+  display: none;
+}
+
 .credit-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
