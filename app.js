@@ -596,6 +596,146 @@
     }
   }
 
+  // Fetch Advisor Credits strictly from CREDITS.md (LogVault)
+  async function fetchCredits() {
+    const creditsGrid = document.getElementById('credits-grid');
+    if (!creditsGrid) return;
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function getInitials(name) {
+      if (!name) return 'TN';
+      const parts = name.trim().split(/\s+/).filter(Boolean);
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    let raw = '';
+    // 1. Try local ./CREDITS.md (served by static server / GitHub Pages)
+    try {
+      const res = await fetch('./CREDITS.md');
+      if (res.ok) {
+        raw = await res.text();
+      }
+    } catch (e) {}
+
+    // 2. Fallback to raw GitHub file if local fetch fails
+    if (!raw) {
+      try {
+        const ghUrls = [
+          'https://raw.githubusercontent.com/ankit-kumar-khandelwal/tracernest-logger/main/CREDITS.md',
+          'https://raw.githubusercontent.com/ankit-kumar-khandelwal/tracernest-logger/developer/CREDITS.md'
+        ];
+        for (const url of ghUrls) {
+          const resGh = await fetch(url);
+          if (resGh.ok) {
+            raw = await resGh.text();
+            break;
+          }
+        }
+      } catch (e) {}
+    }
+
+    if (!raw) {
+      creditsGrid.innerHTML = `
+        <div class="credits-status">
+          Advisors are credited directly in <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/CREDITS.md" target="_blank" rel="noopener noreferrer" style="color:var(--teal-400);text-decoration:underline;">CREDITS.md</a>.
+        </div>`;
+      return;
+    }
+
+    // Strip HTML comments to ignore draft or template entries
+    const cleaned = raw.replace(/<!--[\s\S]*?-->/g, '');
+    const sections = cleaned.split(/\n(?=##\s+)/);
+    const advisors = [];
+
+    for (const sec of sections) {
+      const trimmed = sec.trim();
+      if (!trimmed.startsWith('##')) continue;
+      const lines = trimmed.split('\n');
+      const name = lines[0].replace(/^##\s+/, '').trim();
+      if (!name || name.toLowerCase().includes('advisor credits') || name.toLowerCase().includes('credits')) continue;
+
+      let role = '';
+      let focus = '';
+      let quote = '';
+      let profile = '';
+
+      for (let i = 1; i < lines.length; i++) {
+        const l = lines[i].trim();
+        const mRole = l.match(/^\*\*Role:\*\*\s*(.*)$/i);
+        if (mRole) role = mRole[1].trim();
+        const mFocus = l.match(/^\*\*Focus:\*\*\s*(.*)$/i);
+        if (mFocus) focus = mFocus[1].trim();
+        const mQuote = l.match(/^\*\*Quote:\*\*\s*(.*)$/i);
+        if (mQuote) quote = mQuote[1].trim();
+        const mProf = l.match(/^\*\*Profile:\*\*\s*(.*)$/i);
+        if (mProf) profile = mProf[1].trim();
+      }
+
+      if (quote.startsWith('"') && quote.endsWith('"')) {
+        quote = quote.slice(1, -1);
+      }
+      if (quote.startsWith('“') && quote.endsWith('”')) {
+        quote = quote.slice(1, -1);
+      }
+
+      if (name && role && quote) {
+        advisors.push({ name, role, focus, quote, profile });
+      }
+    }
+
+    if (advisors.length === 0) {
+      creditsGrid.innerHTML = `
+        <div class="credits-status">
+          No advisor credits found in <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/CREDITS.md" target="_blank" rel="noopener noreferrer" style="color:var(--teal-400);text-decoration:underline;">CREDITS.md</a>.
+        </div>`;
+      return;
+    }
+
+    creditsGrid.innerHTML = '';
+    advisors.forEach((adv) => {
+      const card = document.createElement('div');
+      card.className = 'credit-card';
+      const initials = getInitials(adv.name);
+      let footerHtml = '';
+      if (adv.profile && adv.profile.startsWith('http')) {
+        footerHtml = `
+          <div class="credit-card-footer">
+            <a href="${escapeHtml(adv.profile)}" target="_blank" rel="noopener noreferrer" class="btn-credit-linkedin" title="View Profile">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>View Profile &nearr;</span>
+            </a>
+          </div>`;
+      }
+      card.innerHTML = `
+        <div class="credit-card-top">
+          <div class="credit-avatar" aria-hidden="true">${escapeHtml(initials)}</div>
+          <div class="credit-person-info">
+            <h3 class="credit-name">${escapeHtml(adv.name)}</h3>
+            <div class="credit-role">${escapeHtml(adv.role)}</div>
+            ${adv.focus ? `<span class="credit-tag">${escapeHtml(adv.focus)}</span>` : ''}
+          </div>
+        </div>
+        <p class="credit-quote">&ldquo;${escapeHtml(adv.quote)}&rdquo;</p>
+        ${footerHtml}
+      `;
+      creditsGrid.appendChild(card);
+    });
+  }
+
   // Dark Mode Initialization and Toggle
   function initTheme() {
     const savedTheme = localStorage.getItem('tracernest-theme');
@@ -889,6 +1029,7 @@
     fetchDynamicVersion();
     fetchNpmStats();
     fetchContributors();
+    fetchCredits();
     initFloatingStarToast();
   }
 
