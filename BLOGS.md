@@ -94,7 +94,7 @@ app.listen(3000, () => console.log('Server and TracerNest Vault running on port 
 **Summary:** Step-by-step guide on implementing hardware-accelerated authenticated log encryption at rest using Node's standard crypto module with zero external dependencies.
 
 Why Plaintext Logs Are a Critical Liability
-      Application logs frequently contain sensitive customer data: PII, authorization tokens, session cookies, database connection strings, and user emails captured in uncaught exception stack traces. If a database backup leaks or an unauthorized actor gains read access to the SQLite file or MySQL replica, plaintext logs immediately trigger severe compliance breaches under GDPR, HIPAA, and SOC2.
+      Application logs frequently contain sensitive customer data: PII, authorization tokens, session cookies, database connection strings, and user emails captured in uncaught exception stack traces. If a database backup leaks or an unauthorized actor gains read access to the SQLite file or MySQL replica, plaintext logs immediately expose sensitive customer data and create critical security vulnerabilities.
 
       Implementing Authenticated AES-256-GCM
       AES-GCM (Galois/Counter Mode) provides both confidentiality and tamper-proof message authenticity. Unlike legacy CBC or ECB modes, GCM produces a 128-bit authentication tag that immediately detects bit-flipping and tampering:
@@ -234,13 +234,13 @@ The State of NPM Dependency Sprawl
 **Date:** 2026-11-27
 **Author:** Ankit Khandelwal
 **ReadTime:** 7 min read
-**Tags:** Infrastructure, Data Sovereignty, Global, Compliance
+**Tags:** Infrastructure, Data Sovereignty, Global, Data Privacy
 **Summary:** How distributed engineering teams across the United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, and Ireland deploy self-hosted TracerNest nodes.
 
 Observability in a Multi-Region World
       Modern software organizations rarely deploy to a single datacenter. With traffic spanning North America, Europe, Latin America, and the Asia-Pacific region, data sovereignty and latency considerations dictate where logs must be stored:
       
-        Europe (Netherlands, Germany, Poland, Ireland): Strict adherence to GDPR and local data residency mandates that customer telemetry never leaves European Union borders.
+        Europe (Netherlands, Germany, Poland, Ireland): Strict local data residency requirements mandate that customer telemetry never leaves European Union borders.
         North America (United States, Canada): High-throughput microservice clusters require instant query response times without cross-region internet latency.
         Emerging Tech Hubs (India, Brazil): High-growth platforms experience explosive API volume where third-party SaaS per-gigabyte ingestion fees can exceed server costs.
       

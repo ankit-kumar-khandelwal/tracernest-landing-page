@@ -20,7 +20,7 @@ It was engineered by Ankit Khandelwal to solve fundamental architectural drawbac
 1. **The Ingress Port Hazard**: Errsole requires opening a separate TCP port (e.g. 8001) for the web dashboard. In production Kubernetes or AWS ECS clusters, this demands additional target groups, firewall ingress rules, and ALB paths. TracerNest runs directly within the host application pipeline with zero extra ports.
 2. **Supply-Chain Attack Surfaces**: Many logging packages drag dozens of dependencies. TracerNest operates with `dependencies: {}`. All routing, cryptography, template rendering, and database drivers use Node.js core standard libraries.
 3. **Data Loss on Restart**: In-memory loggers lose crash telemetry when an instance restarts. TracerNest guarantees log persistence in SQLite or MySQL until your configured Time-To-Live (TTL) is completed.
-4. **Data Privacy & Compliance**: By encrypting all logs at rest using hardware-accelerated AES-256-GCM, TracerNest protects sensitive PII, passwords, and tokens, complying with HIPAA, SOC2, and GDPR.
+4. **Data Privacy & Security**: By encrypting all logs at rest using hardware-accelerated AES-256-GCM, TracerNest protects sensitive PII, passwords, and tokens from disk inspection and database leaks.
 
 ---
 
@@ -99,7 +99,7 @@ All blog posts are version-controlled in [BLOGS.md](https://github.com/ankit-kum
 5. [Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines](https://tracernest.info/eliminating-supply-chain-vulnerabilities-nodejs.html)
    - Why `dependencies: {}` in package.json completely eliminates npm supply chain CVEs, prototype pollution, and maintainer account takeover risks.
 6. [Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC](https://tracernest.info/global-telemetry-architecture-self-hosting-logs.html)
-   - Multi-region deployment blueprints maintaining strict GDPR, SOC2, and HIPAA data residency across 9 countries.
+   - Multi-region deployment blueprints maintaining local data residency and zero external egress across 9 countries.
 7. [How to View Express.js Logs in a Web Dashboard Without Opening Extra Ports](https://tracernest.info/express-log-viewer-without-extra-ports.html)
    - Mounting TracerNest into existing Express 4/5 HTTP pipeline to view live encrypted logs without firewall updates.
 8. [Winston vs. Pino vs. TracerNest: Choosing the Best Node.js Logger in 2026](https://tracernest.info/pino-vs-winston-vs-tracernest-comparison.html)
@@ -111,14 +111,14 @@ All blog posts are version-controlled in [BLOGS.md](https://github.com/ankit-kum
 
 ---
 
-### 6. Global Telemetry & Regional Compliance Specifications
+### 6. Global Telemetry & Regional Deployment Specifications
 TracerNest provides dedicated regional documentation pages:
-- [United States Telemetry Node](https://tracernest.info/united-states.html): SOC2 Type II, HIPAA, and CCPA compliance. Cloud deployments on AWS (us-east-1, us-west-2), Google Cloud (us-central1), and Azure.
+- [United States Telemetry Node](https://tracernest.info/united-states.html): High-throughput US cloud deployments on AWS (us-east-1, us-west-2), Google Cloud (us-central1), and Azure with zero third-party egress.
 - [India Telemetry Node](https://tracernest.info/india.html): Reserve Bank of India (RBI) payment telemetry data localization and high-throughput UPI fintech transaction logging.
-- [Netherlands Telemetry Node](https://tracernest.info/netherlands.html): GDPR Article 28 compliance and AMS-IX ultra-low latency European hub deployment.
-- [Poland Telemetry Node](https://tracernest.info/poland.html): Central European engineering teams, Warsaw cloud nodes, and strict GDPR data governance.
-- [Canada Telemetry Node](https://tracernest.info/canada.html): PIPEDA and provincial data residency standards for Montreal and Toronto clusters.
-- [Germany Telemetry Node](https://tracernest.info/germany.html): Federal Office for Information Security (BSI) IT-Grundschutz and strict German Bundesdatenschutzgesetz (BDSG).
-- [United Kingdom Telemetry Node](https://tracernest.info/united-kingdom.html): UK GDPR and Financial Conduct Authority (FCA) SYSC audit trail compliance.
-- [Brazil Telemetry Node](https://tracernest.info/brazil.html): Lei Geral de Proteção de Dados (LGPD) Article 7 compliance across São Paulo cloud availability zones.
+- [Netherlands Telemetry Node](https://tracernest.info/netherlands.html): European data residency and AMS-IX ultra-low latency European hub deployment.
+- [Poland Telemetry Node](https://tracernest.info/poland.html): Central European engineering teams, Warsaw cloud nodes, and local data sovereignty.
+- [Canada Telemetry Node](https://tracernest.info/canada.html): Canadian data residency and local storage standards for Montreal and Toronto clusters.
+- [Germany Telemetry Node](https://tracernest.info/germany.html): On-premise German cloud deployments, bare-metal Kubernetes, and zero third-party telemetry egress.
+- [United Kingdom Telemetry Node](https://tracernest.info/united-kingdom.html): Financial-grade tamper-evident audit logging and London cloud deployments.
+- [Brazil Telemetry Node](https://tracernest.info/brazil.html): Latin American data privacy and local storage across São Paulo cloud availability zones.
 - [Ireland Telemetry Node](https://tracernest.info/ireland.html): Irish Data Protection Commission (DPC) standards for Dublin SaaS telemetry infrastructure.

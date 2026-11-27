@@ -218,7 +218,7 @@
         <div class="blog-article-body" style="font-size: 1.1rem; line-height: 1.8;">
           
       <h2>Why Plaintext Logs Are a Critical Liability</h2>
-      <p>Application logs frequently contain sensitive customer data: PII, authorization tokens, session cookies, database connection strings, and user emails captured in uncaught exception stack traces. If a database backup leaks or an unauthorized actor gains read access to the SQLite file or MySQL replica, plaintext logs immediately trigger severe compliance breaches under GDPR, HIPAA, and SOC2.</p>
+      <p>Application logs frequently contain sensitive customer data: PII, authorization tokens, session cookies, database connection strings, and user emails captured in uncaught exception stack traces. If a database backup leaks or an unauthorized actor gains read access to the SQLite file or MySQL replica, plaintext logs immediately expose sensitive customer data and create critical security vulnerabilities.</p>
 
       <h2>Implementing Authenticated AES-256-GCM</h2>
       <p>AES-GCM (Galois/Counter Mode) provides both confidentiality and tamper-proof message authenticity. Unlike legacy CBC or ECB modes, GCM produces a 128-bit authentication tag that immediately detects bit-flipping and tampering:</p>
