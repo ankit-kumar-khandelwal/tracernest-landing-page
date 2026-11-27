@@ -1337,6 +1337,10 @@ section {
   padding: 1.5rem;
 }
 
+.modal-backdrop.active {
+  display: flex !important;
+}
+
 .modal-content {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
