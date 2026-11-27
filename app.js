@@ -994,37 +994,7 @@
       themeToggleBtn.addEventListener('click', toggleTheme);
     }
 
-    // Interactive Contact Form (if present on Contact Page)
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = (document.getElementById('contact-name')?.value || '').trim();
-        const email = (document.getElementById('contact-email')?.value || '').trim();
-        const country = (document.getElementById('contact-country')?.value || '').trim();
-        const topic = (document.getElementById('contact-topic')?.value || '').trim();
-        const message = (document.getElementById('contact-message')?.value || '').trim();
-        const statusEl = document.getElementById('contact-form-status');
-
-        if (!name || !email || !message) {
-          if (statusEl) {
-            statusEl.textContent = 'Please fill in all required fields (Name, Email, Message).';
-            statusEl.className = 'contact-form-status error';
-          }
-          return;
-        }
-
-        const subject = encodeURIComponent(`[TracerNest Inquiry - ${country || 'Global'}] ${topic}: ${name}`);
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCountry: ${country}\nTopic: ${topic}\n\nMessage:\n${message}\n\n--\nSent via TracerNest Contact Portal`);
-        
-        if (statusEl) {
-          statusEl.innerHTML = 'Opening email client... You can also email directly: <a href="mailto:ankitkhandelwal0003@gmail.com" style="color:var(--teal-400);text-decoration:underline;">ankitkhandelwal0003@gmail.com</a>';
-          statusEl.className = 'contact-form-status success';
-        }
-
-        window.location.href = `mailto:ankitkhandelwal0003@gmail.com?subject=${subject}&body=${body}`;
-      });
-    }
+    // Contact form replaced by direct communication channels & knowledge base
   }
 
   // Floating Star Toast Notification
@@ -1095,7 +1065,7 @@
       "Observability"
     ],
     "summary": "Discover how TracerNest provides an embedded Errsole-style log dashboard directly on your application port with zero extra open ports, zero dependencies, and authenticated AES-256-GCM encryption.",
-    "content": "### The Problem with Traditional Log Dashboards\nWhen managing production microservices in Node.js, engineering teams frequently rely on logging dashboards like Errsole, Winston with Express-Winston, or SaaS platforms like Datadog and Sentry. However, traditional dashboard tools introduce two significant engineering compromises:\n1. **Secondary TCP Ports:** Most self-hosted log viewers spin up an independent HTTP/WebSocket server on a dedicated port (e.g. 8001 or 9200). In containerized Kubernetes, AWS ECS, or Docker environments, opening extra ports requires modifying ingress controllers, updating AWS Security Group ingress rules, and handling cross-origin authentication headers.\n2. **Heavy Dependency Trees:** Many log packages pull 40+ transitive npm packages (Express middleware, database drivers, WebSockets,Lodash, etc.), expanding your attack surface and introducing recurring CVE alerts.\n\n### The Zero-Port Architecture Solution\nTracerNest took a fundamentally different approach. Instead of creating a new server instance, TracerNest hooks natively into your application's existing HTTP request router (Express, Koa, Fastify, or vanilla Node.js `http`).\nWhen a client hits your configured dashboard endpoint—such as `GET /tracernest`—the TracerNest middleware intercepts the request on the exact same port your API is already running on:\n```javascript\nconst express = require('express');\nconst { tracerNest } = require('tracernest-logger');\n\nconst app = express();\n\n// Single-line middleware hooks telemetry on your existing port (e.g. 3000)\napp.use(tracerNest({\n  path: '/tracernest',\n  storage: 'sqlite', // or 'mysql'\n  auth: { user: process.env.TN_USER, pass: process.env.TN_PASS }\n}));\n\napp.listen(3000, () => console.log('Server and TracerNest Vault running on port 3000'));\n```\nNo firewall updates. No extra ports. Zero SaaS subscription bills.\n\n---"
+    "content": "The Problem with Traditional Log Dashboards\n      When managing production microservices in Node.js, engineering teams frequently rely on logging dashboards like Errsole, Winston with Express-Winston, or SaaS platforms like Datadog and Sentry. However, traditional dashboard tools introduce two significant engineering compromises:\n\n        Secondary TCP Ports: Most self-hosted log viewers spin up an independent HTTP/WebSocket server on a dedicated port (e.g. 8001 or 9200). In containerized Kubernetes, AWS ECS, or Docker environments, opening extra ports requires modifying ingress controllers, updating AWS Security Group ingress rules, and handling cross-origin authentication headers.\n        Heavy Dependency Trees: Many log packages pull 40+ transitive npm packages (Express middleware, database drivers, WebSockets, Lodash, etc.), expanding your attack surface and introducing recurring CVE alerts.\n\n\n      The Zero-Port Architecture Solution\n      TracerNest took a fundamentally different approach. Instead of creating a new server instance, TracerNest hooks natively into your application's existing HTTP request router (Express, Koa, Fastify, or vanilla Node.js http).\n      When a client hits your configured dashboard endpoint—such as GET /tracernest—the TracerNest middleware intercepts the request on the exact same port your API is already running on:\n\n      ```javascript\nconst express = require('express');\nconst { tracerNest } = require('tracernest-logger');\n\nconst app = express();\n\n// Single-line middleware hooks telemetry on your existing port (e.g. 3000)\napp.use(tracerNest({\n  path: '/tracernest',\n  storage: 'sqlite', // or 'mysql'\n  auth: { user: process.env.TN_USER, pass: process.env.TN_PASS }\n}));\n\napp.listen(3000, () => console.log('Server and TracerNest Vault running on port 3000'));\n```\n\n\n      Head-to-Head Comparison: Errsole vs. TracerNest\n\n\n\n\n              Feature\n              TracerNest\n              Errsole\n\n\n\n\n              Extra TCP Ports\n              0 (Attaches to App Port)\n              1+ Dedicated Port Required\n\n\n              Runtime Dependencies\n              0 (dependencies: {})\n              45+ npm packages\n\n\n              At-Rest Encryption\n              AES-256-GCM Authenticated\n              Plaintext disk files\n\n\n              Database Migration\n              Automatic SQLite to MySQL\n              Manual SQL scripts\n\n\n              Laravel 13 Bridge\n              First-class PHP Monolog bridge\n              None (Node.js only)\n\n\n\n\n\n      Conclusion & Next Steps\n      By eliminating dedicated ports and third-party dependencies, TracerNest reduces operational overhead, eliminates cloud SaaS egress bills, and keeps telemetry safe inside your own infrastructure.\n\n---"
   },
   {
     "title": "How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)",
@@ -1110,7 +1080,7 @@
       "Node.js"
     ],
     "summary": "Step-by-step guide on implementing hardware-accelerated authenticated log encryption at rest using Node's standard crypto module with zero external dependencies.",
-    "content": "### Why Plaintext Logs Are a Critical Liability\nApplication logs frequently contain sensitive customer data: PII, authorization tokens, session cookies, database connection strings, and user emails captured in uncaught exception stack traces. If a database backup leaks or an unauthorized actor gains read access to the SQLite file or MySQL replica, plaintext logs immediately trigger severe compliance breaches under GDPR, HIPAA, and SOC2.\n\n### Implementing Authenticated AES-256-GCM\nAES-GCM (Galois/Counter Mode) provides both confidentiality and tamper-proof message authenticity. Unlike legacy CBC or ECB modes, GCM produces a 128-bit authentication tag that immediately detects bit-flipping and tampering:\n```javascript\nconst crypto = require('node:crypto');\n\nfunction encryptPayload(plaintext, masterKeyHex) {\n  const masterKey = Buffer.from(masterKeyHex, 'hex'); // 32 bytes (256 bits)\n  const iv = crypto.randomBytes(12); // NIST recommended 96-bit nonce\n\n  const cipher = crypto.createCipheriv('aes-256-gcm', masterKey, iv);\n  const encrypted = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()]);\n  const authTag = cipher.getAuthTag(); // 16 bytes authentication tag\n\n  return {\n    cipherText: encrypted.toString('base64'),\n    iv: iv.toString('hex'),\n    authTag: authTag.toString('hex')\n  };\n}\n```\nTracerNest incorporates this cryptographic pipeline by default. Plaintext logs never touch physical disk or database storage—only the local `.master.key` (with strict `0600` file permissions) can decrypt the log stream.\n\n---"
+    "content": "Why Plaintext Logs Are a Critical Liability\n      Application logs frequently contain sensitive customer data: PII, authorization tokens, session cookies, database connection strings, and user emails captured in uncaught exception stack traces. If a database backup leaks or an unauthorized actor gains read access to the SQLite file or MySQL replica, plaintext logs immediately trigger severe compliance breaches under GDPR, HIPAA, and SOC2.\n\n      Implementing Authenticated AES-256-GCM\n      AES-GCM (Galois/Counter Mode) provides both confidentiality and tamper-proof message authenticity. Unlike legacy CBC or ECB modes, GCM produces a 128-bit authentication tag that immediately detects bit-flipping and tampering:\n\n      ```javascript\nconst crypto = require('node:crypto');\n\nfunction encryptPayload(plaintext, masterKeyHex) {\n  const masterKey = Buffer.from(masterKeyHex, 'hex'); // 32 bytes (256 bits)\n  const iv = crypto.randomBytes(12); // NIST recommended 96-bit nonce\n\n  const cipher = crypto.createCipheriv('aes-256-gcm', masterKey, iv);\n  const encrypted = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()]);\n  const authTag = cipher.getAuthTag(); // 16 bytes authentication tag\n\n  return {\n    cipherText: encrypted.toString('base64'),\n    iv: iv.toString('hex'),\n    authTag: authTag.toString('hex')\n  };\n}\n```\n\n\n      Vault Decryption Verification\n      Decryption validates both the ciphertext and the authentication tag. If even a single byte of the encrypted payload or header was modified on disk, Node's native crypto engine will reject the record with an authentication tag mismatch:\n\n      ```javascript\nfunction decryptPayload(vaultEntry, masterKeyHex) {\n  const masterKey = Buffer.from(masterKeyHex, 'hex');\n  const decipher = crypto.createDecipheriv(\n    'aes-256-gcm',\n    masterKey,\n    Buffer.from(vaultEntry.iv, 'hex')\n  );\n  decipher.setAuthTag(Buffer.from(vaultEntry.authTag, 'hex'));\n\n  const decrypted = Buffer.concat([\n    decipher.update(Buffer.from(vaultEntry.cipherText, 'base64')),\n    decipher.final()\n  ]);\n  return JSON.parse(decrypted.toString('utf8'));\n}\n```\n\n\n      TracerNest incorporates this cryptographic pipeline by default. Plaintext logs never touch physical disk or database storage—only the local .master.key (with strict 0600 file permissions) can decrypt the log stream.\n\n---"
   },
   {
     "title": "Self-Hosted Logging in Laravel 13: Bridging Monolog with Zero Extra Ports",
@@ -1125,7 +1095,7 @@
       "Telemetry"
     ],
     "summary": "How to seamlessly correlate PHP request lifecycles, route durations, and exception stack traces in Laravel 13 directly with TracerNest's unified log vault.",
-    "content": "### Bridging the Monolog Ecosystem\nLaravel 13 continues PHP's modern evolution with PHP 8.2+ type safety and lightning-fast route dispatch. However, logging in distributed microservices where PHP backends communicate with Node.js APIs often leads to fragmented log silos.\n\nTracerNest provides the `tracernest-laravel` bridge, a native Monolog handler and HTTP middleware package that routes Laravel application telemetry into the same encrypted SQLite or MySQL storage as your Node.js services.\n\n### Installation & Middleware Registration\nIn your `config/logging.php`:\n```php\n'channels' => [\n    'tracernest' => [\n        'driver' => 'custom',\n        'via' => \\TracerNest\\Laravel\\TracerNestLogger::class,\n        'level' => env('LOG_LEVEL', 'debug'),\n    ],\n],\n```\nWhen an HTTP request triggers an exception or database query delay, TracerNest records:\n- The correlation ID (`x-request-id`)\n- Controller execution duration\n- Memory peak consumption\n- SQL query execution plan and duration\nAll encrypted at rest without background Redis/RabbitMQ queue workers.\n\n---"
+    "content": "Bridging the Monolog Ecosystem\n      Laravel 13 continues PHP's modern evolution with PHP 8.2+ type safety and lightning-fast route dispatch. However, logging in distributed microservices where PHP backends communicate with Node.js APIs often leads to fragmented log silos.\n      TracerNest provides the tracernest-laravel bridge, a native Monolog handler and HTTP middleware package that routes Laravel application telemetry into the same encrypted SQLite or MySQL storage as your Node.js services.\n\n      Installation & Middleware Registration\n      In your config/logging.php:\n\n      ```javascript\n'channels' => [\n    'tracernest' => [\n        'driver' => 'custom',\n        'via' => \\TracerNest\\Laravel\\TracerNestLogger::class,\n        'level' => env('LOG_LEVEL', 'debug'),\n    ],\n],\n```\n\n\n      Request Correlation Across Microservices\n      When an HTTP request triggers an exception or database query delay, TracerNest records:\n\n        The correlation ID (x-request-id)\n        Controller execution duration\n        Memory peak consumption\n        SQL query execution plan and duration\n\n      All encrypted at rest without background Redis/RabbitMQ queue workers.\n\n---"
   },
   {
     "title": "Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide",
@@ -1140,7 +1110,7 @@
       "Migrations"
     ],
     "summary": "An architectural deep dive into TracerNest's automated database transition pipeline that scales single-node SQLite logging into high-throughput enterprise MySQL clusters.",
-    "content": "### Why Start with SQLite WAL?\nFor single-container applications, edge deployments, and development environments, SQLite with Write-Ahead Logging (`PRAGMA journal_mode = WAL`) offers astonishingly low read/write latency. Readers do not block writers, and zero setup is required.\n\n### The Challenge of Scaling to Multi-Instance Clusters\nWhen your application scales out horizontally across multiple Kubernetes pods or autoscaling server groups, SQLite's single-node file lock becomes a bottleneck. Distributed microservices require a centralized storage backend such as MySQL or MariaDB.\n\n### Automated Schema Drift & Data Migration\nInstead of requiring manual database migration scripts, TracerNest detects when your configuration changes from `storage: 'sqlite'` to `storage: 'mysql'`:\n1. **Schema Verification:** Connects to MySQL and checks for table existence and missing columns using `information_schema.columns`.\n2. **Non-Destructive DDL:** Automatically executes `ALTER TABLE logs ADD COLUMN ...` for any newly added telemetry fields.\n3. **Data Transfer:** Safely migrates existing records from the local `.db` SQLite file into MySQL in streaming batches.\n4. **Vault Preservation:** Preserves your existing `.master.key`, ensuring historical encrypted entries remain readable in the embedded dashboard.\n\n---"
+    "content": "Why Start with SQLite WAL?\n      For single-container applications, edge deployments, and development environments, SQLite with Write-Ahead Logging (PRAGMA journal_mode = WAL) offers astonishingly low read/write latency. Readers do not block writers, and zero setup is required.\n\n      The Challenge of Scaling to Multi-Instance Clusters\n      When your application scales out horizontally across multiple Kubernetes pods or autoscaling server groups, SQLite's single-node file lock becomes a bottleneck. Distributed microservices require a centralized storage backend such as MySQL or MariaDB.\n\n      Automated Schema Drift & Data Migration\n      Instead of requiring manual database migration scripts, TracerNest detects when your configuration changes from storage: 'sqlite' to storage: 'mysql':\n\n        Schema Verification: Connects to MySQL and checks for table existence and missing columns using information_schema.columns.\n        Non-Destructive DDL: Automatically executes ALTER TABLE logs ADD COLUMN ... for any newly added telemetry fields.\n        Data Transfer: Safely migrates existing records from the local .db SQLite file into MySQL in streaming batches.\n        Vault Preservation: Preserves your existing .master.key, ensuring historical encrypted entries remain readable in the embedded dashboard.\n\n---"
   },
   {
     "title": "Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines",
@@ -1155,7 +1125,7 @@
       "Zero-Dependencies"
     ],
     "summary": "Why minimizing external npm dependencies is the most effective security practice for enterprise production telemetry.",
-    "content": "### The State of NPM Dependency Sprawl\nThe modern JavaScript ecosystem is heavily reliant on open-source packages. A standard `npm install winston` can easily introduce dozens of transitive dependencies. If a single maintainer account is compromised, malicious code can be injected into millions of running servers (as demonstrated in real-world incidents like `event-stream` and `colors.js`).\n\n### Zero Runtime Dependencies by Design\nTracerNest enforces a strict architectural rule: `dependencies: {}` in `package.json`.\n- Cryptography uses `node:crypto`.\n- HTTP routing and dashboard UI delivery use `node:http`.\n- Database operations use `node:sqlite` (native in Node.js 22+) and native MySQL TCP protocol implementation.\nBy avoiding third-party packages, TracerNest delivers:\n- Zero audit warnings (`0 vulnerabilities`).\n- Negligible container image footprint.\n- Instant cold starts for AWS Lambda, Cloudflare Workers, and Docker containers.\n\n---"
+    "content": "The State of NPM Dependency Sprawl\n      The modern JavaScript ecosystem is heavily reliant on open-source packages. A standard npm install winston can easily introduce dozens of transitive dependencies. If a single maintainer account is compromised, malicious code can be injected into millions of running servers (as demonstrated in real-world incidents like event-stream and colors.js).\n\n      Zero Runtime Dependencies by Design\n      TracerNest enforces a strict architectural rule: dependencies: {} in package.json.\n\n        Cryptography uses native node:crypto.\n        HTTP routing and dashboard UI delivery use native node:http.\n        Database operations use native node:sqlite (Node.js 22+) and native MySQL protocol implementation.\n\n      By avoiding third-party packages, TracerNest delivers: 0 audit warnings, negligible container image footprint, and instant cold starts for AWS Lambda, Cloudflare Workers, and Docker containers.\n\n---"
   },
   {
     "title": "Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC",
@@ -1164,13 +1134,75 @@
     "author": "Ankit Khandelwal",
     "readTime": "7 min read",
     "tags": [
-      "Global Architecture",
       "Infrastructure",
       "Data Sovereignty",
-      "Cloud"
+      "Global",
+      "Compliance"
     ],
     "summary": "How distributed engineering teams across the United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, and Ireland deploy self-hosted TracerNest nodes.",
-    "content": "### Observability in a Multi-Region World\nModern software organizations rarely deploy to a single datacenter. With traffic spanning North America, Europe, Latin America, and the Asia-Pacific region, data sovereignty and latency considerations dictate where logs must be stored:\n- **Europe (Netherlands, Germany, Poland, Ireland):** Strict adherence to GDPR and local data residency mandates that customer telemetry never leaves European Union borders.\n- **North America (United States, Canada):** High-throughput microservice clusters require instant query response times without cross-region internet latency.\n- **Emerging Tech Hubs (India, Brazil):** High-growth platforms experience explosive API volume where third-party SaaS per-gigabyte ingestion fees can exceed server costs.\n\nBy running self-hosted TracerNest instances locally within each regional cluster, organizations maintain complete data sovereignty, eliminate cross-region egress costs, and retain microsecond log capture speeds."
+    "content": "Observability in a Multi-Region World\n      Modern software organizations rarely deploy to a single datacenter. With traffic spanning North America, Europe, Latin America, and the Asia-Pacific region, data sovereignty and latency considerations dictate where logs must be stored:\n\n        Europe (Netherlands, Germany, Poland, Ireland): Strict adherence to GDPR and local data residency mandates that customer telemetry never leaves European Union borders.\n        North America (United States, Canada): High-throughput microservice clusters require instant query response times without cross-region internet latency.\n        Emerging Tech Hubs (India, Brazil): High-growth platforms experience explosive API volume where third-party SaaS per-gigabyte ingestion fees can exceed server costs.\n\n      By running self-hosted TracerNest instances locally within each regional cluster, organizations maintain complete data sovereignty, eliminate cross-region egress costs, and retain microsecond log capture speeds.\n\n---"
+  },
+  {
+    "title": "How to View Express.js Logs in a Web Dashboard Without Opening Extra Ports",
+    "slug": "express-log-viewer-without-extra-ports",
+    "date": "2026-11-27",
+    "author": "Ankit Khandelwal",
+    "readTime": "6 min read",
+    "tags": [
+      "Express.js",
+      "Node.js",
+      "Web Dashboard",
+      "Zero-Port"
+    ],
+    "summary": "Step-by-step tutorial on mounting TracerNest directly into an existing Express 4 or Express 5 HTTP pipeline to view live encrypted logs without opening firewall ports.",
+    "content": "Why Traditional Log Viewers Create Port Headaches\n      Most self-hosted Node.js log dashboards require a secondary server listening on a different port (such as 8080 or 3001). In cloud environments like AWS ECS, Google Cloud Run, or Kubernetes, exposing an additional port requires modifying load balancer ingress rules, updating target groups, and managing cross-origin CORS headers.\n\n      Mounting Directly into the Express Middleware Pipeline\n      TracerNest solves this by attaching directly to your current Express HTTP pipeline. It routes internal dashboard requests through your standard application port:\n\n      ```javascript\nconst express = require('express');\nconst { tracerNest } = require('tracernest-logger');\n\nconst app = express();\n\n// Attach TracerNest log viewer on /tracernest\napp.use(tracerNest({\n  path: '/tracernest',\n  storage: 'sqlite',\n  auth: {\n    user: 'admin',\n    pass: process.env.ADMIN_PASSWORD\n  }\n}));\n\napp.get('/api/users', (req, res) => {\n  res.json({ users: ['Alice', 'Bob'] });\n});\n\napp.listen(3000, () => {\n  console.log('App and TracerNest dashboard live on http://localhost:3000/tracernest');\n});\n```\n\n\n      Key Benefits of Zero-Port Mounting\n\n        No Firewall Changes: Uses your existing TLS certificate, reverse proxy, and domain.\n        Zero Port Conflicts: Works in single-port serverless containers (like AWS Fargate or Cloud Run).\n        Authentication Built-In: Protected by HTTP Basic Auth or custom token verification.\n\n---"
+  },
+  {
+    "title": "Winston vs. Pino vs. TracerNest: Choosing the Best Node.js Logger in 2026",
+    "slug": "pino-vs-winston-vs-tracernest-comparison",
+    "date": "2026-11-27",
+    "author": "Ankit Khandelwal",
+    "readTime": "8 min read",
+    "tags": [
+      "Node.js",
+      "Winston",
+      "Pino",
+      "Benchmarks",
+      "Comparison"
+    ],
+    "summary": "Comprehensive architectural comparison of Winston, Pino, and TracerNest examining dependency sprawl, CPU overhead, log viewer UI availability, and at-rest payload encryption.",
+    "content": "The Evolution of Node.js Logging\n      Logging in Node.js has evolved across three major generations:\n\n        Generation 1 (Winston): Flexible transport ecosystem, but heavy dependency footprints and CPU overhead on high-throughput JSON serialization.\n        Generation 2 (Pino): Extremely fast asynchronous streaming, but offers no built-in web viewer or at-rest encryption without external ELK/Grafana stacks.\n        Generation 3 (TracerNest): Zero runtime dependencies, native AES-256-GCM encryption, embedded web dashboard, and zero extra open ports.\n\n\n      Comparison Matrix\n\n\n\n\n              Metric\n              TracerNest\n              Pino\n              Winston\n\n\n\n\n              Built-in UI Viewer\n              Yes (Embedded Web Dashboard)\n              No (CLI only)\n              No (CLI only)\n\n\n              Runtime Dependencies\n              0 dependencies\n              6+ dependencies\n              12+ dependencies\n\n\n              AES-256-GCM Encryption\n              Native Hardware AES-GCM\n              None\n              None\n\n\n              Auto Database Migration\n              SQLite to MySQL Auto\n              External Log Shipper Required\n              External Log Shipper Required\n\n\n\n\n\n      Which Logger Should You Choose?\n      If you already run a massive multi-terabyte ElasticSearch cluster, Pino is an excellent raw stream emitter. But if you want a complete, self-contained, encrypted telemetry flight recorder with an intuitive dashboard and zero external SaaS bills, TracerNest is the definitive choice.\n\n---"
+  },
+  {
+    "title": "Distributed Tracing in Docker & Kubernetes Microservices with Zero SaaS Bills",
+    "slug": "microservices-distributed-tracing-sqlite-mysql",
+    "date": "2026-11-27",
+    "author": "Ankit Khandelwal",
+    "readTime": "7 min read",
+    "tags": [
+      "Microservices",
+      "Docker",
+      "Kubernetes",
+      "MySQL",
+      "Telemetry"
+    ],
+    "summary": "How to architect high-throughput correlation IDs across multi-container Docker and Kubernetes deployments while replacing high Datadog and Sentry SaaS per-gigabyte ingestion fees.",
+    "content": "The Hidden Cost of SaaS Observability\n      As microservice architectures scale, SaaS APM providers (Datadog, New Relic, Dynatrace) charge aggressive per-host and per-gigabyte ingestion fees. A microservices cluster generating 20GB of logs per day can easily rack up $1,000+ monthly in SaaS bills alone.\n\n      Correlation ID Propagation\n      TracerNest automatically intercepts standard tracing headers (x-request-id, traceparent, x-correlation-id). When service A calls service B, the trace identifier flows downstream, enabling complete root-cause drilldowns across containers:\n\n      ```javascript\n// In your service handler\napp.get('/orders', async (req, res) => {\n  const traceId = req.headers['x-request-id'] || crypto.randomUUID();\n\n  // Forward correlation ID to payment microservice\n  const paymentRes = await fetch('http://payment-service:4000/charge', {\n    headers: { 'x-request-id': traceId }\n  });\n\n  res.json({ status: 'ok', traceId });\n});\n```\n\n\n      Scaling from Docker Compose to Enterprise Kubernetes\n      In local Docker environments, TracerNest runs on local SQLite. In Kubernetes production clusters, simply pass your centralized MySQL connection URI via environment variables. TracerNest auto-migrates and centralizes all pod telemetry into MySQL without modifying application code.\n\n---"
+  },
+  {
+    "title": "Building a High-Performance Node.js Logger with Native Standard Libraries",
+    "slug": "node-js-logger-zero-dependencies-guide",
+    "date": "2026-11-27",
+    "author": "Ankit Khandelwal",
+    "readTime": "6 min read",
+    "tags": [
+      "Node.js",
+      "Architecture",
+      "Zero-Dependencies",
+      "Performance"
+    ],
+    "summary": "A deep dive into utilizing node:crypto, node:http, and node:sqlite to craft an enterprise-grade observability engine without installing a single third-party npm package.",
+    "content": "The Modern Node.js Standard Library\n      Modern Node.js (v18, v20, v22+) includes powerful standard modules that render many popular npm packages obsolete:\n\n        node:crypto — Hardware-accelerated AES-256-GCM, SHA-256, and cryptographically secure random bytes.\n        node:sqlite — High-performance built-in SQLite engine with synchronous WAL support.\n        node:http — Native HTTP streaming and header serialization without Express or Koa dependencies.\n\n\n      Zero Runtime Dependencies (dependencies: {})\n      TracerNest's package.json contains an empty dependencies object. This guarantees:\n\n        No Supply Chain Hijacking: Zero transitive dependencies means zero risk of compromised maintainer keys or prototype pollution vulnerabilities.\n        Instant Deployments: npm install completes in under 2 seconds in CI/CD pipelines.\n        Immutable Production Stability: Standard library APIs adhere to strict Node.js Long Term Support (LTS) backward compatibility.\n\n\n      Conclusion\n      By leveraging standard runtime capabilities, TracerNest delivers an enterprise logging vault that is secure by default, blazing fast, and 100% free forever.\n\n---"
   }
 ];
 
@@ -1377,14 +1409,13 @@
             '<span class="blog-card-dot">&bull;</span>' +
             '<span class="blog-card-read">' + art.readTime + '</span>' +
           '</div>' +
-          '<h2 class="blog-card-title">' +
-            '<a href="#' + art.slug + '" class="blog-title-link">' + art.title + '</a>' +
+          '<h2 class="blog-card-title">' + '<a href="' + art.slug + '.html" class="blog-title-link">' + art.title + '</a>' +
           '</h2>' +
           '<p class="blog-card-excerpt">' + art.summary + '</p>' +
           '<div class="blog-card-tags">' + tagsHtml + '</div>' +
           '<div class="blog-card-footer">' +
             '<span class="blog-author-by">By <strong>' + art.author + '</strong></span>' +
-            '<a href="#' + art.slug + '" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>' +
+            '<a href="' + art.slug + '.html" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>' +
           '</div>';
 
         grid.appendChild(card);
@@ -1409,25 +1440,9 @@
       renderCards(filtered);
     }
 
-    // Event Delegation for Grid (Guarantees clicks work on any card at any time!)
-    grid.addEventListener('click', (e) => {
-      const readBtn = e.target.closest('.blog-read-btn');
-      const titleLink = e.target.closest('.blog-title-link');
-      if (readBtn || titleLink) {
-        e.preventDefault();
-        const card = (readBtn || titleLink).closest('.blog-card');
-        const slug = card ? card.getAttribute('data-slug') : null;
-        if (slug) {
-          const found = articles.find(a => a.slug === slug || a.slug.includes(slug) || slug.includes(a.slug));
-          if (found) {
-            openArticleReader(found);
-            return;
-          }
-        }
-      }
-    });
-
-    // Event Delegation for Filter Buttons
+    // Event Delegation: Clicking title or "Read Article" navigates naturally to the dedicated article page (<slug>.html).
+    // No preventDefault() needed, allowing standard browser link navigation, middle-click, and new tab behavior.
+// Event Delegation for Filter Buttons
     if (filterPillsContainer) {
       filterPillsContainer.addEventListener('click', (e) => {
         const btn = e.target.closest('.filter-btn');

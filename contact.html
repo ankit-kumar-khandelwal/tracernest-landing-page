@@ -293,68 +293,60 @@
       </div>
     </section>
 
-    <!-- Interactive Contact Form -->
-    <section class="contact-form-section" id="inquiry-form">
+    <!-- Featured Engineering Blogs & Architecture Guides -->
+    <section class="section-alt" style="padding: 4rem 0;">
       <div class="container">
-        <div class="contact-form-card">
-          <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
-            <div class="badge-subtitle">Send a Message</div>
-            <h3 style="font-size: 1.65rem; font-weight: 800; color: var(--text-main); margin: 0 0 0.5rem;">Direct Inquiry &amp; Review Submission</h3>
-            <p style="margin: 0;">Fill in your details below. This generates an immediate message dispatched directly to creator Ankit Khandelwal.</p>
-          </div>
+        <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
+          <div class="badge-subtitle">Engineering Knowledge Base</div>
+          <h2>Featured Technical Guides &amp; Observability Insights</h2>
+          <p>Explore production architecture deep dives, zero-port telemetry setups, and cryptographic vault tutorials written by our engineering team.</p>
+        </div>
 
-          <form id="contact-form" novalidate>
-            <div class="form-grid">
-              <div class="form-group">
-                <label for="contact-name" class="form-label">Your Name <span style="color:var(--teal-500)">*</span></label>
-                <input type="text" id="contact-name" class="form-control" placeholder="e.g. Alex Morgan" required>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-email" class="form-label">Email Address <span style="color:var(--teal-500)">*</span></label>
-                <input type="email" id="contact-email" class="form-control" placeholder="alex@company.com" required>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-country" class="form-label">Country / Region</label>
-                <select id="contact-country" class="form-select">
-                  <option value="United States">🇺🇸 United States</option>
-                  <option value="India">🇮🇳 India</option>
-                  <option value="Netherlands">🇳🇱 Netherlands</option>
-                  <option value="Poland">🇵🇱 Poland</option>
-                  <option value="Canada">🇨🇦 Canada</option>
-                  <option value="Germany">🇩🇪 Germany</option>
-                  <option value="United Kingdom">🇬🇧 United Kingdom</option>
-                  <option value="Brazil">🇧🇷 Brazil</option>
-                  <option value="Ireland">🇮🇪 Ireland</option>
-                  <option value="Other">🌐 Other International</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="contact-topic" class="form-label">Inquiry Subject</label>
-                <select id="contact-topic" class="form-select">
-                  <option value="Review / Testimonial">⭐ Product Review / Testimonial</option>
-                  <option value="Technical Support">🛠️ Technical Support &amp; Integration</option>
-                  <option value="Bug Report">🐛 Bug Report / Edge Case</option>
-                  <option value="Feature Request">💡 Feature Request</option>
-                  <option value="Custom Adapter Proposal">🔌 Custom Adapter (Fastify, Koa, etc.)</option>
-                  <option value="General Question">💬 General Question / Partnership</option>
-                </select>
-              </div>
-
-              <div class="form-group full-width">
-                <label for="contact-message" class="form-label">Your Message <span style="color:var(--teal-500)">*</span></label>
-                <textarea id="contact-message" class="form-textarea" placeholder="Tell us about your stack, your telemetry review, or how we can help..." required></textarea>
-              </div>
+        <div class="blogs-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+          <article class="blog-card" style="padding: 1.75rem;">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">2026-11-20</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">6 min read</span>
             </div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0.5rem 0 0.75rem;">
+              <a href="errsole-alternative-nodejs-zero-port-telemetry.html" class="blog-title-link">Errsole Alternative for Node.js: Why Zero-Port Telemetry is Replacing Heavy APM Daemons</a>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.25rem;">Discover how TracerNest provides an embedded Errsole-style log dashboard directly on your application port with zero extra open ports.</p>
+            <a href="errsole-alternative-nodejs-zero-port-telemetry.html" class="btn btn-secondary-outline btn-sm">Read Article &rarr;</a>
+          </article>
 
-            <button type="submit" id="contact-submit-btn" class="btn btn-primary" style="padding: 0.85rem 1.85rem; font-size: 0.95rem;">
-              <span>Send Message &rarr;</span>
-            </button>
+          <article class="blog-card" style="padding: 1.75rem;">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">2026-11-22</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">7 min read</span>
+            </div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0.5rem 0 0.75rem;">
+              <a href="encrypt-application-logs-aes-256-gcm-nodejs.html" class="blog-title-link">How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)</a>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.25rem;">Step-by-step guide on implementing hardware-accelerated authenticated log encryption at rest using Node's standard crypto module.</p>
+            <a href="encrypt-application-logs-aes-256-gcm-nodejs.html" class="btn btn-secondary-outline btn-sm">Read Article &rarr;</a>
+          </article>
 
-            <div id="contact-form-status" class="contact-form-status" role="status" aria-live="polite"></div>
-          </form>
+          <article class="blog-card" style="padding: 1.75rem;">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">2026-11-27</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">6 min read</span>
+            </div>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0.5rem 0 0.75rem;">
+              <a href="express-log-viewer-without-extra-ports.html" class="blog-title-link">How to View Express.js Logs in a Web Dashboard Without Opening Extra Ports</a>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.25rem;">Mount TracerNest directly into an existing Express 4 or Express 5 HTTP pipeline to view live encrypted logs without firewall changes.</p>
+            <a href="express-log-viewer-without-extra-ports.html" class="btn btn-secondary-outline btn-sm">Read Article &rarr;</a>
+          </article>
+        </div>
+
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="blogs.html" class="btn btn-primary" style="padding: 0.75rem 2rem;">
+            <span>Browse All 10 Engineering Guides &rarr;</span>
+          </a>
         </div>
       </div>
     </section>
