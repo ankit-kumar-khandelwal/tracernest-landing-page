@@ -591,7 +591,7 @@
           <span class="contributor-role">Future Contributor</span>
           <span class="contributor-commits">Submit your first PR</span>
         </div>
-        <a href="#contribute" class="contributor-gh-link join-link">
+        <a href="contribute.html" class="contributor-gh-link join-link">
           <span>View Open Tracks &darr;</span>
         </a>
       `;

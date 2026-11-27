@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contribute to TracerNest | Open Source Roadmap, Good First Issues &amp; Contributor Guide</title>
+  <meta name="description" content="Contribute to TracerNest: explore good first issues, architectural bounties, framework adapters, and our four-phase contributor workflow. 100% open-source under MIT.">
+  <meta name="keywords" content="TracerNest contribute, open source logging, good first issues Node.js, contribute to Node.js logger, GitHub issues TracerNest">
+  <meta name="author" content="Ankit Khandelwal">
+  <link rel="canonical" href="https://tracernest.info/contribute.html">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="Contribute to TracerNest | Open Source Roadmap &amp; Good First Issues">
+  <meta property="og:description" content="Explore open issues, roadmap bounties, and guidelines to submit your first PR to TracerNest. 100% free and open source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tracernest.info/contribute.html">
+  <meta property="og:site_name" content="TracerNest">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/tracernest-logger-icon-transparent.svg">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="styles.css?v=3.8">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tracernest.info/#website",
+        "url": "https://tracernest.info/",
+        "name": "TracerNest",
+        "description": "Open-source, self-hosted Node.js and Laravel 13 logger with an encrypted log vault and built-in dashboard.",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://tracernest.info/#author" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tracernest.info/#author",
+        "name": "Ankit Khandelwal",
+        "url": "https://github.com/ankit-kumar-khandelwal",
+        "sameAs": [
+          "https://github.com/ankit-kumar-khandelwal",
+          "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/",
+          "https://www.npmjs.com/package/tracernest-logger"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://tracernest.info/contribute.html#webpage",
+        "url": "https://tracernest.info/contribute.html",
+        "name": "Contribute to TracerNest | Open Source Roadmap, Good First Issues & Contributor Guide",
+        "description": "Join the TracerNest open-source community. Explore active issues, roadmap tracks, and four-step contribution guidelines.",
+        "isPartOf": { "@id": "https://tracernest.info/#website" },
+        "author": { "@id": "https://tracernest.info/#author" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://tracernest.info/contribute.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tracernest.info/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contribute",
+            "item": "https://tracernest.info/contribute.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement-bar" aria-label="Announcement">
+    <div class="container announcement-inner">
+      <div class="announcement-left">
+        <span class="announcement-pill">Open Source</span>
+        <span class="announcement-text">TracerNest is 100% community-driven under MIT license &bull; <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer" class="announcement-contribute-link">Join Discussion #26 &rarr;</a></span>
+      </div>
+      <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="fast-star-btn" title="Star TracerNest on GitHub">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span class="star-label">Star on GitHub</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Clean Minimalist Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" aria-label="TracerNest Home">
+        <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
+        <span class="logo-text">Tracer<strong>Nest</strong></span>
+        <span class="version-badge" id="nav-version">v1.9.0</span>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
+        <a href="index.html#demo" class="nav-link-item">Demo</a>
+        <a href="index.html#features" class="nav-link-item">Features</a>
+        <a href="index.html#comparison" class="nav-link-item">Comparison</a>
+        <a href="about.html" class="nav-link-item">About Us</a>
+        <a href="blogs.html" class="nav-link-item">Blogs</a>
+        <a href="contact.html" class="nav-link-item">Contact Us</a>
+        <a href="index.html#credits" class="nav-link-item">Credits</a>
+        <a href="contribute.html" class="nav-link-item active" aria-current="page">Contribute</a>
+        <div class="mobile-nav-footer">
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github mobile-btn-full">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Star on GitHub</span>
+          </a>
+          <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-primary mobile-btn-full">
+            <span>Install tracernest-logger</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Switch theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github btn-nav-star" title="Star on GitHub">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span class="nav-star-text">Star</span>
+        </a>
+
+        <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-install-nav">
+          <span>Install</span>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-backdrop" id="mobile-backdrop"></div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-separator" aria-hidden="true">/</li>
+          <li class="breadcrumb-item active" aria-current="page">Contribute</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Contribute Hero Section -->
+    <section class="hero-section" style="padding: 3rem 0 2.5rem; text-align: center;">
+      <div class="container">
+        <div class="hero-pill-wrap" style="justify-content: center; margin-bottom: 1.25rem;">
+          <div class="hero-pill">
+            <span class="live-dot"></span>
+            <span>Open Source &bull; MIT Licensed &bull; Seeking Contributors</span>
+          </div>
+        </div>
+
+        <h1 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
+          Contribute to <span class="highlight">TracerNest</span>
+        </h1>
+
+        <p class="hero-subtitle" style="max-width: 760px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.7;">
+          Join our global engineering community building a zero-port, zero-dependency Node.js telemetry flight recorder and encrypted log viewer. Whether you're fixing a bug, proposing an adapter, writing tests, or reviewing code, every contribution is celebrated.
+        </p>
+
+        <!-- Primary Action Links -->
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/new/choose" target="_blank" rel="noopener noreferrer" class="btn btn-primary" title="Raise an Issue on GitHub">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            <span>Raise an Issue &amp; Propose Feature</span>
+          </a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues" target="_blank" rel="noopener noreferrer" class="btn btn-secondary-outline" title="Browse All Issues on GitHub">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span>Browse All GitHub Issues</span>
+          </a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer" class="btn btn-secondary-outline" title="Join Review Discussion #26">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <span>Leave a Review (Discussion #26)</span>
+          </a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/fork" target="_blank" rel="noopener noreferrer" class="btn btn-secondary-outline" title="Fork TracerNest on GitHub">
+            <span>Fork Repo &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complete Issues & Roadmap Tracks Section -->
+    <section class="section-alt" style="padding: 3.5rem 0;" id="issues">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+          <div class="badge-subtitle">Open Roadmap &amp; Bounties</div>
+          <h2>Open Issues &amp; Contribution Opportunities</h2>
+          <p>Explore complete active tracks, beginner-friendly good first issues, and core architectural enhancements below.</p>
+        </div>
+
+        <!-- Issue Category Filter Buttons -->
+        <div class="issue-filters-bar" id="issue-filters" role="tablist">
+          <button class="issue-filter-btn active" data-filter="all">All Tracks (8)</button>
+          <button class="issue-filter-btn" data-filter="good-first-issue">Good First Issue (3)</button>
+          <button class="issue-filter-btn" data-filter="storage">Storage Drivers (2)</button>
+          <button class="issue-filter-btn" data-filter="framework">Framework Bridges (2)</button>
+          <button class="issue-filter-btn" data-filter="devops">DevOps &amp; Docs (2)</button>
+        </div>
+
+        <!-- Comprehensive Issues Grid -->
+        <div class="contribute-tracks-grid" id="issues-grid">
+          <!-- Issue 1: PostgreSQL & TimescaleDB -->
+          <div class="track-card" data-category="storage">
+            <div class="track-top">
+              <div class="track-icon-box" title="Database Storage Driver">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+              </div>
+              <div class="track-pills">
+                <span class="track-pill pill-category">Storage Driver</span>
+                <span class="track-pill pill-difficulty">Intermediate</span>
+                <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/22" target="_blank" rel="noopener noreferrer" class="track-pill pill-issue" title="View Issue #22 on GitHub">#22</a>
+              </div>
+            </div>
+            <h4 class="track-title">PostgreSQL &amp; TimescaleDB Adapter</h4>
+            <p class="track-desc">Extend our zero-dependency SQL layer to support native PostgreSQL connection strings and hypertable partitioning for high-throughput enterprise logs.</p>
+            <div class="track-meta">
+              <div class="track-tech-tags">
+                <span class="tech-tag">Pure Node.js</span>
+                <span class="tech-tag">SQL Wire</span>
+                <span class="tech-tag">TimescaleDB</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/22" target="_blank" rel="noopener noreferrer" class="btn-track-claim" title="Claim PostgreSQL Track on GitHub (Issue #22)">
+                <span>Claim Issue #22</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Issue 2: Fastify & NestJS -->
+          <div class="track-card" data-category="framework good-first-issue">
+            <div class="track-top">
+              <div class="track-icon-box" title="Framework Middleware">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <div class="track-pills">
+                <span class="track-pill pill-category">Framework Bridge</span>
+                <span class="track-pill pill-difficulty">Good First Issue</span>
+                <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/23" target="_blank" rel="noopener noreferrer" class="track-pill pill-issue" title="View Issue #23 on GitHub">#23</a>
+              </div>
+            </div>
+            <h4 class="track-title">Fastify &amp; NestJS Middleware Wrappers</h4>
+            <p class="track-desc">Build zero-port mount plugins for Fastify hooks and NestJS interceptors so modern enterprise microservices can embed TracerNest in one clean line.</p>
+            <div class="track-meta">
+              <div class="track-tech-tags">
+                <span class="tech-tag">Fastify</span>
+                <span class="tech-tag">NestJS</span>
+                <span class="tech-tag">Interceptors</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/23" target="_blank" rel="noopener noreferrer" class="btn-track-claim" title="Claim Fastify/NestJS Track on GitHub (Issue #23)">
+                <span>Claim Issue #23</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Issue 3: Real-Time V8 Memory & Event-Loop Widget -->
+          <div class="track-card" data-category="framework">
+            <div class="track-top">
+              <div class="track-icon-box" title="Dashboard UI & Visualizer">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <div class="track-pills">
+                <span class="track-pill pill-category">Dashboard UI</span>
+                <span class="track-pill pill-difficulty">Intermediate</span>
+                <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/24" target="_blank" rel="noopener noreferrer" class="track-pill pill-issue" title="View Issue #24 on GitHub">#24</a>
+              </div>
+            </div>
+            <h4 class="track-title">Real-Time V8 Memory &amp; Event-Loop Widget</h4>
+            <p class="track-desc">Add lightweight SVG charts and event-loop lag percentiles (p50/p95/p99) to the embedded console to spot latency spikes before users notice.</p>
+            <div class="track-meta">
+              <div class="track-tech-tags">
+                <span class="tech-tag">Vanilla JS</span>
+                <span class="tech-tag">SVG Charts</span>
+                <span class="tech-tag">V8 Perf</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/24" target="_blank" rel="noopener noreferrer" class="btn-track-claim" title="Claim Dashboard UI Track on GitHub (Issue #24)">
+                <span>Claim Issue #24</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Issue 4: Docker Compose & Helm Production Recipes -->
+          <div class="track-card" data-category="devops good-first-issue">
+            <div class="track-top">
+              <div class="track-icon-box" title="DevOps, K8s & Docker">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              </div>
+              <div class="track-pills">
+                <span class="track-pill pill-category">DevOps &amp; Docs</span>
+                <span class="track-pill pill-difficulty">Beginner Friendly</span>
+                <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/25" target="_blank" rel="noopener noreferrer" class="track-pill pill-issue" title="View Issue #25 on GitHub">#25</a>
+              </div>
+            </div>
+            <h4 class="track-title">Docker Compose &amp; Helm Production Recipes</h4>
+            <p class="track-desc">Contribute battle-tested cluster configurations, Docker sidecars, and automated throughput benchmark scripts for 50k+ logs/sec.</p>
+            <div class="track-meta">
+              <div class="track-tech-tags">
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">Helm</span>
+                <span class="tech-tag">Kubernetes</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/25" target="_blank" rel="noopener noreferrer" class="btn-track-claim" title="Claim DevOps Track on GitHub (Issue #25)">
+                <span>Claim Issue #25</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Issue 5: Discussion & Review RFC #26 -->
+          <div class="track-card" data-category="devops">
+            <div class="track-top">
+              <div class="track-icon-box" title="Community RFC">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              </div>
+              <div class="track-pills">
+                <span class="track-pill pill-category">RFC &amp; Review</span>
+                <span class="track-pill pill-difficulty">Open Discussion</span>
+                <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer" class="track-pill pill-issue" title="View Discussion #26 on GitHub">#26</a>
+              </div>
+            </div>
+            <h4 class="track-title">Community Review &amp; Telemetry Feedback RFC</h4>
+            <p class="track-desc">Share your production experience, propose custom storage adapters, or provide testimonials in our official GitHub Discussion thread.</p>
+            <div class="track-meta">
+              <div class="track-tech-tags">
+                <span class="tech-tag">User Feedback</span>
+                <span class="tech-tag">Architecture</span>
+                <span class="tech-tag">RFC</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer" class="btn-track-claim" title="Join GitHub Discussion #26">
+                <span>Join RFC #26</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Issue 6: NDJSON Cold-Storage Log Exporter -->
+          <div class="track-card" data-category="storage">
+            <div class="track-top">
+              <div class="track-icon-box" title="Data Pipeline">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+              </div>
+              <div class="track-pills">
+                <span class="track-pill pill-category">Data Pipeline</span>
+                <span class="track-pill pill-difficulty">Intermediate</span>
+                <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues" target="_blank" rel="noopener noreferrer" class="track-pill pill-issue" title="Browse Issues on GitHub">#27</a>
+              </div>
+            </div>
+            <h4 class="track-title">Streaming NDJSON Archival &amp; Log Compaction</h4>
+            <p class="track-desc">Implement a zero-dependency daily log compaction script that streams expired SQLite records into gzip-compressed newline-delimited JSON for long-term audit storage.</p>
+            <div class="track-meta">
+              <div class="track-tech-tags">
+                <span class="tech-tag">Node Streams</span>
+                <span class="tech-tag">Zlib</span>
+                <span class="tech-tag">Compaction</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues" target="_blank" rel="noopener noreferrer" class="btn-track-claim" title="Claim Issue on GitHub">
+                <span>View on GitHub</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Issue 7: W3C Trace Context & Baggage Headers -->
+          <div class="track-card" data-category="framework">
+            <div class="track-top">
+              <div class="track-icon-box" title="Distributed Tracing">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </div>
+              <div class="track-pills">
+                <span class="track-pill pill-category">Distributed Tracing</span>
+                <span class="track-pill pill-difficulty">Intermediate</span>
+                <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues" target="_blank" rel="noopener noreferrer" class="track-pill pill-issue" title="Browse Issues on GitHub">#28</a>
+              </div>
+            </div>
+            <h4 class="track-title">OpenTelemetry W3C Trace Context &amp; Baggage</h4>
+            <p class="track-desc">Add support for W3C <code>traceparent</code>, <code>tracestate</code>, and baggage header serialization to enable seamless distributed tracing across polyglot microservice boundaries.</p>
+            <div class="track-meta">
+              <div class="track-tech-tags">
+                <span class="tech-tag">W3C Tracing</span>
+                <span class="tech-tag">Baggage</span>
+                <span class="tech-tag">OTel Interop</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues" target="_blank" rel="noopener noreferrer" class="btn-track-claim" title="Claim Issue on GitHub">
+                <span>View on GitHub</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Issue 8: TypeScript Type Definitions -->
+          <div class="track-card" data-category="devops good-first-issue">
+            <div class="track-top">
+              <div class="track-icon-box" title="TypeScript Ergonomics">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <div class="track-pills">
+                <span class="track-pill pill-category">Developer Ergonomics</span>
+                <span class="track-pill pill-difficulty">Good First Issue</span>
+                <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues" target="_blank" rel="noopener noreferrer" class="track-pill pill-issue" title="Browse Issues on GitHub">#29</a>
+              </div>
+            </div>
+            <h4 class="track-title">Comprehensive TypeScript Definitions (<code>index.d.ts</code>)</h4>
+            <p class="track-desc">Expand TypeScript type definitions for all logger methods, Express/Koa/Fastify middleware options, database configuration dictionaries, and custom storage adapters.</p>
+            <div class="track-meta">
+              <div class="track-tech-tags">
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">index.d.ts</span>
+                <span class="tech-tag">Autocomplete</span>
+              </div>
+              <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues" target="_blank" rel="noopener noreferrer" class="btn-track-claim" title="Claim Issue on GitHub">
+                <span>View on GitHub</span>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Four-Phase Contributor Workflow Section -->
+    <section class="section" style="padding: 4rem 0;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
+          <div class="badge-subtitle">Code of Quality</div>
+          <h2>Four-Step Contribution Workflow</h2>
+          <p>Follow our streamlined development guidelines to ensure your pull request is reviewed and merged swiftly.</p>
+        </div>
+
+        <div class="contribution-steps">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-badge">
+                <span class="step-num-accent">01</span>
+                <span class="step-label">PHASE 1</span>
+              </div>
+              <span class="step-status-indicator"></span>
+            </div>
+            <h3 class="step-title">Fork &amp; Clone Repository</h3>
+            <p class="step-desc">Fork the repository on GitHub and clone your local copy:</p>
+            <pre class="code-block">git clone https://github.com/ankit-kumar-khandelwal/tracernest-logger.git
+cd tracernest-logger</pre>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-badge">
+                <span class="step-num-accent">02</span>
+                <span class="step-label">PHASE 2</span>
+              </div>
+              <span class="step-status-indicator"></span>
+            </div>
+            <h3 class="step-title">Zero Dependency Policy</h3>
+            <p class="step-desc"><strong>Strict Rule:</strong> TracerNest maintains an empty <code>dependencies: {}</code> policy. PRs adding runtime packages will be closed. Rely exclusively on native Node.js standard libraries.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-badge">
+                <span class="step-num-accent">03</span>
+                <span class="step-label">PHASE 3</span>
+              </div>
+              <span class="step-status-indicator"></span>
+            </div>
+            <h3 class="step-title">Run Comprehensive Test Suite</h3>
+            <p class="step-desc">Ensure that all 33+ unit and integration tests pass cleanly before submitting code:</p>
+            <pre class="code-block">npm test
+npm run build</pre>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-badge">
+                <span class="step-num-accent">04</span>
+                <span class="step-label">PHASE 4</span>
+              </div>
+              <span class="step-status-indicator"></span>
+            </div>
+            <h3 class="step-title">Submit Your Pull Request</h3>
+            <p class="step-desc">Create a descriptive feature branch (e.g. <code>feat/postgres-adapter</code>), commit your changes using conventional commits, and open a PR against <code>main</code> on GitHub.</p>
+          </div>
+        </div>
+
+        <!-- Contributor Recognition & Perks Box -->
+        <div class="contributor-perks-box" style="margin-top: 3rem;">
+          <div class="perk-item">
+            <div class="perk-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+            </div>
+            <div class="perk-text">
+              <strong>Wall of Fame Recognition</strong>
+              <span>Your avatar, name, and commits permanently featured on our website and GitHub README.</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <div class="perk-text">
+              <strong>48-Hour Rapid Review</strong>
+              <span>Direct architectural feedback and quick merges from creator Ankit Khandelwal.</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <div class="perk-text">
+              <strong>Zero-Dependency Systems Skills</strong>
+              <span>Gain real-world experience building high-performance, supply-chain secure infrastructure.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Contributor Community Card -->
+        <div class="contribute-bottom-card" style="margin-top: 2.5rem;">
+          <div class="bottom-card-content">
+            <div class="bottom-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
+            </div>
+            <div class="bottom-card-text">
+              <h4>Ready to Merge Your Code or Share Your Experience?</h4>
+              <p>Pick any open issue, propose an adapter, or leave your feedback &amp; review in our community discussion forum.</p>
+            </div>
+          </div>
+          <div class="bottom-card-actions">
+            <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer" class="btn btn-secondary-outline" title="Leave a Review on GitHub Discussions #26">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              <span>Leave a Review</span>
+            </a>
+            <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/fork" target="_blank" rel="noopener noreferrer" class="btn btn-primary" title="Fork TracerNest on GitHub">
+              <span>Fork Repository &rarr;</span>
+            </a>
+            <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/pulls" target="_blank" rel="noopener noreferrer" class="btn btn-secondary-outline" title="View Open PRs on GitHub">
+              <span>View Pull Requests</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer with Global Country Links strictly in footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="24" height="24">
+          <span class="logo-text">Tracer<strong>Nest</strong></span>
+        </div>
+        <p class="footer-desc">Zero-port, zero-dependency Node.js request logger and telemetry flight recorder with an encrypted dashboard.</p>
+        <div class="footer-badges">
+          <span class="badge-pill">MIT License</span>
+          <span class="badge-pill">Zero Dependencies</span>
+          <span class="badge-pill">Zero Extra Ports</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="index.html">Home</a>
+          <a href="index.html#demo">Live Demo</a>
+          <a href="index.html#features">Features</a>
+          <a href="about.html">About Us</a>
+          <a href="blogs.html">Blogs</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="contribute.html">Contribute</a>
+        </div>
+        <!-- Dedicated Footer-only Country Pages -->
+        <div class="footer-col">
+          <h4>Global Telemetry</h4>
+          <a href="united-states.html">United States 🇺🇸</a>
+          <a href="india.html">India 🇮🇳</a>
+          <a href="netherlands.html">Netherlands 🇳🇱</a>
+          <a href="poland.html">Poland 🇵🇱</a>
+          <a href="canada.html">Canada 🇨🇦</a>
+          <a href="germany.html">Germany 🇩🇪</a>
+          <a href="united-kingdom.html">United Kingdom 🇬🇧</a>
+          <a href="brazil.html">Brazil 🇧🇷</a>
+          <a href="ireland.html">Ireland 🇮🇪</a>
+        </div>
+        <div class="footer-col">
+          <h4>Ecosystem</h4>
+          <a href="laravel-logging-dashboard.html">Laravel Logging Dashboard</a>
+          <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer">NPM Registry</a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer">Reviews (#26)</a>
+          <a href="llms.txt" target="_blank">llms.txt (AI Docs)</a>
+          <a href="sitemap.xml" target="_blank">Sitemap</a>
+        </div>
+        <div class="footer-col">
+          <h4>Maintainer</h4>
+          <a href="mailto:ankitkhandelwal0003@gmail.com">ankitkhandelwal0003@gmail.com</a>
+          <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+          <a href="https://github.com/ankit-kumar-khandelwal" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Ankit Khandelwal. Released under the MIT License.</p>
+        <p>Security Hardened &bull; Zero External Ports &bull; 100% Free &amp; Open Source</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js?v=3.8"></script>
+  <script>
+    // Issue filter tab switching
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.issue-filter-btn');
+      const cards = document.querySelectorAll('#issues-grid .track-card');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter');
+          cards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

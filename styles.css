@@ -4896,3 +4896,132 @@ html:not([data-theme="dark"]) .badge-launch-light {
 .blog-content-link:hover {
   color: var(--teal-300);
 }
+
+
+/* ================= Hero Laravel Banner (Separate Clear Visibility) ================= */
+.hero-laravel-banner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.25rem auto 1.5rem;
+  padding: 0.45rem 1.15rem;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.28);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.08);
+  transition: all var(--transition-fast);
+}
+
+.hero-laravel-banner:hover {
+  background: rgba(239, 68, 68, 0.14);
+  border-color: rgba(239, 68, 68, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.14);
+}
+
+.laravel-banner-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.laravel-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 9999px;
+  box-shadow: 0 1px 4px rgba(239, 68, 68, 0.3);
+}
+
+.laravel-banner-text {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.laravel-banner-link {
+  color: #f87171;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+
+.laravel-banner-link:hover {
+  color: #ef4444;
+}
+
+[data-theme="light"] .hero-laravel-banner {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.32);
+}
+
+[data-theme="light"] .laravel-banner-text {
+  color: var(--text-main);
+}
+
+[data-theme="light"] .laravel-banner-link {
+  color: #dc2626;
+}
+
+[data-theme="light"] .laravel-banner-link:hover {
+  color: #b91c1c;
+}
+
+/* ================= Dedicated Contribute Page Issue Filters & Cards ================= */
+.issue-filters-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0 2rem;
+  justify-content: center;
+}
+
+.issue-filter-btn {
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.issue-filter-btn:hover,
+.issue-filter-btn.active {
+  background: var(--teal-500);
+  color: #ffffff;
+  border-color: var(--teal-500);
+  box-shadow: 0 2px 8px rgba(20, 184, 166, 0.25);
+}
+
+.issue-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.issue-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+}

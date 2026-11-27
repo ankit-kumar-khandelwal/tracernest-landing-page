@@ -8,7 +8,8 @@ Maintainer: Ankit Khandelwal (ankitkhandelwal0003@gmail.com)
 - [GitHub Repository (1,400+ stars)](https://github.com/ankit-kumar-khandelwal/tracernest-logger)  
 - [Official npm Package (tracernest-logger)](https://www.npmjs.com/package/tracernest-logger)  
 - [Official Production Website](https://tracernest.info/)
-- [Dedicated Laravel Logging Dashboard](https://tracernest.info/laravel-logging-dashboard.html)  
+- [Dedicated Laravel Logging Dashboard](https://tracernest.info/laravel-logging-dashboard.html)
+- [Contribute to TracerNest](https://tracernest.info/contribute.html): Open source contribution roadmap, good first issues, and development guidelines.  
 
 ---
 
