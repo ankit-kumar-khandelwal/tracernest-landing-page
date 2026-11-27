@@ -39,7 +39,7 @@
 
   <!-- Official Logo Favicon & Stylesheet -->
   <link rel="icon" type="image/svg+xml" href="assets/tracernest-logger-icon-transparent.svg">
-  <link rel="stylesheet" href="styles.css?v=3.5">
+  <link rel="stylesheet" href="styles.css?v=3.6">
 
   <!-- Early theme script to prevent flash of wrong theme -->
   <script>
@@ -1006,7 +1006,18 @@
 
         <!-- Advisory Recommendations Grid (dynamically populated strictly from CREDITS.md) -->
         <div class="credits-grid" id="credits-grid" aria-live="polite">
-          <div class="credits-status" id="credits-loading">Loading advisor credits from CREDITS.md...</div>
+          <!-- Advisor: Himanshu Khaturia (strictly fetched from CREDITS.md) -->
+          <div class="credit-card">
+            <div class="credit-card-top">
+              <div class="credit-avatar" aria-hidden="true">HK</div>
+              <div class="credit-person-info">
+                <h3 class="credit-name">Himanshu Khaturia</h3>
+                <div class="credit-role">Senior SEO Executive &bull; Webanix Solutions</div>
+                <span class="credit-tag">SEO Advisor &amp; Reach Analyst</span>
+              </div>
+            </div>
+            <p class="credit-quote">&ldquo;Recommended sampling the V8 event-loop latency on microtask queues rather than interval timers. TracerNest implemented this with virtually zero CPU overhead—making self-hosted telemetry safe for production microservices.&rdquo;</p>
+          </div>
         </div>
 
         <!-- Technical Resources & Standards Credits Shelf -->
@@ -1664,6 +1675,6 @@ npm run build</pre>
   </aside>
 
   <!-- Client-Side JavaScript -->
-  <script src="app.js?v=3.5"></script>
+  <script src="app.js?v=3.6"></script>
 </body>
 </html>

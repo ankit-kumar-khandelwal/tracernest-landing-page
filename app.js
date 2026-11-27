@@ -596,7 +596,7 @@
     }
   }
 
-  // Fetch Advisor Credits strictly from CREDITS.md (LogVault)
+  // Fetch Advisor Credits strictly from CREDITS.md on GitHub
   async function fetchCredits() {
     const creditsGrid = document.getElementById('credits-grid');
     if (!creditsGrid) return;
@@ -618,33 +618,21 @@
       return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
     }
 
+    // Credits must be fetched always from this file on GitHub not any other
+    const CREDITS_URL = 'https://raw.githubusercontent.com/ankit-kumar-khandelwal/tracernest-logger/main/CREDITS.md';
     let raw = '';
-    // 1. Try local ./CREDITS.md (served by static server / GitHub Pages)
     try {
-      const res = await fetch('./CREDITS.md');
+      const res = await fetch(CREDITS_URL, { cache: 'no-cache' });
       if (res.ok) {
         raw = await res.text();
       }
-    } catch (e) {}
-
-    // 2. Fallback to raw GitHub file if local fetch fails
-    if (!raw) {
-      try {
-        const ghUrls = [
-          'https://raw.githubusercontent.com/ankit-kumar-khandelwal/tracernest-logger/main/CREDITS.md',
-          'https://raw.githubusercontent.com/ankit-kumar-khandelwal/tracernest-logger/developer/CREDITS.md'
-        ];
-        for (const url of ghUrls) {
-          const resGh = await fetch(url);
-          if (resGh.ok) {
-            raw = await resGh.text();
-            break;
-          }
-        }
-      } catch (e) {}
+    } catch (e) {
+      console.warn('Failed to fetch CREDITS.md from GitHub:', e);
     }
 
     if (!raw) {
+      // If network is offline and grid already has content, preserve it
+      if (creditsGrid.querySelector('.credit-card')) return;
       creditsGrid.innerHTML = `
         <div class="credits-status">
           Advisors are credited directly in <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/CREDITS.md" target="_blank" rel="noopener noreferrer" style="color:var(--teal-400);text-decoration:underline;">CREDITS.md</a>.
@@ -654,13 +642,13 @@
 
     // Strip HTML comments to ignore draft or template entries
     const cleaned = raw.replace(/<!--[\s\S]*?-->/g, '');
-    const sections = cleaned.split(/\n(?=##\s+)/);
+    const sections = cleaned.split(/\r?\n(?=##\s+)/);
     const advisors = [];
 
     for (const sec of sections) {
       const trimmed = sec.trim();
       if (!trimmed.startsWith('##')) continue;
-      const lines = trimmed.split('\n');
+      const lines = trimmed.split(/\r?\n/);
       const name = lines[0].replace(/^##\s+/, '').trim();
       if (!name || name.toLowerCase().includes('advisor credits') || name.toLowerCase().includes('credits')) continue;
 
@@ -687,6 +675,9 @@
       if (quote.startsWith('“') && quote.endsWith('”')) {
         quote = quote.slice(1, -1);
       }
+      if (quote.startsWith('«') && quote.endsWith('»')) {
+        quote = quote.slice(1, -1);
+      }
 
       if (name && role && quote) {
         advisors.push({ name, role, focus, quote, profile });
@@ -694,6 +685,7 @@
     }
 
     if (advisors.length === 0) {
+      if (creditsGrid.querySelector('.credit-card')) return;
       creditsGrid.innerHTML = `
         <div class="credits-status">
           No advisor credits found in <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/CREDITS.md" target="_blank" rel="noopener noreferrer" style="color:var(--teal-400);text-decoration:underline;">CREDITS.md</a>.
@@ -708,15 +700,17 @@
       const initials = getInitials(adv.name);
       let footerHtml = '';
       if (adv.profile && adv.profile.startsWith('http')) {
+        const isLinkedIn = adv.profile.includes('linkedin.com');
         footerHtml = `
           <div class="credit-card-footer">
-            <a href="${escapeHtml(adv.profile)}" target="_blank" rel="noopener noreferrer" class="btn-credit-linkedin" title="View Profile">
+            <a href="${escapeHtml(adv.profile)}" target="_blank" rel="noopener noreferrer" class="btn-credit-linkedin" title="View ${escapeHtml(adv.name)}'s ${isLinkedIn ? 'LinkedIn Profile' : 'Profile'}">
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
+                ${isLinkedIn 
+                  ? '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>'
+                  : '<line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline>'
+                }
               </svg>
-              <span>View Profile &nearr;</span>
+              <span>${isLinkedIn ? 'LinkedIn Profile &nearr;' : 'View Profile &nearr;'}</span>
             </a>
           </div>`;
       }
