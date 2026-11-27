@@ -1063,7 +1063,101 @@
     }
   }
 
-  // Blogs System: Fetch BLOGS.md, Parse Articles, Live Search, Filter Tags & Full Reader Modal
+  // Default Embedded Technical Articles (Derived from BLOGS.md for zero-latency offline/instant readiness)
+  const DEFAULT_BLOG_ARTICLES = [
+  {
+    "title": "Errsole Alternative for Node.js: Why Zero-Port Telemetry is Replacing Heavy APM Daemons",
+    "slug": "errsole-alternative-nodejs-zero-port-telemetry",
+    "date": "2026-11-20",
+    "author": "Ankit Khandelwal",
+    "readTime": "6 min read",
+    "tags": [
+      "Node.js",
+      "Errsole Alternative",
+      "Zero-Port",
+      "Observability"
+    ],
+    "summary": "Discover how TracerNest provides an embedded Errsole-style log dashboard directly on your application port with zero extra open ports, zero dependencies, and authenticated AES-256-GCM encryption.",
+    "content": "### The Problem with Traditional Log Dashboards\nWhen managing production microservices in Node.js, engineering teams frequently rely on logging dashboards like Errsole, Winston with Express-Winston, or SaaS platforms like Datadog and Sentry. However, traditional dashboard tools introduce two significant engineering compromises:\n1. **Secondary TCP Ports:** Most self-hosted log viewers spin up an independent HTTP/WebSocket server on a dedicated port (e.g. 8001 or 9200). In containerized Kubernetes, AWS ECS, or Docker environments, opening extra ports requires modifying ingress controllers, updating AWS Security Group ingress rules, and handling cross-origin authentication headers.\n2. **Heavy Dependency Trees:** Many log packages pull 40+ transitive npm packages (Express middleware, database drivers, WebSockets,Lodash, etc.), expanding your attack surface and introducing recurring CVE alerts.\n\n### The Zero-Port Architecture Solution\nTracerNest took a fundamentally different approach. Instead of creating a new server instance, TracerNest hooks natively into your application's existing HTTP request router (Express, Koa, Fastify, or vanilla Node.js `http`).\nWhen a client hits your configured dashboard endpoint—such as `GET /tracernest`—the TracerNest middleware intercepts the request on the exact same port your API is already running on:\n```javascript\nconst express = require('express');\nconst { tracerNest } = require('tracernest-logger');\n\nconst app = express();\n\n// Single-line middleware hooks telemetry on your existing port (e.g. 3000)\napp.use(tracerNest({\n  path: '/tracernest',\n  storage: 'sqlite', // or 'mysql'\n  auth: { user: process.env.TN_USER, pass: process.env.TN_PASS }\n}));\n\napp.listen(3000, () => console.log('Server and TracerNest Vault running on port 3000'));\n```\nNo firewall updates. No extra ports. Zero SaaS subscription bills.\n\n---"
+  },
+  {
+    "title": "How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)",
+    "slug": "encrypt-application-logs-aes-256-gcm-nodejs",
+    "date": "2026-11-22",
+    "author": "Ankit Khandelwal",
+    "readTime": "7 min read",
+    "tags": [
+      "Security",
+      "Cryptography",
+      "AES-256-GCM",
+      "Node.js"
+    ],
+    "summary": "Step-by-step guide on implementing hardware-accelerated authenticated log encryption at rest using Node's standard crypto module with zero external dependencies.",
+    "content": "### Why Plaintext Logs Are a Critical Liability\nApplication logs frequently contain sensitive customer data: PII, authorization tokens, session cookies, database connection strings, and user emails captured in uncaught exception stack traces. If a database backup leaks or an unauthorized actor gains read access to the SQLite file or MySQL replica, plaintext logs immediately trigger severe compliance breaches under GDPR, HIPAA, and SOC2.\n\n### Implementing Authenticated AES-256-GCM\nAES-GCM (Galois/Counter Mode) provides both confidentiality and tamper-proof message authenticity. Unlike legacy CBC or ECB modes, GCM produces a 128-bit authentication tag that immediately detects bit-flipping and tampering:\n```javascript\nconst crypto = require('node:crypto');\n\nfunction encryptPayload(plaintext, masterKeyHex) {\n  const masterKey = Buffer.from(masterKeyHex, 'hex'); // 32 bytes (256 bits)\n  const iv = crypto.randomBytes(12); // NIST recommended 96-bit nonce\n\n  const cipher = crypto.createCipheriv('aes-256-gcm', masterKey, iv);\n  const encrypted = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()]);\n  const authTag = cipher.getAuthTag(); // 16 bytes authentication tag\n\n  return {\n    cipherText: encrypted.toString('base64'),\n    iv: iv.toString('hex'),\n    authTag: authTag.toString('hex')\n  };\n}\n```\nTracerNest incorporates this cryptographic pipeline by default. Plaintext logs never touch physical disk or database storage—only the local `.master.key` (with strict `0600` file permissions) can decrypt the log stream.\n\n---"
+  },
+  {
+    "title": "Self-Hosted Logging in Laravel 13: Bridging Monolog with Zero Extra Ports",
+    "slug": "self-hosted-logging-laravel-13-monolog-bridge",
+    "date": "2026-11-24",
+    "author": "Ankit Khandelwal",
+    "readTime": "5 min read",
+    "tags": [
+      "Laravel 13",
+      "PHP",
+      "Monolog",
+      "Telemetry"
+    ],
+    "summary": "How to seamlessly correlate PHP request lifecycles, route durations, and exception stack traces in Laravel 13 directly with TracerNest's unified log vault.",
+    "content": "### Bridging the Monolog Ecosystem\nLaravel 13 continues PHP's modern evolution with PHP 8.2+ type safety and lightning-fast route dispatch. However, logging in distributed microservices where PHP backends communicate with Node.js APIs often leads to fragmented log silos.\n\nTracerNest provides the `tracernest-laravel` bridge, a native Monolog handler and HTTP middleware package that routes Laravel application telemetry into the same encrypted SQLite or MySQL storage as your Node.js services.\n\n### Installation & Middleware Registration\nIn your `config/logging.php`:\n```php\n'channels' => [\n    'tracernest' => [\n        'driver' => 'custom',\n        'via' => \\TracerNest\\Laravel\\TracerNestLogger::class,\n        'level' => env('LOG_LEVEL', 'debug'),\n    ],\n],\n```\nWhen an HTTP request triggers an exception or database query delay, TracerNest records:\n- The correlation ID (`x-request-id`)\n- Controller execution duration\n- Memory peak consumption\n- SQL query execution plan and duration\nAll encrypted at rest without background Redis/RabbitMQ queue workers.\n\n---"
+  },
+  {
+    "title": "Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide",
+    "slug": "zero-downtime-sqlite-to-mysql-migration",
+    "date": "2026-11-25",
+    "author": "Ankit Khandelwal",
+    "readTime": "8 min read",
+    "tags": [
+      "Databases",
+      "SQLite",
+      "MySQL",
+      "Migrations"
+    ],
+    "summary": "An architectural deep dive into TracerNest's automated database transition pipeline that scales single-node SQLite logging into high-throughput enterprise MySQL clusters.",
+    "content": "### Why Start with SQLite WAL?\nFor single-container applications, edge deployments, and development environments, SQLite with Write-Ahead Logging (`PRAGMA journal_mode = WAL`) offers astonishingly low read/write latency. Readers do not block writers, and zero setup is required.\n\n### The Challenge of Scaling to Multi-Instance Clusters\nWhen your application scales out horizontally across multiple Kubernetes pods or autoscaling server groups, SQLite's single-node file lock becomes a bottleneck. Distributed microservices require a centralized storage backend such as MySQL or MariaDB.\n\n### Automated Schema Drift & Data Migration\nInstead of requiring manual database migration scripts, TracerNest detects when your configuration changes from `storage: 'sqlite'` to `storage: 'mysql'`:\n1. **Schema Verification:** Connects to MySQL and checks for table existence and missing columns using `information_schema.columns`.\n2. **Non-Destructive DDL:** Automatically executes `ALTER TABLE logs ADD COLUMN ...` for any newly added telemetry fields.\n3. **Data Transfer:** Safely migrates existing records from the local `.db` SQLite file into MySQL in streaming batches.\n4. **Vault Preservation:** Preserves your existing `.master.key`, ensuring historical encrypted entries remain readable in the embedded dashboard.\n\n---"
+  },
+  {
+    "title": "Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines",
+    "slug": "eliminating-supply-chain-vulnerabilities-nodejs",
+    "date": "2026-11-26",
+    "author": "Ankit Khandelwal",
+    "readTime": "6 min read",
+    "tags": [
+      "Node.js",
+      "AppSec",
+      "Supply Chain",
+      "Zero-Dependencies"
+    ],
+    "summary": "Why minimizing external npm dependencies is the most effective security practice for enterprise production telemetry.",
+    "content": "### The State of NPM Dependency Sprawl\nThe modern JavaScript ecosystem is heavily reliant on open-source packages. A standard `npm install winston` can easily introduce dozens of transitive dependencies. If a single maintainer account is compromised, malicious code can be injected into millions of running servers (as demonstrated in real-world incidents like `event-stream` and `colors.js`).\n\n### Zero Runtime Dependencies by Design\nTracerNest enforces a strict architectural rule: `dependencies: {}` in `package.json`.\n- Cryptography uses `node:crypto`.\n- HTTP routing and dashboard UI delivery use `node:http`.\n- Database operations use `node:sqlite` (native in Node.js 22+) and native MySQL TCP protocol implementation.\nBy avoiding third-party packages, TracerNest delivers:\n- Zero audit warnings (`0 vulnerabilities`).\n- Negligible container image footprint.\n- Instant cold starts for AWS Lambda, Cloudflare Workers, and Docker containers.\n\n---"
+  },
+  {
+    "title": "Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC",
+    "slug": "global-telemetry-architecture-self-hosting-logs",
+    "date": "2026-11-27",
+    "author": "Ankit Khandelwal",
+    "readTime": "7 min read",
+    "tags": [
+      "Global Architecture",
+      "Infrastructure",
+      "Data Sovereignty",
+      "Cloud"
+    ],
+    "summary": "How distributed engineering teams across the United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, and Ireland deploy self-hosted TracerNest nodes.",
+    "content": "### Observability in a Multi-Region World\nModern software organizations rarely deploy to a single datacenter. With traffic spanning North America, Europe, Latin America, and the Asia-Pacific region, data sovereignty and latency considerations dictate where logs must be stored:\n- **Europe (Netherlands, Germany, Poland, Ireland):** Strict adherence to GDPR and local data residency mandates that customer telemetry never leaves European Union borders.\n- **North America (United States, Canada):** High-throughput microservice clusters require instant query response times without cross-region internet latency.\n- **Emerging Tech Hubs (India, Brazil):** High-growth platforms experience explosive API volume where third-party SaaS per-gigabyte ingestion fees can exceed server costs.\n\nBy running self-hosted TracerNest instances locally within each regional cluster, organizations maintain complete data sovereignty, eliminate cross-region egress costs, and retain microsecond log capture speeds."
+  }
+];
+
+  // Blogs System: Instant Search, Tag Filter, Live Hydration from BLOGS.md & Article Reader Modal
   function initBlogs() {
     const grid = document.getElementById('blogs-grid');
     if (!grid) return;
@@ -1080,7 +1174,8 @@
     const modalClose = document.getElementById('modal-article-close');
     const modalCloseBottom = document.getElementById('modal-article-close-bottom');
 
-    let articles = [];
+    // Default to embedded articles immediately
+    let articles = DEFAULT_BLOG_ARTICLES.slice();
     let activeTag = 'all';
     let searchQuery = '';
 
@@ -1092,7 +1187,7 @@
       // Code blocks ```lang ... ```
       html = html.replace(/```([a-z0-9_-]*)\n([\s\S]*?)```/gi, (match, lang, code) => {
         const escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        return `<div class="blog-code-block"><div class="blog-code-header"><span>${lang || 'text'}</span></div><pre><code>${escaped}</code></pre></div>`;
+        return '<div class="blog-code-block"><div class="blog-code-header"><span>' + (lang || 'code') + '</span></div><pre><code>' + escaped + '</code></pre></div>';
       });
 
       // Inline code `code`
@@ -1126,7 +1221,7 @@
         if (block.startsWith('<h') || block.startsWith('<div') || block.startsWith('<ul') || block.startsWith('<ol')) {
           return block;
         }
-        return `<p>${block.replace(/\n/g, '<br>')}</p>`;
+        return '<p>' + block.replace(/\n/g, '<br>') + '</p>';
       }).join('\n');
 
       return html;
@@ -1134,6 +1229,7 @@
 
     // Parse BLOGS.md into structured articles array
     function parseBlogsMarkdown(mdText) {
+      if (!mdText) return [];
       const sections = mdText.split(/\n(?=## )/);
       const list = [];
       for (const sec of sections) {
@@ -1150,7 +1246,7 @@
         let inBody = false;
 
         for (let i = 1; i < lines.length; i++) {
-          const l = lines[i];
+          const l = lines[i].trimEnd();
           if (!inBody) {
             if (l.startsWith('**Slug:**')) {
               slug = l.replace('**Slug:**', '').trim();
@@ -1199,7 +1295,7 @@
 
       readerModal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
-      history.replaceState(null, '', `#${article.slug}`);
+      history.replaceState(null, '', '#' + article.slug);
     }
 
     function closeArticleReader() {
@@ -1228,11 +1324,11 @@
     // Render Cards in Grid
     function renderCards(articleList) {
       grid.innerHTML = '';
-      if (articleList.length === 0) {
-        grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
-          <p style="font-size: 1.15rem; margin-bottom: 0.5rem;">No technical guides found matching your query.</p>
-          <button class="btn btn-secondary-outline btn-sm" id="btn-reset-filters">Reset Filters</button>
-        </div>`;
+      if (!articleList || articleList.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">' +
+          '<p style="font-size: 1.15rem; margin-bottom: 0.5rem;">No technical guides found matching your query.</p>' +
+          '<button class="btn btn-secondary-outline btn-sm" id="btn-reset-filters">Reset Search</button>' +
+        '</div>';
         const resetBtn = document.getElementById('btn-reset-filters');
         if (resetBtn) {
           resetBtn.addEventListener('click', () => {
@@ -1252,26 +1348,23 @@
         card.setAttribute('data-tags', (art.tags || []).join(', '));
         card.setAttribute('data-slug', art.slug);
 
-        const tagsHtml = (art.tags || []).map(t => `<span class="blog-tag">${t}</span>`).join(' ');
+        const tagsHtml = (art.tags || []).map(t => '<span class="blog-tag">' + t + '</span>').join(' ');
 
-        card.innerHTML = `
-          <div class="blog-card-meta">
-            <span class="blog-card-date">${art.date}</span>
-            <span class="blog-card-dot">&bull;</span>
-            <span class="blog-card-read">${art.readTime}</span>
-          </div>
-          <h2 class="blog-card-title">
-            <a href="#${art.slug}" class="blog-title-link">${art.title}</a>
-          </h2>
-          <p class="blog-card-excerpt">${art.summary}</p>
-          <div class="blog-card-tags">
-            ${tagsHtml}
-          </div>
-          <div class="blog-card-footer">
-            <span class="blog-author-by">By <strong>${art.author}</strong></span>
-            <a href="#${art.slug}" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>
-          </div>
-        `;
+        card.innerHTML =
+          '<div class="blog-card-meta">' +
+            '<span class="blog-card-date">' + art.date + '</span>' +
+            '<span class="blog-card-dot">&bull;</span>' +
+            '<span class="blog-card-read">' + art.readTime + '</span>' +
+          '</div>' +
+          '<h2 class="blog-card-title">' +
+            '<a href="#' + art.slug + '" class="blog-title-link">' + art.title + '</a>' +
+          '</h2>' +
+          '<p class="blog-card-excerpt">' + art.summary + '</p>' +
+          '<div class="blog-card-tags">' + tagsHtml + '</div>' +
+          '<div class="blog-card-footer">' +
+            '<span class="blog-author-by">By <strong>' + art.author + '</strong></span>' +
+            '<a href="#' + art.slug + '" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>' +
+          '</div>';
 
         // Wire click events
         const titleLink = card.querySelector('.blog-title-link');
@@ -1323,33 +1416,6 @@
       });
     }
 
-    function wireExistingCards() {
-      const cards = grid.querySelectorAll('.blog-card');
-      cards.forEach(card => {
-        const readBtn = card.querySelector('.blog-read-btn');
-        const titleLink = card.querySelector('.blog-title-link');
-        const clickHandler = (e) => {
-          e.preventDefault();
-          const title = card.querySelector('.blog-card-title')?.textContent.trim() || '';
-          const excerpt = card.querySelector('.blog-card-excerpt')?.textContent.trim() || '';
-          const date = card.querySelector('.blog-card-date')?.textContent.trim() || '';
-          const readTime = card.querySelector('.blog-card-read')?.textContent.trim() || '';
-          const tags = (card.getAttribute('data-tags') || '').split(',').map(t => t.trim());
-          openArticleReader({
-            title: title,
-            slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-            date: date,
-            readTime: readTime,
-            author: 'Ankit Khandelwal',
-            tags: tags,
-            content: `### ${title}\n\n${excerpt}\n\n> Complete technical article available in the version-controlled repository [BLOGS.md](https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/BLOGS.md).`
-          });
-        };
-        if (readBtn) readBtn.addEventListener('click', clickHandler);
-        if (titleLink) titleLink.addEventListener('click', clickHandler);
-      });
-    }
-
     function checkUrlHash() {
       const hash = window.location.hash.replace(/^#/, '');
       if (!hash) return;
@@ -1362,17 +1428,24 @@
 
     window.addEventListener('hashchange', checkUrlHash);
 
-    // Fetch and hydrate from BLOGS.md
+    // Initial render using default embedded articles (immediate, 0 latency)
+    renderCards(articles);
+    checkUrlHash();
+
+    // Background fetch & live hydration from BLOGS.md
     function fetchAndHydrate() {
       fetch('./BLOGS.md')
         .then(res => {
-          if (!res.ok) throw new Error('Local BLOGS.md not found');
+          if (!res.ok) throw new Error('Local BLOGS.md HTTP status: ' + res.status);
           return res.text();
         })
         .catch(() => {
-          // Fallback to GitHub raw
-          return fetch('https://raw.githubusercontent.com/ankit-kumar-khandelwal/tracernest-logger/main/BLOGS.md')
-            .then(res => res.text());
+          // Fallback to GitHub raw repository
+          return fetch('https://raw.githubusercontent.com/ankit-kumar-khandelwal/tracernest-landing-page/main/BLOGS.md')
+            .then(res => {
+              if (!res.ok) throw new Error('GitHub raw HTTP status: ' + res.status);
+              return res.text();
+            });
         })
         .then(mdText => {
           const parsed = parseBlogsMarkdown(mdText);
@@ -1380,17 +1453,14 @@
             articles = parsed;
             applyFilters();
             checkUrlHash();
-          } else {
-            wireExistingCards();
           }
         })
         .catch(err => {
-          console.warn('BLOGS.md fetch notice:', err);
-          wireExistingCards();
+          // Silent fallback - embedded articles are already active
+          console.info('TracerNest Blog: Running on embedded articles (' + articles.length + ' articles active)');
         });
     }
 
-    // Initial load
     fetchAndHydrate();
   }
 
