@@ -47,6 +47,11 @@ const server = http.createServer((req, res) => {
 
   if (pathname === '/') {
     pathname = '/index.html';
+  } else if (!path.extname(pathname)) {
+    // If no file extension, map to .html if it exists
+    if (fs.existsSync(path.join(BASE_DIR, pathname + '.html'))) {
+      pathname = pathname + '.html';
+    }
   }
 
   // Prevent directory traversal attacks

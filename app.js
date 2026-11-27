@@ -752,137 +752,157 @@
   // Setup Event Listeners
   function initEvents() {
     // Stream Toggle
-    btnToggleStream.addEventListener('click', () => {
-      if (state.isStreaming) {
-        pauseStreaming();
-      } else {
-        startStreaming();
-      }
-    });
+    if (btnToggleStream) {
+      btnToggleStream.addEventListener('click', () => {
+        if (state.isStreaming) {
+          pauseStreaming();
+        } else {
+          startStreaming();
+        }
+      });
+    }
 
     // Simulate Error Button
-    btnSimulateError.addEventListener('click', () => {
-      const errorTemplate = SAMPLE_LOG_TEMPLATES.find((t) => t.level === 'ERROR');
-      pushLog(createLogRecord(errorTemplate), true);
+    if (btnSimulateError) {
+      btnSimulateError.addEventListener('click', () => {
+        const errorTemplate = SAMPLE_LOG_TEMPLATES.find((t) => t.level === 'ERROR');
+        pushLog(createLogRecord(errorTemplate), true);
 
-      // Friendly community hint in live console
-      if (!state.hasSimulatedCommunityHint) {
-        state.hasSimulatedCommunityHint = true;
-        setTimeout(() => {
-          pushLog({
-            id: 'star_' + Date.now().toString(36),
-            timestamp: formatTime(new Date()),
-            level: 'INFO',
-            service: 'community',
-            method: 'STAR',
-            path: '/repos/ankit-kumar-khandelwal/tracernest-logger',
-            statusCode: 200,
-            duration: 0.2,
-            ip: '127.0.0.1',
-            memory: '0.0MB',
-            payload: {
-              message: "⭐ Zero-port telemetry captured! If TracerNest saves you debugging time, consider starring on GitHub & contributing!",
-              repo: "https://github.com/ankit-kumar-khandelwal/tracernest-logger"
-            },
-            isNew: true
-          }, false);
-        }, 900);
-      }
-    });
+        // Friendly community hint in live console
+        if (!state.hasSimulatedCommunityHint) {
+          state.hasSimulatedCommunityHint = true;
+          setTimeout(() => {
+            pushLog({
+              id: 'star_' + Date.now().toString(36),
+              timestamp: formatTime(new Date()),
+              level: 'INFO',
+              service: 'community',
+              method: 'STAR',
+              path: '/repos/ankit-kumar-khandelwal/tracernest-logger',
+              statusCode: 200,
+              duration: 0.2,
+              ip: '127.0.0.1',
+              memory: '0.0MB',
+              payload: {
+                message: "⭐ Zero-port telemetry captured! If TracerNest saves you debugging time, consider starring on GitHub & contributing!",
+                repo: "https://github.com/ankit-kumar-khandelwal/tracernest-logger"
+              },
+              isNew: true
+            }, false);
+          }, 900);
+        }
+      });
+    }
 
     // Simulate HTTP Button
-    btnSimulateHttp.addEventListener('click', () => {
-      const httpTemplate = SAMPLE_LOG_TEMPLATES.find((t) => t.level === 'HTTP');
-      pushLog(createLogRecord(httpTemplate), true);
-    });
+    if (btnSimulateHttp) {
+      btnSimulateHttp.addEventListener('click', () => {
+        const httpTemplate = SAMPLE_LOG_TEMPLATES.find((t) => t.level === 'HTTP');
+        pushLog(createLogRecord(httpTemplate), true);
+      });
+    }
 
     // Clear Logs
-    btnClearLogs.addEventListener('click', () => {
-      state.logs = [];
-      renderLogs();
-    });
+    if (btnClearLogs) {
+      btnClearLogs.addEventListener('click', () => {
+        state.logs = [];
+        renderLogs();
+      });
+    }
 
     // Filter Pills
-    filterPills.querySelectorAll('.filter-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        filterPills.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        state.filterLevel = btn.dataset.level;
-        renderLogs();
+    if (filterPills) {
+      filterPills.querySelectorAll('.filter-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          filterPills.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.filterLevel = btn.dataset.level;
+          renderLogs();
+        });
       });
-    });
+    }
 
     // Search Input
-    let debounceTimer;
-    searchInput.addEventListener('input', (e) => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        state.searchQuery = e.target.value;
-        renderLogs();
-      }, 150);
-    });
+    if (searchInput) {
+      let debounceTimer;
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          state.searchQuery = e.target.value;
+          renderLogs();
+        }, 150);
+      });
+    }
 
     // Regex Toggle
-    regexToggleBtn.addEventListener('click', () => {
-      state.isRegex = !state.isRegex;
-      regexToggleBtn.classList.toggle('active', state.isRegex);
-      renderLogs();
-    });
+    if (regexToggleBtn) {
+      regexToggleBtn.addEventListener('click', () => {
+        state.isRegex = !state.isRegex;
+        regexToggleBtn.classList.toggle('active', state.isRegex);
+        renderLogs();
+      });
+    }
 
     // Decrypt Button
-    btnToggleDecrypt.addEventListener('click', () => {
-      state.isDecrypted = !state.isDecrypted;
-      updateModalPayloadView();
-    });
+    if (btnToggleDecrypt) {
+      btnToggleDecrypt.addEventListener('click', () => {
+        state.isDecrypted = !state.isDecrypted;
+        updateModalPayloadView();
+      });
+    }
 
     // Modal Close
-    btnCloseModal.addEventListener('click', closeModal);
-    btnModalDismiss.addEventListener('click', closeModal);
-    logModal.addEventListener('click', (e) => {
-      if (e.target === logModal) closeModal();
-    });
+    if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
+    if (btnModalDismiss) btnModalDismiss.addEventListener('click', closeModal);
+    if (logModal) {
+      logModal.addEventListener('click', (e) => {
+        if (e.target === logModal) closeModal();
+      });
+    }
 
     // Copy Install Command
-    copyInstallBtn.addEventListener('click', () => {
-      const textToCopy = 'npm install tracernest-logger';
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        const span = copyInstallBtn.querySelector('span');
-        const orig = span.textContent;
-        span.textContent = 'Copied!';
-        copyInstallBtn.style.background = 'var(--teal-600)';
-        copyInstallBtn.style.color = '#ffffff';
-        copyInstallBtn.style.borderColor = 'var(--teal-600)';
-        setTimeout(() => {
-          span.textContent = orig;
-          copyInstallBtn.style.background = '';
-          copyInstallBtn.style.color = '';
-          copyInstallBtn.style.borderColor = '';
-        }, 2000);
-      });
-    });
-
-    // Copy Email Button in Contact Section
-    if (btnCopyEmail) {
-      btnCopyEmail.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const email = 'ankitkhandelwal0003@gmail.com';
-        navigator.clipboard.writeText(email).then(() => {
-          const span = btnCopyEmail.querySelector('span');
+    if (copyInstallBtn) {
+      copyInstallBtn.addEventListener('click', () => {
+        const textToCopy = 'npm install tracernest-logger';
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const span = copyInstallBtn.querySelector('span');
           const orig = span ? span.textContent : 'Copy';
           if (span) span.textContent = 'Copied!';
-          btnCopyEmail.style.background = 'var(--teal-600)';
-          btnCopyEmail.style.color = '#ffffff';
-          btnCopyEmail.style.borderColor = 'var(--teal-600)';
+          copyInstallBtn.style.background = 'var(--teal-600)';
+          copyInstallBtn.style.color = '#ffffff';
+          copyInstallBtn.style.borderColor = 'var(--teal-600)';
           setTimeout(() => {
             if (span) span.textContent = orig;
-            btnCopyEmail.style.background = '';
-            btnCopyEmail.style.color = '';
-            btnCopyEmail.style.borderColor = '';
+            copyInstallBtn.style.background = '';
+            copyInstallBtn.style.color = '';
+            copyInstallBtn.style.borderColor = '';
           }, 2000);
         });
       });
     }
+
+    // Copy Email Buttons (handles multiple copy-email triggers across pages)
+    document.querySelectorAll('.copy-email-mini-btn, #btn-copy-email').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const email = 'ankitkhandelwal0003@gmail.com';
+        navigator.clipboard.writeText(email).then(() => {
+          const span = btn.querySelector('span');
+          const orig = span ? span.textContent : 'Copy';
+          if (span) span.textContent = 'Copied!';
+          btn.style.background = 'var(--teal-600)';
+          btn.style.color = '#ffffff';
+          btn.style.borderColor = 'var(--teal-600)';
+          setTimeout(() => {
+            if (span) span.textContent = orig;
+            btn.style.background = '';
+            btn.style.color = '';
+            btn.style.borderColor = '';
+          }, 2000);
+        });
+      });
+    });
 
     // Mobile Navigation Menu Toggle & Handlers
     function closeMobileMenu() {
@@ -929,36 +949,65 @@
       mobileBackdrop.addEventListener('click', closeMobileMenu);
     }
 
-    // Auto-close menu when tapping any navigation link
     if (navLinks) {
-      navLinks.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          closeMobileMenu();
-        });
+      navLinks.querySelectorAll('.nav-link-item').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu);
       });
     }
 
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        closeMobileMenu();
+        if (navLinks && navLinks.classList.contains('open')) {
+          closeMobileMenu();
+        }
+        if (logModal && logModal.style.display === 'flex') {
+          closeModal();
+        }
       }
     });
 
-    // Close on window resize > 900px
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 900) {
+      if (window.innerWidth > 960 && navLinks && navLinks.classList.contains('open')) {
         closeMobileMenu();
       }
     });
-  }
 
-  // Prepopulate Initial Data
-  function initInitialLogs() {
-    SAMPLE_LOG_TEMPLATES.forEach((tpl) => {
-      state.logs.push(createLogRecord(tpl));
-    });
-    renderLogs();
+    // Theme Toggle Handler
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+
+    // Interactive Contact Form (if present on Contact Page)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = (document.getElementById('contact-name')?.value || '').trim();
+        const email = (document.getElementById('contact-email')?.value || '').trim();
+        const country = (document.getElementById('contact-country')?.value || '').trim();
+        const topic = (document.getElementById('contact-topic')?.value || '').trim();
+        const message = (document.getElementById('contact-message')?.value || '').trim();
+        const statusEl = document.getElementById('contact-form-status');
+
+        if (!name || !email || !message) {
+          if (statusEl) {
+            statusEl.textContent = 'Please fill in all required fields (Name, Email, Message).';
+            statusEl.className = 'contact-form-status error';
+          }
+          return;
+        }
+
+        const subject = encodeURIComponent(`[TracerNest Inquiry - ${country || 'Global'}] ${topic}: ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCountry: ${country}\nTopic: ${topic}\n\nMessage:\n${message}\n\n--\nSent via TracerNest Contact Portal`);
+        
+        if (statusEl) {
+          statusEl.innerHTML = 'Opening email client... You can also email directly: <a href="mailto:ankitkhandelwal0003@gmail.com" style="color:var(--teal-400);text-decoration:underline;">ankitkhandelwal0003@gmail.com</a>';
+          statusEl.className = 'contact-form-status success';
+        }
+
+        window.location.href = `mailto:ankitkhandelwal0003@gmail.com?subject=${subject}&body=${body}`;
+      });
+    }
   }
 
   // Floating Star Toast Notification
@@ -1017,13 +1066,19 @@
   // Initialize Application
   function init() {
     initTheme();
-    initInitialLogs();
+    if (document.getElementById('log-stream')) {
+      initInitialLogs();
+      startStreaming();
+    }
     initEvents();
-    startStreaming();
     fetchDynamicVersion();
     fetchNpmStats();
-    fetchContributors();
-    fetchCredits();
+    if (document.getElementById('contributors-grid')) {
+      fetchContributors();
+    }
+    if (document.getElementById('credits-grid')) {
+      fetchCredits();
+    }
     initFloatingStarToast();
   }
 
