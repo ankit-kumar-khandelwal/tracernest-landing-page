@@ -78,6 +78,14 @@
     <priority>0.85</priority>
   </url>
 
+    <!-- Dedicated Laravel Logging Dashboard Landing Page -->
+  <url>
+    <loc>https://tracernest.info/laravel-logging-dashboard.html</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- About Us -->
   <url>
     <loc>https://tracernest.info/about.html</loc>

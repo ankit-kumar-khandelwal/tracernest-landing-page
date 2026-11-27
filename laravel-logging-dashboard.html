@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics / Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=G-EXGDCY9J38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  
+  <!-- Primary Meta Tags -->
+  <title>Laravel Logging Dashboard: Self-Hosted Monolog Viewer &amp; Vault | TracerNest</title>
+  <meta name="title" content="Laravel Logging Dashboard: Self-Hosted Monolog Viewer &amp; Vault | TracerNest">
+  <meta name="description" content="Free, self-hosted Laravel logging dashboard and encrypted log viewer for Laravel 13. Monolog bridge, zero extra ports, hardware AES-256-GCM encryption, and SQLite to MySQL migration.">
+  <meta name="keywords" content="Laravel logging dashboard, self-hosted Laravel logger, Laravel 13 logger, Monolog log viewer, encrypted Laravel logs, PHP telemetry, Laravel request monitoring, zero-port telemetry, SQLite to MySQL migration, TracerNest">
+  <meta name="author" content="Ankit Khandelwal">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://tracernest.info/laravel-logging-dashboard.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tracernest.info/laravel-logging-dashboard.html">
+  <meta property="og:title" content="Laravel Logging Dashboard: Self-Hosted Monolog Viewer &amp; Vault | TracerNest">
+  <meta property="og:description" content="Free, self-hosted Laravel logging dashboard and encrypted log viewer for Laravel 13. Monolog bridge, zero extra ports, hardware AES-256-GCM encryption, and SQLite to MySQL migration.">
+  <meta property="og:site_name" content="TracerNest">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tracernest.info/laravel-logging-dashboard.html">
+  <meta name="twitter:title" content="Laravel Logging Dashboard: Self-Hosted Monolog Viewer &amp; Vault | TracerNest">
+  <meta name="twitter:description" content="Free, self-hosted Laravel logging dashboard and encrypted log viewer for Laravel 13. Monolog bridge, zero extra ports, hardware AES-256-GCM encryption, and SQLite to MySQL migration.">
+  <meta name="twitter:creator" content="@ankitkhandelwal">
+
+  <!-- Favicon & Stylesheet -->
+  <link rel="icon" type="image/svg+xml" href="assets/tracernest-logger-icon-transparent.svg">
+  <link rel="stylesheet" href="styles.css?v=3.8">
+
+  <!-- Early Theme Script -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('tracernest-theme');
+        if (saved) {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://tracernest.info/laravel-logging-dashboard.html#webpage",
+      "url": "https://tracernest.info/laravel-logging-dashboard.html",
+      "name": "Laravel Logging Dashboard: Self-Hosted Monolog Viewer & Vault | TracerNest",
+      "description": "Free, self-hosted Laravel logging dashboard and encrypted log viewer for Laravel 13 with zero extra ports and hardware AES-256-GCM encryption.",
+      "breadcrumb": { "@id": "https://tracernest.info/laravel-logging-dashboard.html#breadcrumb" },
+      "isPartOf": { "@id": "https://tracernest.info/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://tracernest.info/laravel-logging-dashboard.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://tracernest.info/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Integrations",
+          "item": "https://tracernest.info/#features"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Laravel Logging Dashboard",
+          "item": "https://tracernest.info/laravel-logging-dashboard.html"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://tracernest.info/laravel-logging-dashboard.html#software",
+      "name": "TracerNest Laravel Bridge",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Laravel Logging and Telemetry",
+      "operatingSystem": "Cross-platform (Laravel 13, PHP 8.2+)",
+      "downloadUrl": "https://www.npmjs.com/package/tracernest-logger",
+      "license": "https://opensource.org/licenses/MIT",
+      "isAccessibleForFree": true,
+      "featureList": [
+        "Self-hosted Laravel logging dashboard",
+        "Laravel 13 Monolog custom driver bridge",
+        "Zero extra TCP ports (mounts on Laravel route pipeline)",
+        "Hardware-accelerated AES-256-GCM encryption at rest",
+        "Automatic SQLite to MySQL database migration",
+        "Cross-service request correlation with Node.js APIs"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tracernest.info/laravel-logging-dashboard.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does TracerNest integrate with Laravel 13?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TracerNest integrates via a custom Monolog driver in config/logging.php and HTTP route middleware. All log calls (Log::info, Log::error, unhandled exceptions) flow through an encrypted SQLite or MySQL storage pipeline and render inside the embedded /tracernest dashboard."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the Laravel log viewer require opening extra firewall ports?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. TracerNest binds directly to your Laravel web server (Nginx, Apache, Octane, or artisan serve) on the same port. The dashboard is served on your configured route such as /tracernest without additional firewall rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can TracerNest correlate Laravel backend logs with Node.js microservices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. TracerNest standardizes correlation tracking via x-request-id and traceparent headers across both PHP Laravel and Node.js microservices, allowing end-to-end request tracing."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement-bar" aria-label="Announcement">
+    <div class="container announcement-inner">
+      <div class="announcement-left">
+        <span class="announcement-pill">Laravel 13 Integration</span>
+        <span class="announcement-text">Self-hosted telemetry and encrypted log viewer for modern PHP 8.2+ apps &bull; <a href="index.html" class="announcement-contribute-link">&larr; Back to Node.js Homepage</a></span>
+      </div>
+      <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="fast-star-btn" title="Star TracerNest on GitHub">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span class="star-label">Star on GitHub</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" aria-label="TracerNest Home">
+        <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
+        <span class="logo-text">Tracer<strong>Nest</strong></span>
+        <span class="version-badge" id="nav-version">Laravel 13</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link-item">Home (Node.js)</a>
+        <a href="#setup" class="nav-link-item">Installation</a>
+        <a href="#features" class="nav-link-item">Features</a>
+        <a href="#comparison" class="nav-link-item">Comparison</a>
+        <a href="blogs.html" class="nav-link-item">Blogs</a>
+        <a href="contact.html" class="nav-link-item">Contact Us</a>
+        <div class="mobile-nav-footer">
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github mobile-btn-full">
+            <span>Star on GitHub</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Switch between dark and light theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="19.78" y1="4.22" x2="18.36" y2="5.64"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github btn-star-nav">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span>Star</span>
+        </a>
+
+        <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-install-nav">
+          <span>Install</span>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-backdrop" id="mobile-backdrop"></div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" style="padding-top: 3.5rem; padding-bottom: 3.5rem;">
+      <div class="container hero-content">
+        <!-- Breadcrumb -->
+        <nav class="blog-breadcrumb" aria-label="Breadcrumb" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+          <a href="index.html" style="color: var(--teal-400); text-decoration: none;">Home</a>
+          <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
+          <span style="color: var(--text-muted);">Integrations</span>
+          <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
+          <span style="color: var(--text-dim);">Laravel Logging Dashboard</span>
+        </nav>
+
+        <div class="hero-pill-wrap">
+          <div class="hero-pill">
+            <span class="live-dot"></span>
+            <span>Laravel 13 Telemetry &bull; Monolog Handler &bull; Zero Extra Ports</span>
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          Self-Hosted Laravel Logging Dashboard &amp; <span class="highlight">Encrypted Monolog Vault</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Capture PHP 8.2+ controller execution durations, database queries, and unhandled exceptions directly in an embedded real-time web viewer with zero extra open ports, hardware AES-256-GCM encryption, and seamless SQLite-to-MySQL auto-migration.
+        </p>
+
+        <!-- Quick Install Box -->
+        <div class="terminal-install-box" style="max-width: 620px; margin: 2rem auto;">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">Install &bull; Laravel Monolog Bridge</span>
+          </div>
+          <div class="terminal-body">
+            <code><span class="prompt">$</span> composer require tracernest/laravel &amp;&amp; npm i tracernest-logger</code>
+            <button class="copy-btn" id="copy-install-btn" title="Copy command">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-cta-buttons">
+          <a href="#setup" class="btn btn-large btn-accent">
+            <span>View 3-Step Setup Guide &darr;</span>
+          </a>
+          <a href="index.html#demo" class="btn btn-large btn-outline">
+            <span>Live Interactive Demo</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Capabilities Grid -->
+    <section id="features" class="section-alt" style="padding: 4rem 0;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+          <div class="badge-subtitle">Enterprise PHP Observability</div>
+          <h2>Why Engineering Teams Choose TracerNest for Laravel</h2>
+          <p>Traditional Laravel logging dumps unformatted plaintext text to <code>storage/logs/laravel.log</code> or forces you into expensive SaaS egress bills. TracerNest gives you a complete, self-contained observability vault.</p>
+        </div>
+
+        <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem;">
+          <div class="feature-card" style="padding: 2rem;">
+            <div class="feature-icon" style="color: var(--teal-400); margin-bottom: 1rem;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Zero Extra TCP Ports</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Mounts directly on your Laravel routing pipeline. Browsing to <code>/tracernest</code> serves the embedded web dashboard over your existing port 80/443 without opening extra attack surfaces or firewall rules.</p>
+          </div>
+
+          <div class="feature-card" style="padding: 2rem;">
+            <div class="feature-icon" style="color: var(--teal-400); margin-bottom: 1rem;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Hardware AES-256-GCM Vault</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">All Laravel exception traces, request bodies, and SQL parameters are encrypted at rest with tamper-proof 128-bit authentication tags, eliminating plaintext PII leaks under GDPR and HIPAA.</p>
+          </div>
+
+          <div class="feature-card" style="padding: 2rem;">
+            <div class="feature-icon" style="color: var(--teal-400); margin-bottom: 1rem;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Auto SQLite-to-MySQL Migration</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Use high-speed SQLite WAL in local development and container clusters. Seamlessly switch your Laravel configuration to MySQL in production with automatic schema drift detection and zero downtime.</p>
+          </div>
+
+          <div class="feature-card" style="padding: 2rem;">
+            <div class="feature-icon" style="color: var(--teal-400); margin-bottom: 1rem;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Request Duration &amp; SQL Query Profiling</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Profile controller execution time, Eloquent database query counts, and memory peaks to pinpoint slow API bottlenecks in real time directly from the dashboard.</p>
+          </div>
+
+          <div class="feature-card" style="padding: 2rem;">
+            <div class="feature-icon" style="color: var(--teal-400); margin-bottom: 1rem;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Node.js &amp; Laravel Unified Tracing</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Correlate distributed microservice calls across PHP backends and Node.js microservices with unified <code>x-request-id</code> and <code>traceparent</code> headers in a single pane of glass.</p>
+          </div>
+
+          <div class="feature-card" style="padding: 2rem;">
+            <div class="feature-icon" style="color: var(--teal-400); margin-bottom: 1rem;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">$0 / Month Self-Hosted Freedom</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Say goodbye to Datadog, Sentry, and Papertrail per-gigabyte billing spikes. TracerNest is 100% free and open-source under the MIT license.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Setup Guide Section -->
+    <section id="setup" style="padding: 4rem 0;">
+      <div class="container" style="max-width: 860px;">
+        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+          <div class="badge-subtitle">Quick Start</div>
+          <h2>3-Step Laravel 13 Setup</h2>
+          <p>Get an encrypted dashboard live in your Laravel application in less than 3 minutes.</p>
+        </div>
+
+        <!-- Step 1 -->
+        <div style="margin-bottom: 2.5rem;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
+            Step 1: Install the Package
+          </h3>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Install the official TracerNest package via Composer and npm:</p>
+          <div class="blog-code-block">
+            <div class="blog-code-header"><span>Terminal</span></div>
+            <pre><code>composer require tracernest/laravel
+npm install tracernest-logger</code></pre>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div style="margin-bottom: 2.5rem;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
+            Step 2: Add Monolog Channel in <code>config/logging.php</code>
+          </h3>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Register the TracerNest custom Monolog driver to automatically capture all framework logs:</p>
+          <div class="blog-code-block">
+            <div class="blog-code-header"><span>PHP (config/logging.php)</span></div>
+            <pre><code>'channels' => [
+    'stack' => [
+        'driver' => 'stack',
+        'channels' => ['single', 'tracernest'],
+        'ignore_exceptions' => false,
+    ],
+
+    'tracernest' => [
+        'driver' => 'custom',
+        'via' => \TracerNest\Laravel\TracerNestLogger::class,
+        'level' => env('LOG_LEVEL', 'debug'),
+        'path' => '/tracernest',
+        'storage' => env('TRACERNEST_STORAGE', 'sqlite'),
+    ],
+],</code></pre>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div style="margin-bottom: 2.5rem;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
+            Step 3: Register Middleware in <code>bootstrap/app.php</code>
+          </h3>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Attach TracerNest request lifecycle tracking to your global HTTP middleware stack:</p>
+          <div class="blog-code-block">
+            <div class="blog-code-header"><span>PHP (bootstrap/app.php - Laravel 13)</span></div>
+            <pre><code>use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Middleware;
+use TracerNest\Laravel\Http\Middleware\TracerNestTelemetryMiddleware;
+
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->append(TracerNestTelemetryMiddleware::class);
+    })
+    ->create();</code></pre>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.75rem; text-align: center;">
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--teal-400);">That's it! Your dashboard is live</h4>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">Navigate to <code>https://your-domain.test/tracernest</code> to inspect real-time encrypted telemetry, query durations, and exception stack traces.</p>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <span>Star TracerNest on GitHub &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Head-to-Head Comparison -->
+    <section id="comparison" class="section-alt" style="padding: 4rem 0;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+          <div class="badge-subtitle">Architectural Comparison</div>
+          <h2>TracerNest vs. Traditional Laravel Logging Solutions</h2>
+          <p>See why developers are replacing unencrypted text logs and costly APM agents with TracerNest.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th class="col-highlight">TracerNest Laravel Bridge</th>
+                <th>Standard Laravel Log (storage/*.log)</th>
+                <th>Datadog / Sentry SaaS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Real-Time Web Dashboard</strong></td>
+                <td class="col-highlight"><span style="color: #10b981; font-weight: 700;">✓ Built-in UI (/tracernest)</span></td>
+                <td><span style="color: #ef4444;">✗ None (Console/grep only)</span></td>
+                <td><span style="color: #10b981;">✓ Cloud Web UI</span></td>
+              </tr>
+              <tr>
+                <td><strong>Additional Ports Required</strong></td>
+                <td class="col-highlight"><span style="color: #10b981; font-weight: 700;">0 (Mounts on App Port)</span></td>
+                <td>0 (Disk file)</td>
+                <td>Outbound Agent Port</td>
+              </tr>
+              <tr>
+                <td><strong>At-Rest Payload Encryption</strong></td>
+                <td class="col-highlight"><span style="color: #10b981; font-weight: 700;">AES-256-GCM Authenticated</span></td>
+                <td><span style="color: #ef4444;">✗ Plaintext on disk</span></td>
+                <td>Vendor Cloud Storage</td>
+              </tr>
+              <tr>
+                <td><strong>Auto DB Migration (SQLite &rarr; MySQL)</strong></td>
+                <td class="col-highlight"><span style="color: #10b981; font-weight: 700;">✓ Automated Zero-Downtime</span></td>
+                <td><span style="color: #ef4444;">✗ None</span></td>
+                <td>Proprietary Ingestion</td>
+              </tr>
+              <tr>
+                <td><strong>Microservice Correlation (Node + PHP)</strong></td>
+                <td class="col-highlight"><span style="color: #10b981; font-weight: 700;">✓ Unified x-request-id</span></td>
+                <td><span style="color: #ef4444;">✗ Isolated Silo</span></td>
+                <td>Requires Multiple SDKs</td>
+              </tr>
+              <tr>
+                <td><strong>Monthly License &amp; Ingestion Cost</strong></td>
+                <td class="col-highlight"><span style="color: #10b981; font-weight: 700;">$0 / month (100% Free)</span></td>
+                <td>$0 / month</td>
+                <td><span style="color: #ef4444;">$250 - $2,500+ / mo</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Laravel FAQ Section -->
+    <section class="faq-section" style="padding: 4rem 0;">
+      <div class="container" style="max-width: 860px;">
+        <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
+          <div class="badge-subtitle">Got Questions?</div>
+          <h2>Laravel Telemetry &amp; Log Viewer FAQs</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>How does TracerNest achieve zero extra ports in Laravel 13?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>TracerNest registers an internal route handler (<code>/tracernest/{any?}</code>) within Laravel's standard HTTP routing pipeline. When a request matches this route, TracerNest serves the pre-compiled dashboard assets and encrypted API responses directly through your existing web server (Nginx, Apache, or Octane) on ports 80/443 without opening any secondary ports.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Does TracerNest require background queue workers or Redis?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>No. TracerNest is designed for maximum simplicity. It utilizes native SQLite with Write-Ahead Logging (WAL) or direct streaming batches to MySQL. It does not require Redis daemons, RabbitMQ queue workers, or external background agents.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How are logs encrypted at rest in Laravel?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>TracerNest utilizes hardware-accelerated <strong>AES-256-GCM</strong> encryption. Every log payload (headers, exception stack traces, request parameters) is encrypted with a unique 96-bit initialization vector before writing to disk. The 256-bit encryption key is managed securely in <code>.master.key</code>, ensuring plaintext telemetry is never exposed in data backups or server logs.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How does correlation tracking work between Laravel and Node.js APIs?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p>When an incoming HTTP request contains an <code>x-request-id</code> or W3C <code>traceparent</code> header, TracerNest captures and propagates that trace ID across both Laravel and Node.js microservices. In the dashboard, you can filter by correlation ID to inspect the full end-to-end journey of a transaction across multiple polyglot services.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross-Linking to Technical Guides -->
+    <section class="section-alt" style="padding: 3.5rem 0;">
+      <div class="container" style="text-align: center;">
+        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem;">Explore Architecture &amp; Production Guides</h3>
+        <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 1.75rem;">Dive deeper into zero-port architecture, AES-256-GCM encryption, and zero-downtime database migration in our official engineering guides.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="self-hosted-logging-laravel-13-monolog-bridge.html" class="btn btn-secondary-outline">
+            <span>Read Laravel 13 Deep Dive &rarr;</span>
+          </a>
+          <a href="blogs.html" class="btn btn-primary">
+            <span>Browse All 10 Engineering Guides &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer with Global Country Links -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="24" height="24">
+          <span class="logo-text">Tracer<strong>Nest</strong></span>
+        </div>
+        <p>The zero-dependency, zero-port self-hosted telemetry flight recorder &amp; log vault for Node.js and Laravel 13.</p>
+        <div class="launch-badge-wrap footer-launch-badge">
+          <a href="https://websitelaunches.com/site/tracernest.info" target="_blank" rel="noopener" class="badge-launch-light" aria-label="Established online - Public launch record">
+            <img src="https://websitelaunches.com/badge/tracernest.info.svg" alt="Established online - Public launch record" width="255" height="55">
+          </a>
+          <a href="https://websitelaunches.com/site/tracernest.info" target="_blank" rel="noopener" class="badge-launch-dark" aria-label="Established online - Public launch record">
+            <img src="https://websitelaunches.com/badge/tracernest.info.svg?theme=dark" alt="Established online - Public launch record" width="255" height="55">
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Project</h4>
+          <a href="index.html#demo">Demo</a>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#comparison">Comparison</a>
+          <a href="about.html">About Us</a>
+          <a href="blogs.html">Blogs</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="index.html#credits">Credits &amp; Advisory</a>
+        </div>
+        <!-- Dedicated Footer-only Country Pages -->
+        <div class="footer-col">
+          <h4>Global Telemetry</h4>
+          <a href="united-states.html">United States 🇺🇸</a>
+          <a href="india.html">India 🇮🇳</a>
+          <a href="netherlands.html">Netherlands 🇳🇱</a>
+          <a href="poland.html">Poland 🇵🇱</a>
+          <a href="canada.html">Canada 🇨🇦</a>
+          <a href="germany.html">Germany 🇩🇪</a>
+          <a href="united-kingdom.html">United Kingdom 🇬🇧</a>
+          <a href="brazil.html">Brazil 🇧🇷</a>
+          <a href="ireland.html">Ireland 🇮🇪</a>
+        </div>
+        <div class="footer-col">
+          <h4>Ecosystem</h4>
+          <a href="laravel-logging-dashboard.html">Laravel Logging Dashboard</a>
+          <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer">NPM Registry</a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer">Community Reviews (#26)</a>
+          <a href="llms.txt" target="_blank">llms.txt (AI Docs)</a>
+          <a href="sitemap.xml" target="_blank">Sitemap</a>
+        </div>
+        <div class="footer-col">
+          <h4>Maintainer</h4>
+          <a href="mailto:ankitkhandelwal0003@gmail.com">ankitkhandelwal0003@gmail.com</a>
+          <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+          <a href="https://github.com/ankit-kumar-khandelwal" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Ankit Khandelwal. Released under the MIT License.</p>
+        <p>Security Hardened &bull; Zero External Ports &bull; 100% Free &amp; Open Source</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Client-Side JavaScript -->
+  <script src="app.js?v=3.8"></script>
+</body>
+</html>

@@ -13,6 +13,7 @@ TracerNest (`tracernest-logger` on npm) is a modern, privacy-first, self-hosted 
 - [About TracerNest](https://tracernest.info/about.html): Background, mission, creator biography, and architectural principles.
 - [Contact & Support](https://tracernest.info/contact.html): Direct developer communication, GitHub Discussions #26, and community reviews.
 - [Engineering Blog & Guides Hub](https://tracernest.info/blogs.html): Interactive directory of 10 in-depth production guides and benchmarks.
+- [Laravel Logging Dashboard](https://tracernest.info/laravel-logging-dashboard.html): Dedicated self-hosted Laravel 13 logging dashboard and Monolog telemetry bridge with zero extra ports.
 - [Markdown Source of All Blogs (BLOGS.md)](https://github.com/ankit-kumar-khandelwal/tracernest-landing-page/blob/main/BLOGS.md): Version-controlled repository of all engineering articles.
 
 ## Technical Guides & Architecture Deep Dives
