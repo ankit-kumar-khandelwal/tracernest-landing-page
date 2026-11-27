@@ -1063,6 +1063,337 @@
     }
   }
 
+  // Blogs System: Fetch BLOGS.md, Parse Articles, Live Search, Filter Tags & Full Reader Modal
+  function initBlogs() {
+    const grid = document.getElementById('blogs-grid');
+    if (!grid) return;
+
+    const searchInput = document.getElementById('blog-search-input');
+    const filterBtns = document.querySelectorAll('#blog-filter-pills .filter-btn');
+    const readerModal = document.getElementById('blog-reader-modal');
+    const modalTitle = document.getElementById('modal-article-title');
+    const modalTag = document.getElementById('modal-article-tag');
+    const modalDate = document.getElementById('modal-article-date');
+    const modalReadTime = document.getElementById('modal-article-readtime');
+    const modalAuthor = document.getElementById('modal-article-author');
+    const modalBody = document.getElementById('modal-article-body');
+    const modalClose = document.getElementById('modal-article-close');
+    const modalCloseBottom = document.getElementById('modal-article-close-bottom');
+
+    let articles = [];
+    let activeTag = 'all';
+    let searchQuery = '';
+
+    // Markdown Parser for Article Body (Safe & Zero-dependency)
+    function renderMarkdownToHtml(md) {
+      if (!md) return '';
+      let html = md;
+
+      // Code blocks ```lang ... ```
+      html = html.replace(/```([a-z0-9_-]*)\n([\s\S]*?)```/gi, (match, lang, code) => {
+        const escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return `<div class="blog-code-block"><div class="blog-code-header"><span>${lang || 'text'}</span></div><pre><code>${escaped}</code></pre></div>`;
+      });
+
+      // Inline code `code`
+      html = html.replace(/`([^`]+)`/g, '<code class="blog-inline-code">$1</code>');
+
+      // Headings ### and ####
+      html = html.replace(/^#### (.*$)/gim, '<h4>$1</h4>');
+      html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+
+      // Bold & Italic
+      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+      // Links [text](url)
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="blog-content-link">$1</a>');
+
+      // Unordered lists - item
+      html = html.replace(/^\s*-\s+(.*$)/gim, '<li>$1</li>');
+      // Numbered lists 1. item
+      html = html.replace(/^\s*\d+\.\s+(.*$)/gim, '<li class="blog-num-li">$1</li>');
+
+      // Wrap consecutive <li> into <ul>
+      html = html.replace(/(<li>[\s\S]*?<\/li>)/gi, '<ul>$1</ul>');
+      html = html.replace(/<\/ul>\s*<ul>/gi, '');
+
+      // Paragraphs
+      const lines = html.split(/\n{2,}/);
+      html = lines.map(block => {
+        block = block.trim();
+        if (!block) return '';
+        if (block.startsWith('<h') || block.startsWith('<div') || block.startsWith('<ul') || block.startsWith('<ol')) {
+          return block;
+        }
+        return `<p>${block.replace(/\n/g, '<br>')}</p>`;
+      }).join('\n');
+
+      return html;
+    }
+
+    // Parse BLOGS.md into structured articles array
+    function parseBlogsMarkdown(mdText) {
+      const sections = mdText.split(/\n(?=## )/);
+      const list = [];
+      for (const sec of sections) {
+        if (!sec.trim().startsWith('## ')) continue;
+        const lines = sec.trim().split('\n');
+        const titleLine = lines[0].replace(/^##\s+/, '').trim();
+        let slug = '';
+        let date = '';
+        let author = 'Ankit Khandelwal';
+        let readTime = '5 min read';
+        let tags = [];
+        let summary = '';
+        const bodyLines = [];
+        let inBody = false;
+
+        for (let i = 1; i < lines.length; i++) {
+          const l = lines[i];
+          if (!inBody) {
+            if (l.startsWith('**Slug:**')) {
+              slug = l.replace('**Slug:**', '').trim();
+            } else if (l.startsWith('**Date:**')) {
+              date = l.replace('**Date:**', '').trim();
+            } else if (l.startsWith('**Author:**')) {
+              author = l.replace('**Author:**', '').trim();
+            } else if (l.startsWith('**ReadTime:**')) {
+              readTime = l.replace('**ReadTime:**', '').trim();
+            } else if (l.startsWith('**Tags:**')) {
+              tags = l.replace('**Tags:**', '').split(',').map(t => t.trim());
+            } else if (l.startsWith('**Summary:**')) {
+              summary = l.replace('**Summary:**', '').trim();
+              inBody = true;
+            }
+          } else {
+            bodyLines.push(l);
+          }
+        }
+
+        if (titleLine) {
+          list.push({
+            title: titleLine,
+            slug: slug || titleLine.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+            date: date || '2026-11-27',
+            author: author,
+            readTime: readTime,
+            tags: tags,
+            summary: summary,
+            content: bodyLines.join('\n').trim()
+          });
+        }
+      }
+      return list;
+    }
+
+    // Open Reader Modal for Article
+    function openArticleReader(article) {
+      if (!readerModal || !article) return;
+      if (modalTitle) modalTitle.textContent = article.title;
+      if (modalTag) modalTag.textContent = article.tags && article.tags[0] ? article.tags[0] : 'Engineering';
+      if (modalDate) modalDate.textContent = article.date;
+      if (modalReadTime) modalReadTime.textContent = article.readTime;
+      if (modalAuthor) modalAuthor.textContent = article.author;
+      if (modalBody) modalBody.innerHTML = renderMarkdownToHtml(article.content);
+
+      readerModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      history.replaceState(null, '', `#${article.slug}`);
+    }
+
+    function closeArticleReader() {
+      if (!readerModal) return;
+      readerModal.style.display = 'none';
+      document.body.style.overflow = '';
+      if (window.location.hash.startsWith('#') && window.location.hash !== '#') {
+        history.replaceState(null, '', window.location.pathname);
+      }
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeArticleReader);
+    if (modalCloseBottom) modalCloseBottom.addEventListener('click', closeArticleReader);
+    if (readerModal) {
+      readerModal.addEventListener('click', (e) => {
+        if (e.target === readerModal) closeArticleReader();
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && readerModal && readerModal.style.display === 'flex') {
+        closeArticleReader();
+      }
+    });
+
+    // Render Cards in Grid
+    function renderCards(articleList) {
+      grid.innerHTML = '';
+      if (articleList.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+          <p style="font-size: 1.15rem; margin-bottom: 0.5rem;">No technical guides found matching your query.</p>
+          <button class="btn btn-secondary-outline btn-sm" id="btn-reset-filters">Reset Filters</button>
+        </div>`;
+        const resetBtn = document.getElementById('btn-reset-filters');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            if (searchInput) searchInput.value = '';
+            searchQuery = '';
+            activeTag = 'all';
+            filterBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-tag') === 'all'));
+            applyFilters();
+          });
+        }
+        return;
+      }
+
+      articleList.forEach(art => {
+        const card = document.createElement('article');
+        card.className = 'blog-card';
+        card.setAttribute('data-tags', (art.tags || []).join(', '));
+        card.setAttribute('data-slug', art.slug);
+
+        const tagsHtml = (art.tags || []).map(t => `<span class="blog-tag">${t}</span>`).join(' ');
+
+        card.innerHTML = `
+          <div class="blog-card-meta">
+            <span class="blog-card-date">${art.date}</span>
+            <span class="blog-card-dot">&bull;</span>
+            <span class="blog-card-read">${art.readTime}</span>
+          </div>
+          <h2 class="blog-card-title">
+            <a href="#${art.slug}" class="blog-title-link">${art.title}</a>
+          </h2>
+          <p class="blog-card-excerpt">${art.summary}</p>
+          <div class="blog-card-tags">
+            ${tagsHtml}
+          </div>
+          <div class="blog-card-footer">
+            <span class="blog-author-by">By <strong>${art.author}</strong></span>
+            <a href="#${art.slug}" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>
+          </div>
+        `;
+
+        // Wire click events
+        const titleLink = card.querySelector('.blog-title-link');
+        const readBtn = card.querySelector('.blog-read-btn');
+        const onArticleClick = (e) => {
+          e.preventDefault();
+          openArticleReader(art);
+        };
+        if (titleLink) titleLink.addEventListener('click', onArticleClick);
+        if (readBtn) readBtn.addEventListener('click', onArticleClick);
+
+        grid.appendChild(card);
+      });
+    }
+
+    // Apply Filter & Search
+    function applyFilters() {
+      const q = searchQuery.toLowerCase().trim();
+      const filtered = articles.filter(art => {
+        const matchesQuery = !q ||
+          art.title.toLowerCase().includes(q) ||
+          art.summary.toLowerCase().includes(q) ||
+          (art.tags || []).some(t => t.toLowerCase().includes(q));
+
+        const matchesTag = activeTag === 'all' ||
+          (art.tags || []).some(t => t.toLowerCase() === activeTag.toLowerCase());
+
+        return matchesQuery && matchesTag;
+      });
+
+      renderCards(filtered);
+    }
+
+    // Filter Buttons Click
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeTag = btn.getAttribute('data-tag') || 'all';
+        applyFilters();
+      });
+    });
+
+    // Search Input
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        applyFilters();
+      });
+    }
+
+    function wireExistingCards() {
+      const cards = grid.querySelectorAll('.blog-card');
+      cards.forEach(card => {
+        const readBtn = card.querySelector('.blog-read-btn');
+        const titleLink = card.querySelector('.blog-title-link');
+        const clickHandler = (e) => {
+          e.preventDefault();
+          const title = card.querySelector('.blog-card-title')?.textContent.trim() || '';
+          const excerpt = card.querySelector('.blog-card-excerpt')?.textContent.trim() || '';
+          const date = card.querySelector('.blog-card-date')?.textContent.trim() || '';
+          const readTime = card.querySelector('.blog-card-read')?.textContent.trim() || '';
+          const tags = (card.getAttribute('data-tags') || '').split(',').map(t => t.trim());
+          openArticleReader({
+            title: title,
+            slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+            date: date,
+            readTime: readTime,
+            author: 'Ankit Khandelwal',
+            tags: tags,
+            content: `### ${title}\n\n${excerpt}\n\n> Complete technical article available in the version-controlled repository [BLOGS.md](https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/BLOGS.md).`
+          });
+        };
+        if (readBtn) readBtn.addEventListener('click', clickHandler);
+        if (titleLink) titleLink.addEventListener('click', clickHandler);
+      });
+    }
+
+    function checkUrlHash() {
+      const hash = window.location.hash.replace(/^#/, '');
+      if (!hash) return;
+      const cleanSlug = hash.replace(/^article-/, '');
+      const found = articles.find(a => a.slug === cleanSlug || a.slug.includes(cleanSlug) || cleanSlug.includes(a.slug));
+      if (found) {
+        openArticleReader(found);
+      }
+    }
+
+    window.addEventListener('hashchange', checkUrlHash);
+
+    // Fetch and hydrate from BLOGS.md
+    function fetchAndHydrate() {
+      fetch('./BLOGS.md')
+        .then(res => {
+          if (!res.ok) throw new Error('Local BLOGS.md not found');
+          return res.text();
+        })
+        .catch(() => {
+          // Fallback to GitHub raw
+          return fetch('https://raw.githubusercontent.com/ankit-kumar-khandelwal/tracernest-logger/main/BLOGS.md')
+            .then(res => res.text());
+        })
+        .then(mdText => {
+          const parsed = parseBlogsMarkdown(mdText);
+          if (parsed && parsed.length > 0) {
+            articles = parsed;
+            applyFilters();
+            checkUrlHash();
+          } else {
+            wireExistingCards();
+          }
+        })
+        .catch(err => {
+          console.warn('BLOGS.md fetch notice:', err);
+          wireExistingCards();
+        });
+    }
+
+    // Initial load
+    fetchAndHydrate();
+  }
+
   // Initialize Application
   function init() {
     initTheme();
@@ -1078,6 +1409,9 @@
     }
     if (document.getElementById('credits-grid')) {
       fetchCredits();
+    }
+    if (document.getElementById('blogs-grid')) {
+      initBlogs();
     }
     initFloatingStarToast();
   }

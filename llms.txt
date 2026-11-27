@@ -43,4 +43,28 @@ npm install tracernest-logger
 3. Verify test suite with `npm test`.
 4. Open a pull request against `main`.
 
+## Engineering Blog & Technical Guides
+Official technical deep dives, zero-port architecture patterns, and production telemetry tutorials:
+- Hub: https://tracernest.info/blogs.html
+- Markdown Source: https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/BLOGS.md
+- Key Articles:
+  1. Errsole Alternative for Node.js: Why Zero-Port Telemetry is Replacing Heavy APM Daemons
+  2. How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)
+  3. Self-Hosted Logging in Laravel 13: Bridging Monolog with Zero Extra Ports
+  4. Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide
+  5. Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines
+  6. Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC
+
+## Global Telemetry & Compliance Landing Pages
+TracerNest has dedicated regional infrastructure and data sovereignty landing pages:
+- United States: https://tracernest.info/united-states.html (SOC2, HIPAA, AWS/GCP/Azure)
+- India: https://tracernest.info/india.html (RBI data localization, Fintech microservices)
+- Netherlands: https://tracernest.info/netherlands.html (GDPR, AMS-IX low-latency EU nodes)
+- Poland: https://tracernest.info/poland.html (GDPR compliance, Central European tech hubs)
+- Canada: https://tracernest.info/canada.html (PIPEDA compliance, Montreal/Toronto data residency)
+- Germany: https://tracernest.info/germany.html (BSI standards, strict German data sovereignty)
+- United Kingdom: https://tracernest.info/united-kingdom.html (UK GDPR, FCA financial audit compliance)
+- Brazil: https://tracernest.info/brazil.html (LGPD compliance, South American cloud regions)
+- Ireland: https://tracernest.info/ireland.html (EU Data Protection Commission regulations)
+
 For full documentation and technical deep dives, read `llms-full.txt`.

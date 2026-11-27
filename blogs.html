@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>TracerNest Engineering Blog - Node.js &amp; Laravel 13 Observability Guides</title>
+  <meta name="title" content="TracerNest Engineering Blog - Node.js &amp; Laravel 13 Observability Guides">
+  <meta name="description" content="Technical deep dives, architectural guides, and benchmarks on self-hosted Node.js logging, Errsole alternatives, AES-256-GCM encrypted log storage, Laravel 13 telemetry, and SQLite-to-MySQL auto-migration.">
+  <meta name="keywords" content="TracerNest Blog, node.js logger blog, errsole alternative, self-hosted logging, AES-256-GCM encryption, laravel 13 logger, sqlite to mysql migration, zero-port telemetry, zero dependency logger, United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, Ireland, Ankit Khandelwal">
+  <meta name="author" content="Ankit Khandelwal">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://tracernest.info/blogs.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="https://tracernest.info/blogs.html">
+  <meta property="og:title" content="TracerNest Engineering Blog - Node.js &amp; Laravel 13 Observability Guides">
+  <meta property="og:description" content="Explore architectural guides on zero-port telemetry, AES-256-GCM log encryption, and self-hosted observability. Trusted by engineering teams in the United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, and Ireland.">
+  <meta property="og:image" content="https://tracernest.info/assets/tracernest-logger-banner.png">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="TracerNest">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tracernest.info/blogs.html">
+  <meta name="twitter:title" content="TracerNest Engineering Blog - Node.js &amp; Laravel 13 Observability Guides">
+  <meta name="twitter:description" content="Self-hosted logging guides, Errsole alternatives, AES-256-GCM encryption, and Laravel 13 telemetry.">
+  <meta name="twitter:image" content="https://tracernest.info/assets/tracernest-logger-banner.png">
+  <meta name="twitter:creator" content="@ankit_khandelwal">
+
+  <!-- Favicon & Stylesheet -->
+  <link rel="icon" type="image/svg+xml" href="assets/tracernest-logger-icon-transparent.svg">
+  <link rel="stylesheet" href="styles.css?v=3.6">
+
+  <!-- Early theme script to prevent flash of wrong theme -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('tracernest-theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- Combined JSON-LD Schema: Blog & CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tracernest.info/#website",
+        "url": "https://tracernest.info/",
+        "name": "TracerNest",
+        "description": "Open-source, self-hosted Node.js and Laravel 13 logger with an encrypted log vault and built-in dashboard.",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://tracernest.info/#author" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tracernest.info/#author",
+        "name": "Ankit Khandelwal",
+        "url": "https://github.com/ankit-kumar-khandelwal",
+        "sameAs": [
+          "https://github.com/ankit-kumar-khandelwal",
+          "https://www.linkedin.com/in/ankit-khandelwal-3068a9194/",
+          "https://www.npmjs.com/package/tracernest-logger"
+        ]
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://tracernest.info/blogs.html#blog",
+        "url": "https://tracernest.info/blogs.html",
+        "name": "TracerNest Engineering Blog",
+        "description": "Production guides and architectural insights on self-hosted telemetry, Errsole alternatives, AES-256-GCM encryption, and zero-port log viewers.",
+        "publisher": { "@id": "https://tracernest.info/#author" },
+        "author": { "@id": "https://tracernest.info/#author" }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Top Announcement & Fast Star Bar -->
+  <aside class="top-announcement-bar" aria-label="Announcement">
+    <div class="container announcement-inner">
+      <div class="announcement-left">
+        <span class="announcement-pill">Engineering Blog</span>
+        <span class="announcement-text">New deep dive: Errsole alternative &amp; Zero-port telemetry &bull; <a href="contact.html" class="announcement-contribute-link">Community reviews on Discussion #26 &rarr;</a></span>
+      </div>
+      <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="fast-star-btn" title="Star TracerNest on GitHub">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span class="star-label">Star on GitHub</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Clean, Minimalist Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo" aria-label="TracerNest Home">
+        <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
+        <span class="logo-text">Tracer<strong>Nest</strong></span>
+        <!-- Dynamically Fetched Version Badge -->
+        <span class="version-badge" id="nav-version">v1.9.0</span>
+      </a>
+
+      <!-- Streamlined Desktop & Responsive Nav Links -->
+      <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
+        <a href="index.html#demo" class="nav-link-item">Demo</a>
+        <a href="index.html#features" class="nav-link-item">Features</a>
+        <a href="index.html#architecture" class="nav-link-item">Architecture</a>
+        <a href="about.html" class="nav-link-item">About Us</a>
+        <a href="blogs.html" class="nav-link-item active" aria-current="page">Blogs</a>
+        <a href="contact.html" class="nav-link-item">Contact Us</a>
+        <a href="index.html#credits" class="nav-link-item">Credits</a>
+        <div class="mobile-nav-footer">
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github mobile-btn-full">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span>Star on GitHub</span>
+          </a>
+          <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-primary mobile-btn-full">
+            <span>Install tracernest-logger</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Dark / Light Mode Toggle Button -->
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Switch between dark and light theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Star on GitHub Button -->
+        <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github btn-nav-star" title="Star on GitHub">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span>Star</span>
+        </a>
+
+        <!-- Install Link -->
+        <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-nav-install" title="View tracernest-logger on NPM">
+          <span>npm install</span>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" title="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Backdrop Overlay -->
+  <div class="mobile-nav-backdrop" id="mobile-backdrop"></div>
+
+  <main>
+    <!-- Subpage Hero -->
+    <section class="subpage-hero">
+      <div class="container">
+        <div class="subpage-badge">
+          <span>TracerNest Engineering Blog</span>
+          <span>&bull;</span>
+          <span>Telemetry &amp; AppSec Guides</span>
+        </div>
+        <h1 class="subpage-title">Technical Deep Dives, Architecture Guides &amp; Observability Insights</h1>
+        <p class="subpage-subtitle">Learn how to build zero-port telemetry, encrypt production logs with AES-256-GCM, eliminate supply chain CVEs, and auto-migrate telemetry from SQLite to MySQL in Node.js and Laravel 13.</p>
+        
+        <!-- Live Search and Tag Filter Bar -->
+        <div class="blog-search-bar-wrap" style="max-width: 680px; margin: 1.5rem auto 0;">
+          <input type="text" id="blog-search-input" class="form-control" placeholder="Search guides by keyword, topic, or technology..." style="border-radius: 999px; padding: 0.85rem 1.45rem; font-size: 0.95rem;">
+          <div class="blog-filter-pills" id="blog-filter-pills" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+            <button class="filter-btn active" data-tag="all">All Articles</button>
+            <button class="filter-btn" data-tag="Node.js">Node.js</button>
+            <button class="filter-btn" data-tag="Security">Security &amp; AES-GCM</button>
+            <button class="filter-btn" data-tag="Errsole Alternative">Errsole Alternative</button>
+            <button class="filter-btn" data-tag="Laravel 13">Laravel 13</button>
+            <button class="filter-btn" data-tag="Databases">Databases &amp; Migrations</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blogs Directory Section (dynamically hydrated from BLOGS.md) -->
+    <section class="blogs-list-section" id="blogs-container">
+      <div class="container">
+        <!-- Pre-rendered Articles Grid for SEO & Crawlers (hydrated from BLOGS.md) -->
+        <div class="blogs-grid" id="blogs-grid">
+          <!-- Article 1: Errsole Alternative -->
+          <article class="blog-card" data-tags="Node.js, Errsole Alternative, Zero-Port, Observability">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">November 20, 2026</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">6 min read</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="#article-errsole-alternative" class="blog-title-link">Errsole Alternative for Node.js: Why Zero-Port Telemetry is Replacing Heavy APM Daemons</a>
+            </h2>
+            <p class="blog-card-excerpt">Discover how TracerNest provides an embedded Errsole-style log dashboard directly on your application port with zero extra open ports, zero dependencies, and authenticated AES-256-GCM encryption.</p>
+            <div class="blog-card-tags">
+              <span class="blog-tag">Node.js</span>
+              <span class="blog-tag">Errsole Alternative</span>
+              <span class="blog-tag">Zero-Port</span>
+            </div>
+            <div class="blog-card-footer">
+              <span class="blog-author-by">By <strong>Ankit Khandelwal</strong></span>
+              <a href="#article-errsole-alternative" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 2: AES-256-GCM Encryption -->
+          <article class="blog-card" data-tags="Security, Cryptography, AES-256-GCM, Node.js">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">November 22, 2026</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">7 min read</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="#article-aes-encryption" class="blog-title-link">How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)</a>
+            </h2>
+            <p class="blog-card-excerpt">Step-by-step guide on implementing hardware-accelerated authenticated log encryption at rest using Node's standard crypto module with zero external dependencies.</p>
+            <div class="blog-card-tags">
+              <span class="blog-tag">Security</span>
+              <span class="blog-tag">AES-256-GCM</span>
+              <span class="blog-tag">Node.js</span>
+            </div>
+            <div class="blog-card-footer">
+              <span class="blog-author-by">By <strong>Ankit Khandelwal</strong></span>
+              <a href="#article-aes-encryption" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 3: Laravel 13 Logging -->
+          <article class="blog-card" data-tags="Laravel 13, PHP, Monolog, Telemetry">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">November 24, 2026</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">5 min read</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="#article-laravel-13" class="blog-title-link">Self-Hosted Logging in Laravel 13: Bridging Monolog with Zero Extra Ports</a>
+            </h2>
+            <p class="blog-card-excerpt">How to seamlessly correlate PHP request lifecycles, route durations, and exception stack traces in Laravel 13 directly with TracerNest's unified log vault.</p>
+            <div class="blog-card-tags">
+              <span class="blog-tag">Laravel 13</span>
+              <span class="blog-tag">Monolog</span>
+              <span class="blog-tag">PHP</span>
+            </div>
+            <div class="blog-card-footer">
+              <span class="blog-author-by">By <strong>Ankit Khandelwal</strong></span>
+              <a href="#article-laravel-13" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 4: SQLite to MySQL Migration -->
+          <article class="blog-card" data-tags="Databases, SQLite, MySQL, Migrations">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">November 25, 2026</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">8 min read</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="#article-sqlite-mysql" class="blog-title-link">Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide</a>
+            </h2>
+            <p class="blog-card-excerpt">An architectural deep dive into TracerNest's automated database transition pipeline that scales single-node SQLite logging into high-throughput enterprise MySQL clusters.</p>
+            <div class="blog-card-tags">
+              <span class="blog-tag">Databases</span>
+              <span class="blog-tag">SQLite</span>
+              <span class="blog-tag">MySQL</span>
+            </div>
+            <div class="blog-card-footer">
+              <span class="blog-author-by">By <strong>Ankit Khandelwal</strong></span>
+              <a href="#article-sqlite-mysql" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 5: Supply Chain Security -->
+          <article class="blog-card" data-tags="Node.js, AppSec, Supply Chain, Zero-Dependencies">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">November 26, 2026</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">6 min read</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="#article-supply-chain" class="blog-title-link">Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines</a>
+            </h2>
+            <p class="blog-card-excerpt">Why minimizing external npm dependencies is the most effective security practice for enterprise production telemetry.</p>
+            <div class="blog-card-tags">
+              <span class="blog-tag">Node.js</span>
+              <span class="blog-tag">AppSec</span>
+              <span class="blog-tag">Zero-Dependencies</span>
+            </div>
+            <div class="blog-card-footer">
+              <span class="blog-author-by">By <strong>Ankit Khandelwal</strong></span>
+              <a href="#article-supply-chain" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Article 6: Global Telemetry -->
+          <article class="blog-card" data-tags="Global Architecture, Infrastructure, Data Sovereignty, Cloud">
+            <div class="blog-card-meta">
+              <span class="blog-card-date">November 27, 2026</span>
+              <span class="blog-card-dot">&bull;</span>
+              <span class="blog-card-read">7 min read</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="#article-global-telemetry" class="blog-title-link">Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC</a>
+            </h2>
+            <p class="blog-card-excerpt">How distributed engineering teams across the United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, and Ireland deploy self-hosted TracerNest nodes.</p>
+            <div class="blog-card-tags">
+              <span class="blog-tag">Infrastructure</span>
+              <span class="blog-tag">Data Sovereignty</span>
+              <span class="blog-tag">Global</span>
+            </div>
+            <div class="blog-card-footer">
+              <span class="blog-author-by">By <strong>Ankit Khandelwal</strong></span>
+              <a href="#article-global-telemetry" class="btn btn-secondary-outline blog-read-btn">Read Article &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Markdown Source Reference -->
+    <section class="section-alt" style="padding: 2.5rem 0; text-align: center;">
+      <div class="container">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+          All blog posts are version-controlled in <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/BLOGS.md" target="_blank" rel="noopener noreferrer" style="color: var(--teal-500); text-decoration: underline;">BLOGS.md</a>.
+          Have a topic request or want to contribute a case study? <a href="contact.html" style="color: var(--teal-500); text-decoration: underline;">Submit your proposal &rarr;</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Article Reader Modal -->
+  <div class="modal-backdrop" id="blog-reader-modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-article-title">
+    <div class="modal-content blog-modal-content">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="blog-tag" id="modal-article-tag">Node.js</span>
+          <h3 id="modal-article-title">Article Title</h3>
+        </div>
+        <button class="modal-close-btn" id="modal-article-close" aria-label="Close article reader" title="Close">&times;</button>
+      </div>
+      <div class="modal-body blog-modal-body">
+        <div class="blog-article-meta-bar">
+          <div class="blog-meta-left">
+            <span id="modal-article-date">Nov 20, 2026</span>
+            <span class="blog-card-dot">&bull;</span>
+            <span id="modal-article-readtime">6 min read</span>
+            <span class="blog-card-dot">&bull;</span>
+            <span>By <strong id="modal-article-author">Ankit Khandelwal</strong></span>
+          </div>
+          <div class="blog-meta-right">
+            <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/BLOGS.md" target="_blank" rel="noopener noreferrer" class="blog-source-link">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>View in BLOGS.md</span>
+            </a>
+          </div>
+        </div>
+        <div class="blog-article-body" id="modal-article-body">
+          <!-- Rendered markdown article content -->
+        </div>
+      </div>
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Published in <strong>BLOGS.md</strong> &bull; MIT License</span>
+        <button class="btn btn-secondary-outline btn-sm" id="modal-article-close-bottom">Close Article</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with Global Country Links -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="24" height="24">
+          <span class="logo-text">Tracer<strong>Nest</strong></span>
+        </div>
+        <p>The zero-dependency, zero-port self-hosted telemetry flight recorder &amp; log vault for Node.js and Laravel 13.</p>
+        <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 0.5rem;">Actively trusted across United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, and Ireland.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="index.html">Home</a>
+          <a href="index.html#demo">Live Demo</a>
+          <a href="index.html#features">Features</a>
+          <a href="about.html">About Us</a>
+          <a href="blogs.html">Blogs</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="index.html#credits">Credits</a>
+        </div>
+
+        <!-- Dedicated Footer-only Country Pages -->
+        <div class="footer-col">
+          <h4>Global Telemetry</h4>
+          <a href="united-states.html">United States 🇺🇸</a>
+          <a href="india.html">India 🇮🇳</a>
+          <a href="netherlands.html">Netherlands 🇳🇱</a>
+          <a href="poland.html">Poland 🇵🇱</a>
+          <a href="canada.html">Canada 🇨🇦</a>
+          <a href="germany.html">Germany 🇩🇪</a>
+          <a href="united-kingdom.html">United Kingdom 🇬🇧</a>
+          <a href="brazil.html">Brazil 🇧🇷</a>
+          <a href="ireland.html">Ireland 🇮🇪</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Ecosystem</h4>
+          <a href="https://www.npmjs.com/package/tracernest-logger" target="_blank" rel="noopener noreferrer">NPM Registry</a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26" target="_blank" rel="noopener noreferrer">Reviews (#26)</a>
+          <a href="llms.txt" target="_blank">llms.txt (AI Docs)</a>
+          <a href="sitemap.xml" target="_blank">Sitemap</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Maintainer</h4>
+          <a href="mailto:ankitkhandelwal0003@gmail.com">ankitkhandelwal0003@gmail.com</a>
+          <a href="https://www.linkedin.com/in/ankit-khandelwal-3068a9194/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+          <a href="https://github.com/ankit-kumar-khandelwal" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Ankit Khandelwal. Released under the MIT License.</p>
+        <p>Security Hardened &bull; Zero External Ports &bull; 100% Free &amp; Open Source</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Client-Side JavaScript -->
+  <script src="app.js?v=3.6"></script>
+</body>
+</html>
