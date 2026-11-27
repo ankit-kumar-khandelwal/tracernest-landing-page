@@ -152,37 +152,32 @@
   </header>
 
   <main>
-    <!-- Breadcrumb Navigation -->
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <!-- Subpage Hero -->
+    <section class="subpage-hero">
       <div class="container">
-        <ol class="breadcrumb-list">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-separator" aria-hidden="true">/</li>
-          <li class="breadcrumb-item active" aria-current="page">Contribute</li>
-        </ol>
-      </div>
-    </nav>
+        <!-- Breadcrumb Navigation -->
+        <nav class="blog-breadcrumb" aria-label="Breadcrumb" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          <a href="index.html" style="color: var(--teal-400); text-decoration: none;">Home</a>
+          <span style="color: var(--border-subtle);">&gt;</span>
+          <span style="color: var(--text-dim);">Contribute</span>
+        </nav>
 
-    <!-- Contribute Hero Section -->
-    <section class="hero-section" style="padding: 3rem 0 2.5rem; text-align: center;">
-      <div class="container">
-        <div class="hero-pill-wrap" style="justify-content: center; margin-bottom: 1.25rem;">
-          <div class="hero-pill">
-            <span class="live-dot"></span>
-            <span>Open Source &bull; MIT Licensed &bull; Seeking Contributors</span>
-          </div>
+        <div class="subpage-badge">
+          <span>Open Source</span>
+          <span>&bull;</span>
+          <span>Seeking Contributors</span>
         </div>
 
-        <h1 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
+        <h1 class="subpage-title">
           Contribute to <span class="highlight">TracerNest</span>
         </h1>
 
-        <p class="hero-subtitle" style="max-width: 760px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.7;">
+        <p class="subpage-subtitle">
           Join our global engineering community building a zero-port, zero-dependency Node.js telemetry flight recorder and encrypted log viewer. Whether you're fixing a bug, proposing an adapter, writing tests, or reviewing code, every contribution is celebrated.
         </p>
 
         <!-- Primary Action Links -->
-        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <div class="subpage-hero-actions">
           <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues/new/choose" target="_blank" rel="noopener noreferrer" class="btn btn-primary" title="Raise an Issue on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
             <span>Raise an Issue &amp; Propose Feature</span>
