@@ -467,14 +467,7 @@
     const now = new Date();
     const daysSinceLaunch = Math.max(1, Math.round((now.getTime() - launchDate.getTime()) / (1000 * 60 * 60 * 24)));
 
-    // Accurate verified baseline based on NPM registry metrics (5,505 total downloads across 10 days)
-    const fallbackStats = {
-      daily: Math.round(5505 / daysSinceLaunch).toLocaleString() + '+',
-      weekly: '2,975+',
-      total: '5,505+'
-    };
-
-    let totalDownloads = 5505;
+    let totalDownloads = 0;
 
     // 1. Fetch total downloads since launch (last-month encompasses entire lifetime)
     try {
@@ -483,21 +476,17 @@
         const m = await resMonthly.json();
         if (typeof m.downloads === 'number' && m.downloads > 0) {
           totalDownloads = m.downloads;
-          if (npmMonthly) npmMonthly.textContent = m.downloads.toLocaleString() + '+';
-        } else if (npmMonthly) {
-          npmMonthly.textContent = fallbackStats.total;
+          if (npmMonthly) npmMonthly.textContent = m.downloads.toLocaleString();
         }
-      } else if (npmMonthly) {
-        npmMonthly.textContent = fallbackStats.total;
       }
     } catch (e) {
-      if (npmMonthly) npmMonthly.textContent = fallbackStats.total;
+      // Keep neutral placeholder on network error; never use fabricated counts
     }
 
     // 2. Compute accurate Daily Downloads as per days since launch
-    if (npmDaily) {
+    if (npmDaily && totalDownloads > 0) {
       const dailyCount = Math.round(totalDownloads / daysSinceLaunch);
-      npmDaily.textContent = dailyCount.toLocaleString() + '+';
+      npmDaily.textContent = dailyCount.toLocaleString();
     }
 
     // 3. Fetch past 7 days (weekly) downloads
@@ -506,15 +495,11 @@
       if (resWeekly.ok) {
         const w = await resWeekly.json();
         if (typeof w.downloads === 'number' && w.downloads > 0) {
-          if (npmWeekly) npmWeekly.textContent = w.downloads.toLocaleString() + '+';
-        } else if (npmWeekly) {
-          npmWeekly.textContent = fallbackStats.weekly;
+          if (npmWeekly) npmWeekly.textContent = w.downloads.toLocaleString();
         }
-      } else if (npmWeekly) {
-        npmWeekly.textContent = fallbackStats.weekly;
       }
     } catch (e) {
-      if (npmWeekly) npmWeekly.textContent = fallbackStats.weekly;
+      // Keep neutral placeholder on network error; never use fabricated counts
     }
   }
 

@@ -8,7 +8,7 @@ TracerNest (`tracernest-logger` on npm) is a modern, privacy-first, self-hosted 
 
 - [TracerNest Official Website](https://tracernest.info/): Homepage featuring the interactive live log simulator, architectural diagrams, and feature overviews.
 - [Full LLM Context (llms-full.txt)](https://tracernest.info/llms-full.txt): Complete concatenated technical documentation and codebase architecture for LLMs and AI agents.
-- [GitHub Repository](https://github.com/ankit-kumar-khandelwal/tracernest-logger): Open-source repository with 1,400+ stars, source code, and release notes.
+- [GitHub Repository](https://github.com/ankit-kumar-khandelwal/tracernest-logger): Open-source repository with source code, documentation, and release notes.
 - [npm Package: tracernest-logger](https://www.npmjs.com/package/tracernest-logger): Official npm package with zero runtime dependencies.
 - [About TracerNest](https://tracernest.info/about.html): Background, mission, creator biography, and architectural principles.
 - [Contact & Support](https://tracernest.info/contact.html): Direct developer communication, GitHub Discussions #26, and community reviews.
