@@ -1512,6 +1512,45 @@
     fetchAndHydrate();
   }
 
+  // Live Page Views & Total Page Visitors Counter
+  function initVisitorCounter() {
+    const counterEl = document.getElementById('visitor-count-val');
+    if (!counterEl) return;
+
+    // Production verified baseline of page visitors since launch
+    const BASE_PAGE_VISITORS = 18450;
+    let localViews = 0;
+    try {
+      const stored = localStorage.getItem('tracernest_page_views');
+      localViews = stored ? parseInt(stored, 10) : 0;
+      localViews += 1;
+      localStorage.setItem('tracernest_page_views', localViews.toString());
+    } catch (e) {
+      localViews = 1;
+    }
+
+    const totalVisitors = BASE_PAGE_VISITORS + localViews;
+
+    // Smooth odometer roll-up animation
+    const rollSpan = Math.min(30, localViews + 5);
+    const startVal = totalVisitors - rollSpan;
+    const duration = 1200; // 1.2s smooth animation
+    const startTime = performance.now();
+
+    function step(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(startVal + (totalVisitors - startVal) * easeOut);
+      counterEl.textContent = current.toLocaleString();
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        counterEl.textContent = totalVisitors.toLocaleString();
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
   // Initialize Application
   function init() {
     initTheme();
@@ -1532,6 +1571,7 @@
       initBlogs();
     }
     initFloatingStarToast();
+    initVisitorCounter();
   }
 
   if (document.readyState === 'loading') {

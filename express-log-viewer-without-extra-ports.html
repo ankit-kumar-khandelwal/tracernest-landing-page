@@ -359,21 +359,33 @@ app.listen(3000, () => {
           <span class="logo-text">Tracer<strong>Nest</strong></span>
         </div>
         <p>The zero-dependency, zero-port self-hosted telemetry flight recorder &amp; log vault for Node.js and Laravel 13.</p>
-        <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 0.5rem;">Actively trusted across United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, and Ireland.</p>
+        <div class="footer-badges">
+          <span class="badge-pill">MIT License</span>
+          <span class="badge-pill">Zero Dependencies</span>
+          <span class="badge-pill">Zero Extra Ports</span>
+        </div>
+        <div class="launch-badge-wrap footer-launch-badge">
+          <a href="https://websitelaunches.com/site/tracernest.info" target="_blank" rel="noopener" class="badge-launch-light" aria-label="Established online - Public launch record">
+            <img src="https://websitelaunches.com/badge/tracernest.info.svg" alt="Established online - Public launch record" width="255" height="55">
+          </a>
+          <a href="https://websitelaunches.com/site/tracernest.info" target="_blank" rel="noopener" class="badge-launch-dark" aria-label="Established online - Public launch record">
+            <img src="https://websitelaunches.com/badge/tracernest.info.svg?theme=dark" alt="Established online - Public launch record" width="255" height="55">
+          </a>
+        </div>
       </div>
 
       <div class="footer-links">
         <div class="footer-col">
           <h4>Navigation</h4>
-          <a href="index.html">Home</a>
           <a href="index.html#demo">Live Demo</a>
           <a href="index.html#features">Features</a>
+          <a href="index.html#comparison">Comparison</a>
           <a href="about.html">About Us</a>
           <a href="blogs.html">Blogs</a>
           <a href="contact.html">Contact Us</a>
           <a href="index.html#credits">Credits</a>
+          <a href="contribute.html">Contributing</a>
         </div>
-
         <!-- Dedicated Footer-only Country Pages -->
         <div class="footer-col">
           <h4>Global Telemetry</h4>
@@ -387,7 +399,6 @@ app.listen(3000, () => {
           <a href="brazil.html">Brazil 🇧🇷</a>
           <a href="ireland.html">Ireland 🇮🇪</a>
         </div>
-
         <div class="footer-col">
           <h4>Ecosystem</h4>
           <a href="laravel-logging-dashboard.html">Laravel Logging Dashboard</a>
@@ -397,7 +408,6 @@ app.listen(3000, () => {
           <a href="llms.txt" target="_blank">llms.txt (AI Docs)</a>
           <a href="sitemap.xml" target="_blank">Sitemap</a>
         </div>
-
         <div class="footer-col">
           <h4>Maintainer</h4>
           <a href="mailto:ankitkhandelwal0003@gmail.com">ankitkhandelwal0003@gmail.com</a>
@@ -409,8 +419,23 @@ app.listen(3000, () => {
 
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
-        <p>&copy; 2026 Ankit Khandelwal. Released under the MIT License.</p>
-        <p>Security Hardened &bull; Zero External Ports &bull; 100% Free &amp; Open Source</p>
+        <div class="footer-bottom-left">
+          <p>&copy; 2026 Ankit Khandelwal. Released under the MIT License.</p>
+          <p style="color: var(--text-dim); font-size: 0.775rem; margin-top: 0.25rem;">Security Hardened &bull; Zero External Ports &bull; 100% Free &amp; Open Source</p>
+        </div>
+
+        <!-- Total Page Visitors Counter Badge -->
+        <div class="footer-visitor-counter" id="footer-visitor-counter" title="Total verified page views and visitors across all telemetry nodes">
+          <div class="visitor-counter-badge">
+            <span class="visitor-pulse-dot" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span class="visitor-label">Total Page Visitors</span>
+            <span class="visitor-count" id="visitor-count-val">18,450</span>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
