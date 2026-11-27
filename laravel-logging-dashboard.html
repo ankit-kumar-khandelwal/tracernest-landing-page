@@ -65,8 +65,12 @@
       "url": "https://tracernest.info/laravel-logging-dashboard.html",
       "name": "Laravel Logging Dashboard: Self-Hosted Monolog Viewer & Vault | TracerNest",
       "description": "Free, self-hosted Laravel logging dashboard and encrypted log viewer for Laravel 13 with zero extra ports and hardware AES-256-GCM encryption.",
-      "breadcrumb": { "@id": "https://tracernest.info/laravel-logging-dashboard.html#breadcrumb" },
-      "isPartOf": { "@id": "https://tracernest.info/#website" }
+      "breadcrumb": {
+        "@id": "https://tracernest.info/laravel-logging-dashboard.html#breadcrumb"
+      },
+      "isPartOf": {
+        "@id": "https://tracernest.info/#website"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -117,26 +121,34 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How does TracerNest integrate with Laravel 13?",
+          "name": "How does TracerNest achieve zero extra ports in Laravel 13?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "TracerNest integrates via a custom Monolog driver in config/logging.php and HTTP route middleware. All log calls (Log::info, Log::error, unhandled exceptions) flow through an encrypted SQLite or MySQL storage pipeline and render inside the embedded /tracernest dashboard."
+            "text": "TracerNest registers an internal route handler (/tracernest/{any?}) within Laravel's standard HTTP routing pipeline. When a request matches this route, TracerNest serves the pre-compiled dashboard assets and encrypted API responses directly through your existing web server (Nginx, Apache, or Octane) on ports 80/443 without opening any secondary ports."
           }
         },
         {
           "@type": "Question",
-          "name": "Does the Laravel log viewer require opening extra firewall ports?",
+          "name": "Does TracerNest require background queue workers or Redis?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. TracerNest binds directly to your Laravel web server (Nginx, Apache, Octane, or artisan serve) on the same port. The dashboard is served on your configured route such as /tracernest without additional firewall rules."
+            "text": "No. TracerNest is designed for maximum operational simplicity. It utilizes native SQLite with Write-Ahead Logging (WAL) or direct streaming batches to MySQL. It does not require Redis daemons, RabbitMQ queue workers, or external background agents."
           }
         },
         {
           "@type": "Question",
-          "name": "Can TracerNest correlate Laravel backend logs with Node.js microservices?",
+          "name": "How are logs encrypted at rest in Laravel?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. TracerNest standardizes correlation tracking via x-request-id and traceparent headers across both PHP Laravel and Node.js microservices, allowing end-to-end request tracing."
+            "text": "TracerNest utilizes hardware-accelerated AES-256-GCM encryption. Every log payload (headers, exception stack traces, request parameters) is encrypted with a unique 96-bit initialization vector before writing to disk. The 256-bit encryption key is managed securely in .master.key, ensuring plaintext telemetry is never exposed in data backups or server logs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does correlation tracking work between Laravel and Node.js APIs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When an incoming HTTP request contains an x-request-id or W3C traceparent header, TracerNest captures and propagates that trace ID across both Laravel and Node.js microservices. In the dashboard, you can filter by correlation ID to inspect the full end-to-end journey of a transaction across multiple polyglot services."
           }
         }
       ]

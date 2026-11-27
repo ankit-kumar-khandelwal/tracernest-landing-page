@@ -68,7 +68,9 @@
       "name": "TracerNest",
       "description": "Open-source, self-hosted Node.js and Laravel 13 logger with an encrypted log vault and built-in dashboard.",
       "inLanguage": "en",
-      "publisher": { "@id": "https://tracernest.info/#author" }
+      "publisher": {
+        "@id": "https://tracernest.info/#author"
+      }
     },
     {
       "@type": "Person",
@@ -101,7 +103,9 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "author": { "@id": "https://tracernest.info/#author" },
+      "author": {
+        "@id": "https://tracernest.info/#author"
+      },
       "featureList": [
         "Zero extra ports",
         "Zero runtime dependencies",
@@ -120,7 +124,9 @@
       "programmingLanguage": "JavaScript",
       "runtimePlatform": "Node.js",
       "license": "https://opensource.org/licenses/Apache-2.0",
-      "author": { "@id": "https://tracernest.info/#author" }
+      "author": {
+        "@id": "https://tracernest.info/#author"
+      }
     },
     {
       "@type": "FAQPage",
@@ -131,39 +137,55 @@
           "name": "What is the best Errsole alternative for Node.js?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "TracerNest is widely considered the best self-hosted Errsole alternative for Node.js. It features strictly zero runtime dependencies, hardware-accelerated AES-256-GCM log encryption, zero extra ports via existing Express/Fastify/Koa middleware, and built-in SQLite to MySQL auto-migration."
+            "text": "TracerNest is an open-source, self-hosted alternative for Node.js developers looking for an integrated logging dashboard and encrypted log storage. It attaches directly to your existing HTTP server pipeline with zero external dependencies."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I encrypt application logs in Node.js?",
+          "name": "How to persist Express logs after server restart?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "TracerNest encrypts application logs automatically in Node.js using native AES-256-GCM cryptography. It secures every log payload before writing to disk using a locally managed 256-bit key in .master.key with zero third-party dependencies."
+            "text": "TracerNest writes log records directly to persistent storage—either local SQLite files using synchronous Write-Ahead Logging (WAL) or a centralized MySQL database—rather than volatile process memory. Logs survive unhandled exceptions, Docker container restarts, and Kubernetes pod rescheduling until your configured TTL expires."
           }
         },
         {
           "@type": "Question",
-          "name": "Can I view Express logs in a dashboard without opening another port?",
+          "name": "How to view Node.js logs in a browser without opening extra ports?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. TracerNest attaches directly to your existing Express HTTP server as middleware. When you browse to your configured dashboard path (such as /tracernest), it serves the encrypted log viewer directly through your current port without opening separate ports or firewall rules."
+            "text": "TracerNest mounts as standard middleware into your application's existing HTTP pipeline (Express, Koa, or Fastify). When you navigate to your configured dashboard path (such as /tracernest), TracerNest handles the request internally and serves the web dashboard over your primary application port without requiring firewall changes or reverse proxy reconfiguration."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I add a log viewer to a Laravel 13 app?",
+          "name": "How to encrypt application logs in Node.js?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Install tracernest-logger and bind the TracerNest route middleware in your bootstrap/app.php. Laravel requests, exceptions, and telemetry stream directly into the embedded TracerNest dashboard viewer."
+            "text": "TracerNest uses Node.js standard node:crypto to encrypt log records at rest using hardware-accelerated AES-256-GCM. Each record receives a unique 96-bit initialization vector and a 128-bit authentication tag, derived from a locally managed 256-bit key in .master.key (file mode 0600) without third-party dependencies."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I migrate logs from SQLite to MySQL?",
+          "name": "How to monitor Express API requests locally?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "When you point the configuration at MySQL, TracerNest checks for the required tables and columns, adds any missing ones with ALTER TABLE, migrates existing SQLite log records, and removes the old SQLite files while keeping your .master.key safe."
+            "text": "Register TracerNest middleware at the top of your Express app (app.use(tracerNest())). It automatically records incoming HTTP methods, route paths, status codes, execution duration in milliseconds, memory consumption, and correlation IDs. You can inspect requests in real time with level filtering in the embedded viewer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why choose TracerNest as a self-hosted alternative to Datadog?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Commercial APM platforms charge variable per-host and per-gigabyte ingestion fees. TracerNest is a self-hosted alternative that stores logs entirely within your own SQLite or MySQL infrastructure, avoiding external data egress costs while keeping telemetry completely private within your own infrastructure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does TracerNest compare as a Winston and Pino alternative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Winston and Pino are stream emitters that format output for terminals or files without a built-in UI or at-rest encryption. TracerNest combines a logging engine with an embedded web viewer, native AES-256-GCM encryption, and zero runtime dependencies in a single package."
           }
         },
         {
@@ -171,31 +193,15 @@
           "name": "Is there a Node.js logger with zero dependencies?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. TracerNest (tracernest-logger) has an empty dependencies object in package.json. All cryptography, HTTP routing, SQLite storage, and dashboard serving rely exclusively on native Node.js standard libraries."
+            "text": "Yes. TracerNest has an empty dependencies: {} object in package.json. All HTTP routing, cryptography, file operations, and SQLite access rely exclusively on native Node.js standard libraries (node:crypto, node:http, node:fs, node:sqlite). This reduces exposure to third-party runtime dependency vulnerabilities through its zero-runtime-dependency architecture."
           }
         },
         {
           "@type": "Question",
-          "name": "How does TracerNest achieve zero extra ports?",
+          "name": "How do I migrate logs from SQLite to MySQL without downtime?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "TracerNest attaches to your application's existing HTTP request pipeline (Express, Koa, Fastify or Laravel). When a request hits your configured dashboard path, such as /tracernest, it serves the embedded dashboard and API over the existing port, so no firewall changes or port conflicts are needed."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is TracerNest truly zero-dependency?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. The dependencies object in package.json is empty. Cryptography, HTTP routing, file operations and database access use native Node.js standard libraries, which removes supply-chain risk from third-party packages."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How are logs kept persistent across container restarts?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "TracerNest writes logs to persistent storage (SQLite files or MySQL tables) instead of process memory. Logs survive crashes and container restarts until the configured TTL cleanup removes them."
+            "text": "When switching storage configuration from SQLite to MySQL, TracerNest verifies schema definitions, executes non-destructive DDL (ALTER TABLE ... ADD COLUMN ...) for missing fields, transfers historical records in batches, and cleans up legacy SQLite files while preserving your .master.key."
           }
         }
       ]
@@ -1107,7 +1113,7 @@
               </span>
             </summary>
             <div class="faq-answer">
-              <p>TracerNest is an open-source, self-hosted alternative to Errsole, designed for developers who want persistent logs, an integrated dashboard, encrypted payload storage, and zero additional monitoring ports. It attaches directly to your existing HTTP server pipeline with zero external dependencies.</p>
+              <p>TracerNest is an open-source, self-hosted alternative for Node.js developers looking for an integrated logging dashboard and encrypted log storage. It attaches directly to your existing HTTP server pipeline with zero external dependencies.</p>
               <p class="faq-doc-link">
                 <a href="errsole-alternative-nodejs-zero-port-telemetry.html">Read the Errsole alternative technical architecture guide &rarr;</a>
               </p>
@@ -1235,7 +1241,7 @@
               </span>
             </summary>
             <div class="faq-answer">
-              <p>Yes. TracerNest has an empty <code>dependencies: {}</code> object in <code>package.json</code>. All HTTP routing, cryptography, file operations, and SQLite access rely exclusively on native Node.js standard libraries (<code>node:crypto</code>, <code>node:http</code>, <code>node:fs</code>, <code>node:sqlite</code>), removing third-party supply-chain vulnerabilities.</p>
+              <p>Yes. TracerNest has an empty <code>dependencies: {}</code> object in <code>package.json</code>. All HTTP routing, cryptography, file operations, and SQLite access rely exclusively on native Node.js standard libraries (<code>node:crypto</code>, <code>node:http</code>, <code>node:fs</code>, <code>node:sqlite</code>). This reduces exposure to third-party runtime dependency vulnerabilities through its zero-runtime-dependency architecture.</p>
               <p class="faq-doc-link">
                 <a href="eliminating-supply-chain-vulnerabilities-nodejs.html">Read the zero-dependency supply chain security guide &rarr;</a>
               </p>
