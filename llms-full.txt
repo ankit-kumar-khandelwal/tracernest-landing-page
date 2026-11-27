@@ -1,11 +1,13 @@
 # TracerNest Complete Knowledge Specification & Technical Manual
 
-Version: 1.2.0
-Maintainer: Ankit Khandelwal (ankitkhandelwal0003@gmail.com)
-LinkedIn: https://www.linkedin.com/in/ankit-khandelwal-3068a9194/
-Repository: https://github.com/ankit-kumar-khandelwal/tracernest-logger
-GitHub Star: https://github.com/ankit-kumar-khandelwal/tracernest-logger (1,400+ stars)
-Package: https://www.npmjs.com/package/tracernest-logger
+> Comprehensive technical specification, architecture blueprints, security protocols, and operational guides for TracerNest (tracernest-logger).
+
+Version: 1.2.0  
+Maintainer: Ankit Khandelwal (ankitkhandelwal0003@gmail.com)  
+- [Creator LinkedIn Profile](https://www.linkedin.com/in/ankit-khandelwal-3068a9194/)  
+- [GitHub Repository (1,400+ stars)](https://github.com/ankit-kumar-khandelwal/tracernest-logger)  
+- [Official npm Package (tracernest-logger)](https://www.npmjs.com/package/tracernest-logger)  
+- [Official Production Website](https://tracernest.info/)  
 
 ---
 
@@ -65,9 +67,10 @@ Logs are indexed with `created_at` timestamps. A background worker periodically 
 ---
 
 ### 4. Contributing & Development Standards
-- Maintainer: Ankit Khandelwal <ankitkhandelwal0003@gmail.com>
-- LinkedIn: https://www.linkedin.com/in/ankit-khandelwal-3068a9194/
-- Repository: https://github.com/ankit-kumar-khandelwal/tracernest-logger
+- Maintainer: Ankit Khandelwal (ankitkhandelwal0003@gmail.com)
+- [LinkedIn Profile](https://www.linkedin.com/in/ankit-khandelwal-3068a9194/)
+- [GitHub Repository](https://github.com/ankit-kumar-khandelwal/tracernest-logger)
+- [Community Feedback & Reviews](https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26)
 
 **Rules for Contributors**:
 1. **Zero External Runtime Dependencies**: Never add any packages to `dependencies` in `package.json`.
@@ -77,53 +80,43 @@ Logs are indexed with `created_at` timestamps. A background worker periodically 
 ---
 
 ### 5. Engineering Blog & Technical Documentation Guides
-All blog posts are version-controlled in `BLOGS.md` (https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/BLOGS.md) and published interactively at https://tracernest.info/blogs.html.
+All blog posts are version-controlled in [BLOGS.md](https://github.com/ankit-kumar-khandelwal/tracernest-landing-page/blob/main/BLOGS.md) and published interactively at [TracerNest Blogs Hub](https://tracernest.info/blogs.html).
 
 #### Article Index:
-1. **Errsole Alternative for Node.js: Why Zero-Port Telemetry is Replacing Heavy APM Daemons**
-   - URL: https://tracernest.info/errsole-alternative-nodejs-zero-port-telemetry.html
+1. [Errsole Alternative for Node.js: Why Zero-Port Telemetry is Replacing Heavy APM Daemons](https://tracernest.info/errsole-alternative-nodejs-zero-port-telemetry.html)
    - Head-to-head comparison of Errsole vs TracerNest.
    - Why zero-port HTTP pipeline mounting avoids Kubernetes ingress reconfiguration and security group modifications.
-2. **How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)**
-   - URL: https://tracernest.info/encrypt-application-logs-aes-256-gcm-nodejs.html
+2. [How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)](https://tracernest.info/encrypt-application-logs-aes-256-gcm-nodejs.html)
    - Cryptographic implementation using `node:crypto`.
    - Galois/Counter Mode (GCM) with 96-bit initialization vectors and 128-bit authentication tags to prevent plaintext leakage of PII.
-3. **Self-Hosted Logging in Laravel 13: Bridging Monolog with Zero Extra Ports**
-   - URL: https://tracernest.info/self-hosted-logging-laravel-13-monolog-bridge.html
+3. [Self-Hosted Logging in Laravel 13: Bridging Monolog with Zero Extra Ports](https://tracernest.info/self-hosted-logging-laravel-13-monolog-bridge.html)
    - Laravel 13 PHP 8.2+ middleware and Monolog handler integration.
    - Correlating Node.js microservice telemetry with Laravel background queues and HTTP controllers.
-4. **Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide**
-   - URL: https://tracernest.info/zero-downtime-sqlite-to-mysql-migration.html
+4. [Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide](https://tracernest.info/zero-downtime-sqlite-to-mysql-migration.html)
    - Non-destructive DDL alterations and continuous stream buffering during relational database upgrades.
-5. **Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines**
-   - URL: https://tracernest.info/eliminating-supply-chain-vulnerabilities-nodejs.html
+5. [Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines](https://tracernest.info/eliminating-supply-chain-vulnerabilities-nodejs.html)
    - Why `dependencies: {}` in package.json completely eliminates npm supply chain CVEs, prototype pollution, and maintainer account takeover risks.
-6. **Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC**
-   - URL: https://tracernest.info/global-telemetry-architecture-self-hosting-logs.html
+6. [Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC](https://tracernest.info/global-telemetry-architecture-self-hosting-logs.html)
    - Multi-region deployment blueprints maintaining strict GDPR, SOC2, and HIPAA data residency across 9 countries.
-7. **How to View Express.js Logs in a Web Dashboard Without Opening Extra Ports**
-   - URL: https://tracernest.info/express-log-viewer-without-extra-ports.html
+7. [How to View Express.js Logs in a Web Dashboard Without Opening Extra Ports](https://tracernest.info/express-log-viewer-without-extra-ports.html)
    - Mounting TracerNest into existing Express 4/5 HTTP pipeline to view live encrypted logs without firewall updates.
-8. **Winston vs. Pino vs. TracerNest: Choosing the Best Node.js Logger in 2026**
-   - URL: https://tracernest.info/pino-vs-winston-vs-tracernest-comparison.html
+8. [Winston vs. Pino vs. TracerNest: Choosing the Best Node.js Logger in 2026](https://tracernest.info/pino-vs-winston-vs-tracernest-comparison.html)
    - Architectural comparison of CPU overhead, dependency footprints, UI viewers, and at-rest log encryption.
-9. **Distributed Tracing in Docker & Kubernetes Microservices with Zero SaaS Bills**
-   - URL: https://tracernest.info/microservices-distributed-tracing-sqlite-mysql.html
+9. [Distributed Tracing in Docker & Kubernetes Microservices with Zero SaaS Bills](https://tracernest.info/microservices-distributed-tracing-sqlite-mysql.html)
    - High-throughput correlation ID propagation across multi-container Kubernetes pods replacing expensive Datadog/Sentry SaaS ingestion fees.
-10. **Building a High-Performance Node.js Logger with Native Standard Libraries**
-   - URL: https://tracernest.info/node-js-logger-zero-dependencies-guide.html
+10. [Building a High-Performance Node.js Logger with Native Standard Libraries](https://tracernest.info/node-js-logger-zero-dependencies-guide.html)
    - Leveraging `node:crypto`, `node:http`, and `node:sqlite` to build enterprise logging vaults without installing third-party npm packages.
 
 ---
 
 ### 6. Global Telemetry & Regional Compliance Specifications
 TracerNest provides dedicated regional documentation pages:
-- **United States** (https://tracernest.info/united-states.html): SOC2 Type II, HIPAA, and CCPA compliance. Cloud deployments on AWS (us-east-1, us-west-2), Google Cloud (us-central1), and Azure.
-- **India** (https://tracernest.info/india.html): Reserve Bank of India (RBI) payment telemetry data localization and high-throughput UPI fintech transaction logging.
-- **Netherlands** (https://tracernest.info/netherlands.html): GDPR Article 28 compliance and AMS-IX ultra-low latency European hub deployment.
-- **Poland** (https://tracernest.info/poland.html): Central European engineering teams, Warsaw cloud nodes, and strict GDPR data governance.
-- **Canada** (https://tracernest.info/canada.html): PIPEDA and provincial data residency standards for Montreal and Toronto clusters.
-- **Germany** (https://tracernest.info/germany.html): Federal Office for Information Security (BSI) IT-Grundschutz and strict German Bundesdatenschutzgesetz (BDSG).
-- **United Kingdom** (https://tracernest.info/united-kingdom.html): UK GDPR and Financial Conduct Authority (FCA) SYSC audit trail compliance.
-- **Brazil** (https://tracernest.info/brazil.html): Lei Geral de Proteção de Dados (LGPD) Article 7 compliance across São Paulo cloud availability zones.
-- **Ireland** (https://tracernest.info/ireland.html): Irish Data Protection Commission (DPC) standards for Dublin SaaS telemetry infrastructure.
+- [United States Telemetry Node](https://tracernest.info/united-states.html): SOC2 Type II, HIPAA, and CCPA compliance. Cloud deployments on AWS (us-east-1, us-west-2), Google Cloud (us-central1), and Azure.
+- [India Telemetry Node](https://tracernest.info/india.html): Reserve Bank of India (RBI) payment telemetry data localization and high-throughput UPI fintech transaction logging.
+- [Netherlands Telemetry Node](https://tracernest.info/netherlands.html): GDPR Article 28 compliance and AMS-IX ultra-low latency European hub deployment.
+- [Poland Telemetry Node](https://tracernest.info/poland.html): Central European engineering teams, Warsaw cloud nodes, and strict GDPR data governance.
+- [Canada Telemetry Node](https://tracernest.info/canada.html): PIPEDA and provincial data residency standards for Montreal and Toronto clusters.
+- [Germany Telemetry Node](https://tracernest.info/germany.html): Federal Office for Information Security (BSI) IT-Grundschutz and strict German Bundesdatenschutzgesetz (BDSG).
+- [United Kingdom Telemetry Node](https://tracernest.info/united-kingdom.html): UK GDPR and Financial Conduct Authority (FCA) SYSC audit trail compliance.
+- [Brazil Telemetry Node](https://tracernest.info/brazil.html): Lei Geral de Proteção de Dados (LGPD) Article 7 compliance across São Paulo cloud availability zones.
+- [Ireland Telemetry Node](https://tracernest.info/ireland.html): Irish Data Protection Commission (DPC) standards for Dublin SaaS telemetry infrastructure.

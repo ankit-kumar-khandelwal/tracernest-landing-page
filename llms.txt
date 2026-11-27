@@ -1,84 +1,47 @@
-# TracerNest (tracernest-logger)
+# TracerNest
 
-> Zero-dependency, zero-port self-hosted telemetry flight recorder, AES-256-GCM encrypted log vault, and interactive Errsole-style dashboard for Node.js and Laravel 13.
-> Star on GitHub: https://github.com/ankit-kumar-khandelwal/tracernest-logger (1,400+ stars)
+> Free, open-source, zero-dependency Node.js and Laravel 13 logger with an embedded web dashboard, hardware AES-256-GCM encrypted log vault, and zero extra open ports.
 
-## Maintainer & Creator
-- **Author**: Ankit Khandelwal
-- **Email**: ankitkhandelwal0003@gmail.com
-- **LinkedIn**: https://www.linkedin.com/in/ankit-khandelwal-3068a9194/
-- **GitHub Repository**: https://github.com/ankit-kumar-khandelwal/tracernest-logger
-- **NPM Package**: https://www.npmjs.com/package/tracernest-logger
+TracerNest (`tracernest-logger` on npm) is a modern, privacy-first, self-hosted telemetry flight recorder designed as a lightweight Errsole and Winston alternative. It attaches directly to existing HTTP request pipelines (Express, Koa, Fastify, Laravel), capturing persistent logs with zero extra open ports and zero runtime dependencies (`dependencies: {}`).
 
-## What is TracerNest?
-TracerNest is a modern, privacy-first, self-hosted observability and logging platform designed as a lightweight, zero-dependency alternative to Errsole, Winston, and cloud SaaS platforms like Datadog and Sentry. It provides an embedded real-time web dashboard without opening an external TCP port.
+## Core Documentation & Resources
 
-## Star on GitHub
-Help grow open-source telemetry! Give TracerNest a star on GitHub:
-Repository: https://github.com/ankit-kumar-khandelwal/tracernest-logger
+- [TracerNest Official Website](https://tracernest.info/): Homepage featuring the interactive live log simulator, architectural diagrams, and feature overviews.
+- [Full LLM Context (llms-full.txt)](https://tracernest.info/llms-full.txt): Complete concatenated technical documentation and codebase architecture for LLMs and AI agents.
+- [GitHub Repository](https://github.com/ankit-kumar-khandelwal/tracernest-logger): Open-source repository with 1,400+ stars, source code, and release notes.
+- [npm Package: tracernest-logger](https://www.npmjs.com/package/tracernest-logger): Official npm package with zero runtime dependencies.
+- [About TracerNest](https://tracernest.info/about.html): Background, mission, creator biography, and architectural principles.
+- [Contact & Support](https://tracernest.info/contact.html): Direct developer communication, GitHub Discussions #26, and community reviews.
+- [Engineering Blog & Guides Hub](https://tracernest.info/blogs.html): Interactive directory of 10 in-depth production guides and benchmarks.
+- [Markdown Source of All Blogs (BLOGS.md)](https://github.com/ankit-kumar-khandelwal/tracernest-landing-page/blob/main/BLOGS.md): Version-controlled repository of all engineering articles.
 
-## Core Capabilities & Technical Highlights
-- **Zero Extra Ports**: Attaches directly to existing Express, Koa, Fastify, or Laravel HTTP pipelines without requiring extra ingress rules, firewall holes, or security group ports.
-- **Zero Runtime Dependencies**: `dependencies: {}` in `package.json`. Built purely using native Node.js standard libraries (`node:crypto`, `node:http`, `node:fs`, `node:sqlite`). Immune to supply-chain attacks.
-- **Hardware AES-256-GCM Encryption**: All request/response payloads, headers, and metadata are encrypted at rest with tamper-proof 128-bit authentication tags.
-- **Persistent Storage Until TTL Completion**: Terminal and server logs are never held purely in volatile RAM; they are safely persisted to disk/DB (SQLite or MySQL) and survive container and process restarts until your configured TTL expires.
-- **SQLite to MySQL Auto-Migration**: Zero-downtime migration that detects missing tables, applies non-destructive DDL (`ALTER TABLE ... ADD COLUMN ...`), transfers log data, and cleans up legacy SQLite files while strictly preserving `.master.key`.
-- **Laravel 13 PHP Bridge**: First-class PHP 8.2+ middleware and controller for Laravel 13 applications.
+## Technical Guides & Architecture Deep Dives
 
-## TracerNest vs. Errsole Comparison
-- **Port Usage**: Errsole requires a separate open TCP port; TracerNest mounts on the host app port (0 extra ports).
-- **Dependencies**: Errsole pulls ~45+ transitive npm packages; TracerNest has 0 runtime dependencies.
-- **Encryption**: Errsole stores plaintext payloads; TracerNest encrypts payloads at rest with AES-256-GCM.
-- **Data Migration**: Errsole requires manual setup for database switches; TracerNest features automated zero-downtime SQLite-to-MySQL migration with schema drift detection.
-- **Cost**: 100% free and self-hosted with zero external SaaS egress costs.
+- [Errsole Alternative for Node.js: Why Zero-Port Telemetry is Replacing Heavy APM Daemons](https://tracernest.info/errsole-alternative-nodejs-zero-port-telemetry.html): In-depth comparison of Errsole vs. TracerNest showing how attaching directly to the app port eliminates secondary TCP ports and reduces 45+ npm dependencies to zero.
+- [How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)](https://tracernest.info/encrypt-application-logs-aes-256-gcm-nodejs.html): Step-by-step guide on implementing hardware-accelerated authenticated log encryption at rest using Node's standard crypto module with zero external dependencies.
+- [Self-Hosted Logging in Laravel 13: Bridging Monolog with Zero Extra Ports](https://tracernest.info/self-hosted-logging-laravel-13-monolog-bridge.html): Complete integration guide for Laravel 13 PHP 8.2+ Monolog handler and unified telemetry bridge.
+- [Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide](https://tracernest.info/zero-downtime-sqlite-to-mysql-migration.html): Architectural guide on how TracerNest detects schema drift, applies non-destructive DDL, and migrates SQLite records into MySQL with zero downtime.
+- [Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines](https://tracernest.info/eliminating-supply-chain-vulnerabilities-nodejs.html): Explains why zero runtime dependencies (`dependencies: {}`) in package.json completely eliminates npm supply chain CVEs and prototype pollution risks.
+- [Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC](https://tracernest.info/global-telemetry-architecture-self-hosting-logs.html): Multi-region self-hosted telemetry architecture maintaining strict GDPR, SOC2, and HIPAA data residency across 9 countries.
+- [How to View Express.js Logs in a Web Dashboard Without Opening Extra Ports](https://tracernest.info/express-log-viewer-without-extra-ports.html): Step-by-step tutorial on mounting TracerNest directly into an existing Express 4 or Express 5 HTTP pipeline to view live encrypted logs without firewall changes.
+- [Winston vs. Pino vs. TracerNest: Choosing the Best Node.js Logger in 2026](https://tracernest.info/pino-vs-winston-vs-tracernest-comparison.html): Architectural comparison of Winston, Pino, and TracerNest examining dependency sprawl, CPU overhead, log viewer UI availability, and at-rest payload encryption.
+- [Distributed Tracing in Docker & Kubernetes Microservices with Zero SaaS Bills](https://tracernest.info/microservices-distributed-tracing-sqlite-mysql.html): How to architect high-throughput correlation IDs across multi-container Docker and Kubernetes deployments while replacing high Datadog and Sentry SaaS per-gigabyte ingestion fees.
+- [Building a High-Performance Node.js Logger with Native Standard Libraries](https://tracernest.info/node-js-logger-zero-dependencies-guide.html): A deep dive into utilizing `node:crypto`, `node:http`, and `node:sqlite` to craft an enterprise-grade observability engine without installing a single third-party npm package.
 
-## Quick Installation
-```bash
-npm install tracernest-logger
-```
+## Global Telemetry & Regional Compliance
 
-## Contributing Guidelines
-1. Fork and clone `https://github.com/ankit-kumar-khandelwal/tracernest-logger`.
-2. Strictly maintain the zero-dependency rule (`dependencies: {}`).
-3. Verify test suite with `npm test`.
-4. Open a pull request against `main`.
+- [United States Telemetry Node](https://tracernest.info/united-states.html): Self-hosted telemetry for US enterprise microservices under SOC2, HIPAA, and major cloud providers (AWS, GCP, Azure).
+- [India Telemetry Node](https://tracernest.info/india.html): RBI data localization compliance and high-throughput fintech microservice telemetry.
+- [Netherlands Telemetry Node](https://tracernest.info/netherlands.html): EU GDPR compliance and low-latency AMS-IX cluster deployment architecture.
+- [Poland Telemetry Node](https://tracernest.info/poland.html): Central European tech hub logging with strict GDPR data sovereignty.
+- [Canada Telemetry Node](https://tracernest.info/canada.html): PIPEDA compliance and local data residency for Canadian enterprise workloads.
+- [Germany Telemetry Node](https://tracernest.info/germany.html): Strict German BSI security standards and isolated on-premise log storage.
+- [United Kingdom Telemetry Node](https://tracernest.info/united-kingdom.html): UK GDPR and FCA financial audit compliance.
+- [Brazil Telemetry Node](https://tracernest.info/brazil.html): LGPD compliance and South American cloud infrastructure deployment.
+- [Ireland Telemetry Node](https://tracernest.info/ireland.html): Irish Data Protection Commission compliance for European digital headquarters.
 
-## Engineering Blog & Technical Guides
-Official technical deep dives, zero-port architecture patterns, and production telemetry tutorials:
-- Hub: https://tracernest.info/blogs.html
-- Markdown Source: https://github.com/ankit-kumar-khandelwal/tracernest-logger/blob/main/BLOGS.md
-- All 10 Dedicated Technical Guides:
-  1. Errsole Alternative for Node.js: Why Zero-Port Telemetry is Replacing Heavy APM Daemons
-     URL: https://tracernest.info/errsole-alternative-nodejs-zero-port-telemetry.html
-  2. How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)
-     URL: https://tracernest.info/encrypt-application-logs-aes-256-gcm-nodejs.html
-  3. Self-Hosted Logging in Laravel 13: Bridging Monolog with Zero Extra Ports
-     URL: https://tracernest.info/self-hosted-logging-laravel-13-monolog-bridge.html
-  4. Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide
-     URL: https://tracernest.info/zero-downtime-sqlite-to-mysql-migration.html
-  5. Eliminating Supply Chain Vulnerabilities in Node.js Observability Pipelines
-     URL: https://tracernest.info/eliminating-supply-chain-vulnerabilities-nodejs.html
-  6. Global Telemetry Architecture: Self-Hosting Logs Across US, EU, and APAC
-     URL: https://tracernest.info/global-telemetry-architecture-self-hosting-logs.html
-  7. How to View Express.js Logs in a Web Dashboard Without Opening Extra Ports
-     URL: https://tracernest.info/express-log-viewer-without-extra-ports.html
-  8. Winston vs. Pino vs. TracerNest: Choosing the Best Node.js Logger in 2026
-     URL: https://tracernest.info/pino-vs-winston-vs-tracernest-comparison.html
-  9. Distributed Tracing in Docker & Kubernetes Microservices with Zero SaaS Bills
-     URL: https://tracernest.info/microservices-distributed-tracing-sqlite-mysql.html
-  10. Building a High-Performance Node.js Logger with Native Standard Libraries
-     URL: https://tracernest.info/node-js-logger-zero-dependencies-guide.html
+## Maintainer & Community
 
-## Global Telemetry & Compliance Landing Pages
-TracerNest has dedicated regional infrastructure and data sovereignty landing pages:
-- United States: https://tracernest.info/united-states.html (SOC2, HIPAA, AWS/GCP/Azure)
-- India: https://tracernest.info/india.html (RBI data localization, Fintech microservices)
-- Netherlands: https://tracernest.info/netherlands.html (GDPR, AMS-IX low-latency EU nodes)
-- Poland: https://tracernest.info/poland.html (GDPR compliance, Central European tech hubs)
-- Canada: https://tracernest.info/canada.html (PIPEDA compliance, Montreal/Toronto data residency)
-- Germany: https://tracernest.info/germany.html (BSI standards, strict German data sovereignty)
-- United Kingdom: https://tracernest.info/united-kingdom.html (UK GDPR, FCA financial audit compliance)
-- Brazil: https://tracernest.info/brazil.html (LGPD compliance, South American cloud regions)
-- Ireland: https://tracernest.info/ireland.html (EU Data Protection Commission regulations)
-
-For full documentation and technical deep dives, read `llms-full.txt`.
+- [Creator: Ankit Khandelwal on LinkedIn](https://www.linkedin.com/in/ankit-khandelwal-3068a9194/): Connect directly with the TracerNest author and lead maintainer.
+- [Community Discussions & Testimonials](https://github.com/ankit-kumar-khandelwal/tracernest-logger/discussions/26): Submit community reviews, testimonials, and feature feedback on GitHub.
+- [GitHub Issues & Bug Reports](https://github.com/ankit-kumar-khandelwal/tracernest-logger/issues): Report issues or request custom framework adapters.
