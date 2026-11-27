@@ -8,7 +8,7 @@ Profile is optional; when present, use a full HTTPS URL.
 ## Himanshu Khaturia
 **Role:** Senior SEO Executive • Webanix Solutions
 **Focus:** SEO Advisor & Reach Analyst
-**Quote:** Recommended sampling the V8 event-loop latency on microtask queues rather than interval timers. TracerNest implemented this with virtually zero CPU overhead—making self-hosted telemetry safe for production microservices.
+**Quote:** Advised on technical SEO architecture, structured metadata standards, and search discoverability for TracerNest developer documentation.
 <!-- 
 ## Priya Patel
 **Role:** Staff Platform & DevOps Engineer • Kubernetes Specialist

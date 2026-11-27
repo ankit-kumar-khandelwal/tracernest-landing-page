@@ -12,17 +12,16 @@
     gtag('js', new Date());
     gtag('config', 'G-EXGDCY9J38');
   </script>
-  <title>How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies) | TracerNest Blog</title>
-  <meta name="description" content="Learn how to encrypt Node.js application logs at rest using native AES-256-GCM authenticated cryptography without installing any third-party dependencies.">
-  <meta name="keywords" content="Security, Cryptography, AES-256-GCM, Node.js, tracernest, nodejs logger, self-hosted telemetry">
+  <title>Encrypt Application Logs in Node.js with AES-256-GCM</title>
+  <meta name="description" content="Step-by-step guide to encrypting Node.js application logs at rest using native AES-256-GCM and zero third-party dependencies.">
   <meta name="author" content="Ankit Khandelwal">
   <link rel="canonical" href="https://tracernest.info/encrypt-application-logs-aes-256-gcm-nodejs.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)">
-  <meta property="og:description" content="Learn how to encrypt Node.js application logs at rest using native AES-256-GCM authenticated cryptography without installing any third-party dependencies.">
+  <meta property="og:title" content="Encrypt Application Logs in Node.js with AES-256-GCM">
+  <meta property="og:description" content="Step-by-step guide to encrypting Node.js application logs at rest using native AES-256-GCM and zero third-party dependencies.">
   <meta property="og:url" content="https://tracernest.info/encrypt-application-logs-aes-256-gcm-nodejs.html">
   <meta property="og:image" content="https://tracernest.info/assets/tracernest-logger-social-banner.png">
   <meta property="article:published_time" content="2026-11-22">
@@ -30,8 +29,8 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)">
-  <meta name="twitter:description" content="Learn how to encrypt Node.js application logs at rest using native AES-256-GCM authenticated cryptography without installing any third-party dependencies.">
+  <meta name="twitter:title" content="Encrypt Application Logs in Node.js with AES-256-GCM">
+  <meta name="twitter:description" content="Step-by-step guide to encrypting Node.js application logs at rest using native AES-256-GCM and zero third-party dependencies.">
   <meta name="twitter:image" content="https://tracernest.info/assets/tracernest-logger-social-banner.png">
 
   <!-- Favicon -->
@@ -46,8 +45,8 @@
   {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "How to Encrypt Application Logs with AES-256-GCM in Node.js (Zero Dependencies)",
-  "description": "Learn how to encrypt Node.js application logs at rest using native AES-256-GCM authenticated cryptography without installing any third-party dependencies.",
+  "headline": "Encrypt Application Logs in Node.js with AES-256-GCM",
+  "description": "Step-by-step guide to encrypting Node.js application logs at rest using native AES-256-GCM and zero third-party dependencies.",
   "url": "https://tracernest.info/encrypt-application-logs-aes-256-gcm-nodejs.html",
   "datePublished": "2026-11-22",
   "dateModified": "2026-11-27",
@@ -106,21 +105,21 @@
   <!-- Clean Minimalist Navigation Bar (Country pages are in Footer ONLY, not in Navigation) -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="brand-logo" aria-label="TracerNest Home">
+      <a href="/" class="brand-logo" aria-label="TracerNest Home">
         <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
         <span class="logo-text">Tracer<strong>Nest</strong></span>
-        <span class="version-badge" id="nav-version">v1.9.0</span>
+        <span class="version-badge" id="nav-version">v1.9.6</span>
       </a>
 
       <!-- Streamlined Desktop & Responsive Nav Links -->
       <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-        <a href="index.html#demo" class="nav-link-item">Demo</a>
-        <a href="index.html#features" class="nav-link-item">Features</a>
-        <a href="index.html#architecture" class="nav-link-item">Architecture</a>
+        <a href="/#demo" class="nav-link-item">Demo</a>
+        <a href="/#features" class="nav-link-item">Features</a>
+        <a href="/#architecture" class="nav-link-item">Architecture</a>
         <a href="about.html" class="nav-link-item">About Us</a>
         <a href="blogs.html" class="nav-link-item active" aria-current="page">Blogs</a>
         <a href="contact.html" class="nav-link-item">Contact Us</a>
-        <a href="index.html#credits" class="nav-link-item">Credits</a>
+        <a href="/#credits" class="nav-link-item">Credits</a>
         <div class="mobile-nav-footer">
           <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github mobile-btn-full">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -185,7 +184,7 @@
         
         <!-- Breadcrumb Navigation -->
         <nav class="blog-breadcrumb" aria-label="Breadcrumb" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-          <a href="index.html" style="color: var(--teal-400); text-decoration: none;">Home</a>
+          <a href="/" style="color: var(--teal-400); text-decoration: none;">Home</a>
           <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
           <a href="blogs.html" style="color: var(--teal-400); text-decoration: none;">Blogs</a>
           <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
@@ -235,37 +234,39 @@
         <div class="blog-article-body" style="font-size: 1.1rem; line-height: 1.8;">
           
       <h2>Why Plaintext Logs Are a Critical Liability</h2>
-      <p>Application logs frequently contain sensitive customer data: PII, authorization tokens, session cookies, database connection strings, and user emails captured in uncaught exception stack traces. If a database backup leaks or an unauthorized actor gains read access to the SQLite file or MySQL replica, plaintext logs immediately expose sensitive customer data and create critical security vulnerabilities.</p>
+      <p>Application logs frequently contain sensitive customer information: session tokens, authorization headers, database connection strings, and user details captured in uncaught exception stack traces. If a database snapshot leaks or an unauthorized actor gains access to storage disks or database replicas, plaintext logs immediately create severe data breaches.</p>
 
       <h2>Implementing Authenticated AES-256-GCM</h2>
-      <p>AES-GCM (Galois/Counter Mode) provides both confidentiality and tamper-proof message authenticity. Unlike legacy CBC or ECB modes, GCM produces a 128-bit authentication tag that immediately detects bit-flipping and tampering:</p>
+      <p>AES-GCM (Galois/Counter Mode) provides both confidentiality and tamper-proof message authenticity. Unlike legacy CBC mode, GCM produces a 128-bit authentication tag that immediately detects bit-flipping and chosen-ciphertext attacks. Here is a standalone, tested Node.js implementation using native <code>node:crypto</code>:</p>
 
       <div class="blog-code-block">
         <div class="blog-code-header"><span>JavaScript (Node.js native crypto)</span></div>
         <pre><code>const crypto = require('node:crypto');
 
+// Generate or load 256-bit (32 bytes) master encryption key
+function generateMasterKey() {
+  return crypto.randomBytes(32).toString('hex');
+}
+
+// Encrypt payload using AES-256-GCM
 function encryptPayload(plaintext, masterKeyHex) {
-  const masterKey = Buffer.from(masterKeyHex, 'hex'); // 32 bytes (256 bits)
-  const iv = crypto.randomBytes(12); // NIST recommended 96-bit nonce
+  const masterKey = Buffer.from(masterKeyHex, 'hex');
+  // NIST SP 800-38D recommended 96-bit (12-byte) initialization vector
+  const iv = crypto.randomBytes(12);
   
   const cipher = crypto.createCipheriv('aes-256-gcm', masterKey, iv);
   const encrypted = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()]);
-  const authTag = cipher.getAuthTag(); // 16 bytes authentication tag
+  const authTag = cipher.getAuthTag(); // 128-bit authentication tag
 
   return {
     cipherText: encrypted.toString('base64'),
     iv: iv.toString('hex'),
     authTag: authTag.toString('hex')
   };
-}</code></pre>
-      </div>
+}
 
-      <h2>Vault Decryption Verification</h2>
-      <p>Decryption validates both the ciphertext and the authentication tag. If even a single byte of the encrypted payload or header was modified on disk, Node's native crypto engine will reject the record with an authentication tag mismatch:</p>
-
-      <div class="blog-code-block">
-        <div class="blog-code-header"><span>JavaScript (Node.js native decrypt)</span></div>
-        <pre><code>function decryptPayload(vaultEntry, masterKeyHex) {
+// Decrypt and authenticate payload
+function decryptPayload(vaultEntry, masterKeyHex) {
   const masterKey = Buffer.from(masterKeyHex, 'hex');
   const decipher = crypto.createDecipheriv(
     'aes-256-gcm',
@@ -282,7 +283,16 @@ function encryptPayload(plaintext, masterKeyHex) {
 }</code></pre>
       </div>
 
-      <p>TracerNest incorporates this cryptographic pipeline by default. Plaintext logs never touch physical disk or database storage—only the local <code>.master.key</code> (with strict <code>0600</code> file permissions) can decrypt the log stream.</p>
+      <h2>Cryptographic Guarantees &amp; Tamper Detection</h2>
+      <p>Decryption validates both the ciphertext and the authentication tag. If even a single byte of the encrypted payload or header was modified on disk, Node's native crypto engine will reject the record with an authentication tag mismatch exception: <code>Error: Unsupported state or unable to authenticate data</code>.</p>
+
+      <h2>Key Vault Management in Production</h2>
+      <p>TracerNest incorporates this cryptographic pipeline by default. Plaintext logs never touch physical disk or database storage—only the local <code>.master.key</code> can decrypt the log stream. Best practices for key security include:</p>
+      <ul>
+        <li><strong>Strict File Permissions:</strong> Restrict <code>.master.key</code> permissions to POSIX mode <code>0600</code> (read/write for owner only).</li>
+        <li><strong>Environment Secret Injection:</strong> In Docker or Kubernetes clusters, pass the master key via the <code>TRACERNEST_MASTER_KEY</code> environment variable through Kubernetes Secrets or AWS Secrets Manager.</li>
+        <li><strong>Exclude from Git:</strong> Ensure <code>.master.key</code> is listed in your project's <code>.gitignore</code>.</li>
+      </ul>
     
         </div>
 
@@ -405,27 +415,24 @@ function encryptPayload(plaintext, masterKeyHex) {
       <div class="footer-links">
         <div class="footer-col">
           <h4>Navigation</h4>
-          <a href="index.html#demo">Live Demo</a>
-          <a href="index.html#features">Features</a>
-          <a href="index.html#comparison">Comparison</a>
+          <a href="/#demo">Live Demo</a>
+          <a href="/#features">Features</a>
+          <a href="/#comparison">Comparison</a>
           <a href="about.html">About Us</a>
           <a href="blogs.html">Blogs</a>
           <a href="contact.html">Contact Us</a>
-          <a href="index.html#credits">Credits</a>
+          <a href="/#credits">Credits</a>
           <a href="contribute.html">Contributing</a>
         </div>
-        <!-- Dedicated Footer-only Country Pages -->
         <div class="footer-col">
-          <h4>Global Telemetry</h4>
-          <a href="united-states.html">United States 🇺🇸</a>
-          <a href="india.html">India 🇮🇳</a>
-          <a href="netherlands.html">Netherlands 🇳🇱</a>
-          <a href="poland.html">Poland 🇵🇱</a>
-          <a href="canada.html">Canada 🇨🇦</a>
-          <a href="germany.html">Germany 🇩🇪</a>
-          <a href="united-kingdom.html">United Kingdom 🇬🇧</a>
-          <a href="brazil.html">Brazil 🇧🇷</a>
-          <a href="ireland.html">Ireland 🇮🇪</a>
+          <h4>Guides &amp; Docs</h4>
+          <a href="errsole-alternative-nodejs-zero-port-telemetry.html">Errsole Alternative</a>
+          <a href="express-log-viewer-without-extra-ports.html">Express Log Viewer</a>
+          <a href="encrypt-application-logs-aes-256-gcm-nodejs.html">Log Encryption Guide</a>
+          <a href="pino-vs-winston-vs-tracernest-comparison.html">Winston vs Pino vs TracerNest</a>
+          <a href="self-hosted-logging-laravel-13-monolog-bridge.html">Laravel 13 Bridge</a>
+          <a href="zero-downtime-sqlite-to-mysql-migration.html">SQLite to MySQL Migration</a>
+          <a href="node-js-logger-zero-dependencies-guide.html">Zero-Dependency Guide</a>
         </div>
         <div class="footer-col">
           <h4>Ecosystem</h4>

@@ -2,7 +2,7 @@
 
 > Free, open-source, zero-dependency Node.js and Laravel 13 logger with an embedded web dashboard, hardware AES-256-GCM encrypted log vault, and zero extra open ports.
 
-TracerNest (`tracernest-logger` on npm) is a modern, privacy-first, self-hosted telemetry flight recorder designed as a lightweight Errsole and Winston alternative. It attaches directly to existing HTTP request pipelines (Express, Koa, Fastify, Laravel), capturing persistent logs with zero extra open ports and zero runtime dependencies (`dependencies: {}`).
+TracerNest (`tracernest-logger` on npm) is a modern, privacy-first, self-hosted telemetry flight recorder designed as a lightweight Errsole and Winston alternative. It attaches directly to existing HTTP request pipelines (Express, Fastify, Laravel), capturing persistent logs with zero extra open ports and zero runtime dependencies (`dependencies: {}`).
 
 ## Core Documentation & Resources
 
@@ -29,18 +29,6 @@ TracerNest (`tracernest-logger` on npm) is a modern, privacy-first, self-hosted 
 - [Winston vs. Pino vs. TracerNest: Choosing the Best Node.js Logger in 2026](https://tracernest.info/pino-vs-winston-vs-tracernest-comparison.html): Architectural comparison of Winston, Pino, and TracerNest examining dependency sprawl, CPU overhead, log viewer UI availability, and at-rest payload encryption.
 - [Distributed Tracing in Docker & Kubernetes Microservices with Zero SaaS Bills](https://tracernest.info/microservices-distributed-tracing-sqlite-mysql.html): How to architect high-throughput correlation IDs across multi-container Docker and Kubernetes deployments while replacing high Datadog and Sentry SaaS per-gigabyte ingestion fees.
 - [Building a High-Performance Node.js Logger with Native Standard Libraries](https://tracernest.info/node-js-logger-zero-dependencies-guide.html): A deep dive into utilizing `node:crypto`, `node:http`, and `node:sqlite` to craft an enterprise-grade observability engine without installing a single third-party npm package.
-
-## Global Telemetry & Regional Deployment Nodes
-
-- [United States Telemetry Node](https://tracernest.info/united-states.html): Self-hosted telemetry for US enterprise microservices on major cloud providers (AWS, GCP, Azure).
-- [India Telemetry Node](https://tracernest.info/india.html): Local data residency and high-throughput fintech microservice telemetry.
-- [Netherlands Telemetry Node](https://tracernest.info/netherlands.html): European data residency and low-latency AMS-IX cluster deployment architecture.
-- [Poland Telemetry Node](https://tracernest.info/poland.html): Central European tech hub logging with local data sovereignty.
-- [Canada Telemetry Node](https://tracernest.info/canada.html): Local data residency and zero-egress telemetry for Canadian enterprise workloads.
-- [Germany Telemetry Node](https://tracernest.info/germany.html): Strict German BSI security standards and isolated on-premise log storage.
-- [United Kingdom Telemetry Node](https://tracernest.info/united-kingdom.html): Financial-grade security and local tamper-evident audit logging.
-- [Brazil Telemetry Node](https://tracernest.info/brazil.html): Data privacy and South American cloud infrastructure deployment.
-- [Ireland Telemetry Node](https://tracernest.info/ireland.html): Local data residency and zero-egress logging for European digital headquarters.
 
 ## Maintainer & Community
 

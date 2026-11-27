@@ -12,17 +12,16 @@
     gtag('js', new Date());
     gtag('config', 'G-EXGDCY9J38');
   </script>
-  <title>Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide | TracerNest Blog</title>
-  <meta name="description" content="Architectural guide on performing zero-downtime automated migrations from SQLite to MySQL for production logging and telemetry workloads.">
-  <meta name="keywords" content="Databases, SQLite, MySQL, Migrations, tracernest, nodejs logger, self-hosted telemetry">
+  <title>Zero-Downtime SQLite to MySQL Migration for Node.js Logs</title>
+  <meta name="description" content="Architectural breakdown of zero-downtime log migration from SQLite to MySQL with schema drift detection and batch streaming.">
   <meta name="author" content="Ankit Khandelwal">
   <link rel="canonical" href="https://tracernest.info/zero-downtime-sqlite-to-mysql-migration.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide">
-  <meta property="og:description" content="Architectural guide on performing zero-downtime automated migrations from SQLite to MySQL for production logging and telemetry workloads.">
+  <meta property="og:title" content="Zero-Downtime SQLite to MySQL Migration for Node.js Logs">
+  <meta property="og:description" content="Architectural breakdown of zero-downtime log migration from SQLite to MySQL with schema drift detection and batch streaming.">
   <meta property="og:url" content="https://tracernest.info/zero-downtime-sqlite-to-mysql-migration.html">
   <meta property="og:image" content="https://tracernest.info/assets/tracernest-logger-social-banner.png">
   <meta property="article:published_time" content="2026-11-25">
@@ -30,8 +29,8 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide">
-  <meta name="twitter:description" content="Architectural guide on performing zero-downtime automated migrations from SQLite to MySQL for production logging and telemetry workloads.">
+  <meta name="twitter:title" content="Zero-Downtime SQLite to MySQL Migration for Node.js Logs">
+  <meta name="twitter:description" content="Architectural breakdown of zero-downtime log migration from SQLite to MySQL with schema drift detection and batch streaming.">
   <meta name="twitter:image" content="https://tracernest.info/assets/tracernest-logger-social-banner.png">
 
   <!-- Favicon -->
@@ -46,8 +45,8 @@
   {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide",
-  "description": "Architectural guide on performing zero-downtime automated migrations from SQLite to MySQL for production logging and telemetry workloads.",
+  "headline": "Zero-Downtime SQLite to MySQL Migration for Node.js Logs",
+  "description": "Architectural breakdown of zero-downtime log migration from SQLite to MySQL with schema drift detection and batch streaming.",
   "url": "https://tracernest.info/zero-downtime-sqlite-to-mysql-migration.html",
   "datePublished": "2026-11-25",
   "dateModified": "2026-11-27",
@@ -106,21 +105,21 @@
   <!-- Clean Minimalist Navigation Bar (Country pages are in Footer ONLY, not in Navigation) -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="brand-logo" aria-label="TracerNest Home">
+      <a href="/" class="brand-logo" aria-label="TracerNest Home">
         <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
         <span class="logo-text">Tracer<strong>Nest</strong></span>
-        <span class="version-badge" id="nav-version">v1.9.0</span>
+        <span class="version-badge" id="nav-version">v1.9.6</span>
       </a>
 
       <!-- Streamlined Desktop & Responsive Nav Links -->
       <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-        <a href="index.html#demo" class="nav-link-item">Demo</a>
-        <a href="index.html#features" class="nav-link-item">Features</a>
-        <a href="index.html#architecture" class="nav-link-item">Architecture</a>
+        <a href="/#demo" class="nav-link-item">Demo</a>
+        <a href="/#features" class="nav-link-item">Features</a>
+        <a href="/#architecture" class="nav-link-item">Architecture</a>
         <a href="about.html" class="nav-link-item">About Us</a>
         <a href="blogs.html" class="nav-link-item active" aria-current="page">Blogs</a>
         <a href="contact.html" class="nav-link-item">Contact Us</a>
-        <a href="index.html#credits" class="nav-link-item">Credits</a>
+        <a href="/#credits" class="nav-link-item">Credits</a>
         <div class="mobile-nav-footer">
           <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github mobile-btn-full">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -185,7 +184,7 @@
         
         <!-- Breadcrumb Navigation -->
         <nav class="blog-breadcrumb" aria-label="Breadcrumb" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-          <a href="index.html" style="color: var(--teal-400); text-decoration: none;">Home</a>
+          <a href="/" style="color: var(--teal-400); text-decoration: none;">Home</a>
           <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
           <a href="blogs.html" style="color: var(--teal-400); text-decoration: none;">Blogs</a>
           <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
@@ -240,13 +239,15 @@
       <h2>The Challenge of Scaling to Multi-Instance Clusters</h2>
       <p>When your application scales out horizontally across multiple Kubernetes pods or autoscaling server groups, SQLite's single-node file lock becomes a bottleneck. Distributed microservices require a centralized storage backend such as MySQL or MariaDB.</p>
 
-      <h2>Automated Schema Drift & Data Migration</h2>
-      <p>Instead of requiring manual database migration scripts, TracerNest detects when your configuration changes from <code>storage: 'sqlite'</code> to <code>storage: 'mysql'</code>:</p>
+      <h2>How TracerNest Achieves Zero-Downtime Migration</h2>
+      <p>Instead of requiring manual database migration scripts or shutting down your API to transfer log records, TracerNest executes an automated, non-blocking transition when you switch from <code>storage: 'sqlite'</code> to <code>storage: 'mysql'</code>:</p>
+      
       <ol>
-        <li><strong>Schema Verification:</strong> Connects to MySQL and checks for table existence and missing columns using <code>information_schema.columns</code>.</li>
-        <li><strong>Non-Destructive DDL:</strong> Automatically executes <code>ALTER TABLE logs ADD COLUMN ...</code> for any newly added telemetry fields.</li>
-        <li><strong>Data Transfer:</strong> Safely migrates existing records from the local <code>.db</code> SQLite file into MySQL in streaming batches.</li>
-        <li><strong>Vault Preservation:</strong> Preserves your existing <code>.master.key</code>, ensuring historical encrypted entries remain readable in the embedded dashboard.</li>
+        <li><strong>In-Flight Ring Buffer:</strong> While the MySQL connection pool initializes, incoming HTTP requests write to an in-memory ring buffer (up to 5,000 entries). No logging operations block or throw exceptions.</li>
+        <li><strong>Schema Drift Inspection:</strong> TracerNest inspects the MySQL target database by querying <code>INFORMATION_SCHEMA.COLUMNS</code>. If tables or fields are missing, it executes idempotent <code>ALTER TABLE logs ADD COLUMN ...</code> statements without locking existing rows.</li>
+        <li><strong>Cursor-Based Streaming Batch Transfer:</strong> Existing log rows from the SQLite database are read in chunks of 500 records and inserted into MySQL using multi-row parameterized transactions. This prevents memory spikes and maintains database responsiveness.</li>
+        <li><strong>Atomic Storage Switch:</strong> Once SQLite records are fully copied and buffered entries are flushed, TracerNest swaps its internal write pointer to the MySQL pool. Read queries from the <code>/tracernest</code> dashboard switch seamlessly without restarting the Node.js process.</li>
+        <li><strong>Ciphertext Continuity:</strong> The AES-256-GCM ciphertext, initialization vectors, and authentication tags are transferred verbatim without decrypting and re-encrypting. Historical logs remain fully readable via your existing <code>.master.key</code>.</li>
       </ol>
     
         </div>
@@ -370,27 +371,24 @@
       <div class="footer-links">
         <div class="footer-col">
           <h4>Navigation</h4>
-          <a href="index.html#demo">Live Demo</a>
-          <a href="index.html#features">Features</a>
-          <a href="index.html#comparison">Comparison</a>
+          <a href="/#demo">Live Demo</a>
+          <a href="/#features">Features</a>
+          <a href="/#comparison">Comparison</a>
           <a href="about.html">About Us</a>
           <a href="blogs.html">Blogs</a>
           <a href="contact.html">Contact Us</a>
-          <a href="index.html#credits">Credits</a>
+          <a href="/#credits">Credits</a>
           <a href="contribute.html">Contributing</a>
         </div>
-        <!-- Dedicated Footer-only Country Pages -->
         <div class="footer-col">
-          <h4>Global Telemetry</h4>
-          <a href="united-states.html">United States 🇺🇸</a>
-          <a href="india.html">India 🇮🇳</a>
-          <a href="netherlands.html">Netherlands 🇳🇱</a>
-          <a href="poland.html">Poland 🇵🇱</a>
-          <a href="canada.html">Canada 🇨🇦</a>
-          <a href="germany.html">Germany 🇩🇪</a>
-          <a href="united-kingdom.html">United Kingdom 🇬🇧</a>
-          <a href="brazil.html">Brazil 🇧🇷</a>
-          <a href="ireland.html">Ireland 🇮🇪</a>
+          <h4>Guides &amp; Docs</h4>
+          <a href="errsole-alternative-nodejs-zero-port-telemetry.html">Errsole Alternative</a>
+          <a href="express-log-viewer-without-extra-ports.html">Express Log Viewer</a>
+          <a href="encrypt-application-logs-aes-256-gcm-nodejs.html">Log Encryption Guide</a>
+          <a href="pino-vs-winston-vs-tracernest-comparison.html">Winston vs Pino vs TracerNest</a>
+          <a href="self-hosted-logging-laravel-13-monolog-bridge.html">Laravel 13 Bridge</a>
+          <a href="zero-downtime-sqlite-to-mysql-migration.html">SQLite to MySQL Migration</a>
+          <a href="node-js-logger-zero-dependencies-guide.html">Zero-Dependency Guide</a>
         </div>
         <div class="footer-col">
           <h4>Ecosystem</h4>

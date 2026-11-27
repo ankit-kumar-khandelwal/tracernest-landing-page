@@ -16,8 +16,7 @@
   <!-- Primary Meta Tags -->
   <title>TracerNest: Self-Hosted Node.js Logging Library &amp; Log Viewer</title>
   <meta name="title" content="TracerNest: Self-Hosted Node.js Logging Library &amp; Log Viewer">
-  <meta name="description" content="Free, open-source Node.js logging library &amp; real-time log viewer dashboard. Zero dependencies, AES-256-GCM encrypted logging, and no extra ports. npm install tracernest-logger.">
-  <meta name="keywords" content="Node.js logging library, Node.js log viewer, self-hosted Node.js logger, Node.js logging dashboard, Node.js encrypted logging, zero dependency Node.js logger, Express.js logging dashboard, Node.js log monitoring, Node.js request logger, persistent Node.js logs, Node.js telemetry, Laravel logging dashboard, Errsole alternative, Winston alternative, Pino alternative, self-hosted alternative to Datadog, open-source logging dashboard, how to persist Express logs after server restart, how to view Node.js logs in a browser, how to encrypt application logs in Node.js, how to monitor Express API requests locally, how to build a self-hosted logging dashboard, United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, Ireland">
+  <meta name="description" content="Open-source self-hosted telemetry logger and encrypted log vault for Node.js and Laravel 13. Zero extra open ports and zero runtime dependencies.">
   <meta name="author" content="Ankit Khandelwal">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -153,7 +152,7 @@
           "name": "How to view Node.js logs in a browser without opening extra ports?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "TracerNest mounts as standard middleware into your application's existing HTTP pipeline (Express, Koa, or Fastify). When you navigate to your configured dashboard path (such as /tracernest), TracerNest handles the request internally and serves the web dashboard over your primary application port without requiring firewall changes or reverse proxy reconfiguration."
+            "text": "TracerNest mounts as standard middleware into your application's existing HTTP pipeline (Express or Fastify). When you navigate to your configured dashboard path (such as /tracernest), TracerNest handles the request internally and serves the web dashboard over your primary application port without requiring firewall changes or reverse proxy reconfiguration."
           }
         },
         {
@@ -169,7 +168,7 @@
           "name": "How to monitor Express API requests locally?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Register TracerNest middleware at the top of your Express app (app.use(tracerNest())). It automatically records incoming HTTP methods, route paths, status codes, execution duration in milliseconds, memory consumption, and correlation IDs. You can inspect requests in real time with level filtering in the embedded viewer."
+            "text": "Register TracerNest middleware at the top of your Express app (app.use(tracer.middleware())). It automatically records incoming HTTP methods, route paths, status codes, execution duration in milliseconds, memory consumption, and correlation IDs. You can inspect requests in real time with level filtering in the embedded viewer."
           }
         },
         {
@@ -235,7 +234,7 @@
         <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
         <span class="logo-text">Tracer<strong>Nest</strong></span>
         <!-- Dynamically Fetched Version Badge -->
-        <span class="version-badge" id="nav-version">v1.9.0</span>
+        <span class="version-badge" id="nav-version">v1.9.6</span>
       </a>
 
       <!-- Streamlined Desktop & Responsive Nav Links -->
@@ -329,7 +328,7 @@
         </h1>
 
         <p class="hero-subtitle">
-          Zero-port, zero-dependency Node.js request logger and telemetry flight recorder. Embeds an encrypted logging dashboard directly into Express, Koa, and Fastify on your existing port with auto SQLite-to-MySQL migration.
+          Zero-port, zero-dependency Node.js request logger and telemetry flight recorder. Embeds an encrypted logging dashboard directly into Express and Fastify on your existing port with auto SQLite-to-MySQL migration.
         </p>
 
         <!-- Dedicated Laravel Notice with Separate Clear Visibility -->
@@ -371,7 +370,7 @@
           <div class="stat-card">
             <div class="stat-label">NPM Package Version</div>
             <!-- Dynamically Fetched Version -->
-            <div class="stat-value" id="npm-version">v1.9.0</div>
+            <div class="stat-value" id="npm-version">v1.9.6</div>
             <div class="stat-indicator slate">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
               <span>Latest Release</span>
@@ -622,7 +621,7 @@
               </li>
               <li>
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Mounts on Express, Koa, Fastify &amp; Laravel 13</span>
+                <span>Mounts on Express, Fastify &amp; Laravel 13</span>
               </li>
             </ul>
           </div>
@@ -883,7 +882,7 @@
                 <td class="col-highlight">
                   <span class="badge-success">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span>Express, Koa, Fastify &amp; Laravel</span>
+                    <span>Express, Fastify &amp; Laravel</span>
                   </span>
                 </td>
                 <td>Node.js Only</td>
@@ -944,7 +943,7 @@
             <!-- Dynamically populated from GitHub API with Ankit Khandelwal highlighted as Lead Maintainer -->
             <div class="contributor-card maintainer-card">
               <div class="contributor-avatar-wrap">
-                <img src="https://avatars.githubusercontent.com/u/74641680?v=4" alt="Ankit Khandelwal" class="contributor-avatar" onerror="this.src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'">
+                <img src="https://avatars.githubusercontent.com/u/96085438?v=4" alt="Ankit Khandelwal" class="contributor-avatar" onerror="this.src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'">
                 <span class="maintainer-star-badge" title="Lead Maintainer">★</span>
               </div>
               <div class="contributor-meta">
@@ -1035,7 +1034,7 @@
                 <span class="credit-tag">SEO Advisor &amp; Reach Analyst</span>
               </div>
             </div>
-            <p class="credit-quote">&ldquo;Recommended sampling the V8 event-loop latency on microtask queues rather than interval timers. TracerNest implemented this with virtually zero CPU overhead—making self-hosted telemetry safe for production microservices.&rdquo;</p>
+            <p class="credit-quote">&ldquo;Advised on technical SEO architecture, structured metadata standards, and search discoverability for TracerNest developer documentation.&rdquo;</p>
           </div>
         </div>
 
@@ -1145,7 +1144,7 @@
               </span>
             </summary>
             <div class="faq-answer">
-              <p>TracerNest mounts as standard middleware into your application's existing HTTP pipeline (Express, Koa, or Fastify). When you navigate to your configured dashboard path (such as <code>/tracernest</code>), TracerNest handles the request internally and serves the web dashboard over your primary application port without requiring firewall changes or reverse proxy reconfiguration.</p>
+              <p>TracerNest mounts as standard middleware into your application's existing HTTP pipeline (Express or Fastify). When you navigate to your configured dashboard path (such as <code>/tracernest</code>), TracerNest handles the request internally and serves the web dashboard over your primary application port without requiring firewall changes or reverse proxy reconfiguration.</p>
               <p class="faq-doc-link">
                 <a href="express-log-viewer-without-extra-ports.html">Read the Express log viewer setup tutorial &rarr;</a>
               </p>
@@ -1177,7 +1176,7 @@
               </span>
             </summary>
             <div class="faq-answer">
-              <p>Register TracerNest middleware at the top of your Express app (<code>app.use(tracerNest())</code>). It automatically records incoming HTTP methods, route paths, status codes, execution duration in milliseconds, memory consumption, and correlation IDs. You can inspect requests in real time with level filtering in the embedded viewer.</p>
+              <p>Register TracerNest middleware at the top of your Express app (<code>app.use(tracer.middleware())</code>). It automatically records incoming HTTP methods, route paths, status codes, execution duration in milliseconds, memory consumption, and correlation IDs. You can inspect requests in real time with level filtering in the embedded viewer.</p>
               <p class="faq-doc-link">
                 <a href="express-log-viewer-without-extra-ports.html">Read the Express telemetry &amp; route profiling guide &rarr;</a>
               </p>
@@ -1374,18 +1373,15 @@
           <a href="#credits">Credits</a>
           <a href="contribute.html">Contributing</a>
         </div>
-        <!-- Dedicated Footer-only Country Pages -->
         <div class="footer-col">
-          <h4>Global Telemetry</h4>
-          <a href="united-states.html">United States 🇺🇸</a>
-          <a href="india.html">India 🇮🇳</a>
-          <a href="netherlands.html">Netherlands 🇳🇱</a>
-          <a href="poland.html">Poland 🇵🇱</a>
-          <a href="canada.html">Canada 🇨🇦</a>
-          <a href="germany.html">Germany 🇩🇪</a>
-          <a href="united-kingdom.html">United Kingdom 🇬🇧</a>
-          <a href="brazil.html">Brazil 🇧🇷</a>
-          <a href="ireland.html">Ireland 🇮🇪</a>
+          <h4>Guides &amp; Docs</h4>
+          <a href="errsole-alternative-nodejs-zero-port-telemetry.html">Errsole Alternative</a>
+          <a href="express-log-viewer-without-extra-ports.html">Express Log Viewer</a>
+          <a href="encrypt-application-logs-aes-256-gcm-nodejs.html">Log Encryption Guide</a>
+          <a href="pino-vs-winston-vs-tracernest-comparison.html">Winston vs Pino vs TracerNest</a>
+          <a href="self-hosted-logging-laravel-13-monolog-bridge.html">Laravel 13 Bridge</a>
+          <a href="zero-downtime-sqlite-to-mysql-migration.html">SQLite to MySQL Migration</a>
+          <a href="node-js-logger-zero-dependencies-guide.html">Zero-Dependency Guide</a>
         </div>
         <div class="footer-col">
           <h4>Ecosystem</h4>

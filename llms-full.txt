@@ -2,7 +2,7 @@
 
 > Comprehensive technical specification, architecture blueprints, security protocols, and operational guides for TracerNest (tracernest-logger).
 
-Version: 1.2.0  
+Version: 1.9.6  
 Maintainer: Ankit Khandelwal (ankitkhandelwal0003@gmail.com)  
 - [Creator LinkedIn Profile](https://www.linkedin.com/in/ankit-khandelwal-3068a9194/)  
 - [GitHub Repository](https://github.com/ankit-kumar-khandelwal/tracernest-logger)  
@@ -30,7 +30,7 @@ It was engineered by Ankit Khandelwal to solve fundamental architectural drawbac
 TracerNest intercepts incoming HTTP requests at the framework router level:
 - In Express: `app.use('/tracernest', tracernest.router)`
 - In Fastify: `fastify.register(tracernest.plugin, { prefix: '/tracernest' })`
-- In Laravel 13: `Route::any('/tracernest/{any?}', [TracerNestController::class, 'handle'])`
+- In Laravel 13: `require base_path('node_modules/tracernest-logger/integrations/laravel/routes.php');` and middleware append in `bootstrap/app.php`
 
 The dashboard static assets, API endpoints, and authentication are served over the exact same TLS/HTTPS port as your application.
 
@@ -109,16 +109,3 @@ All blog posts are version-controlled in [BLOGS.md](https://github.com/ankit-kum
 10. [Building a High-Performance Node.js Logger with Native Standard Libraries](https://tracernest.info/node-js-logger-zero-dependencies-guide.html)
    - Leveraging `node:crypto`, `node:http`, and `node:sqlite` to build enterprise logging vaults without installing third-party npm packages.
 
----
-
-### 6. Global Telemetry & Regional Deployment Specifications
-TracerNest provides dedicated regional documentation pages:
-- [United States Telemetry Node](https://tracernest.info/united-states.html): High-throughput US cloud deployments on AWS (us-east-1, us-west-2), Google Cloud (us-central1), and Azure with zero third-party egress.
-- [India Telemetry Node](https://tracernest.info/india.html): Reserve Bank of India (RBI) payment telemetry data localization and high-throughput UPI fintech transaction logging.
-- [Netherlands Telemetry Node](https://tracernest.info/netherlands.html): European data residency and AMS-IX ultra-low latency European hub deployment.
-- [Poland Telemetry Node](https://tracernest.info/poland.html): Central European engineering teams, Warsaw cloud nodes, and local data sovereignty.
-- [Canada Telemetry Node](https://tracernest.info/canada.html): Canadian data residency and local storage standards for Montreal and Toronto clusters.
-- [Germany Telemetry Node](https://tracernest.info/germany.html): On-premise German cloud deployments, bare-metal Kubernetes, and zero third-party telemetry egress.
-- [United Kingdom Telemetry Node](https://tracernest.info/united-kingdom.html): Financial-grade tamper-evident audit logging and London cloud deployments.
-- [Brazil Telemetry Node](https://tracernest.info/brazil.html): Latin American data privacy and local storage across São Paulo cloud availability zones.
-- [Ireland Telemetry Node](https://tracernest.info/ireland.html): Irish Data Protection Commission (DPC) standards for Dublin SaaS telemetry infrastructure.

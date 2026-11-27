@@ -14,10 +14,9 @@
   </script>
   
   <!-- Primary Meta Tags -->
-  <title>Laravel Logging Dashboard: Self-Hosted Monolog Viewer &amp; Vault | TracerNest</title>
+  <title>Laravel Logging Dashboard: Self-Hosted Monolog Viewer</title>
   <meta name="title" content="Laravel Logging Dashboard: Self-Hosted Monolog Viewer &amp; Vault | TracerNest">
-  <meta name="description" content="Free, self-hosted Laravel logging dashboard and encrypted log viewer for Laravel 13. Monolog bridge, zero extra ports, hardware AES-256-GCM encryption, and SQLite to MySQL migration.">
-  <meta name="keywords" content="Laravel logging dashboard, self-hosted Laravel logger, Laravel 13 logger, Monolog log viewer, encrypted Laravel logs, PHP telemetry, Laravel request monitoring, zero-port telemetry, SQLite to MySQL migration, TracerNest">
+  <meta name="description" content="Self-hosted Laravel logging dashboard and encrypted log viewer for Laravel 13. Monolog bridge, zero extra ports, and AES-256-GCM encryption.">
   <meta name="author" content="Ankit Khandelwal">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://tracernest.info/laravel-logging-dashboard.html">
@@ -179,7 +178,7 @@
     <div class="container announcement-inner">
       <div class="announcement-left">
         <span class="announcement-pill">Laravel 13 Integration</span>
-        <span class="announcement-text">Self-hosted telemetry and encrypted log viewer for modern PHP 8.2+ apps &bull; <a href="index.html" class="announcement-contribute-link">&larr; Back to Node.js Homepage</a></span>
+        <span class="announcement-text">Self-hosted telemetry and encrypted log viewer for modern PHP 8.2+ apps &bull; <a href="/" class="announcement-contribute-link">&larr; Back to Node.js Homepage</a></span>
       </div>
       <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="fast-star-btn" title="Star TracerNest on GitHub">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -193,14 +192,14 @@
   <!-- Navigation Bar -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="brand-logo" aria-label="TracerNest Home">
+      <a href="/" class="brand-logo" aria-label="TracerNest Home">
         <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
         <span class="logo-text">Tracer<strong>Nest</strong></span>
         <span class="version-badge" id="nav-version">Laravel 13</span>
       </a>
 
       <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link-item">Home (Node.js)</a>
+        <a href="/" class="nav-link-item">Home (Node.js)</a>
         <a href="#setup" class="nav-link-item">Installation</a>
         <a href="#features" class="nav-link-item">Features</a>
         <a href="#comparison" class="nav-link-item">Comparison</a>
@@ -246,7 +245,7 @@
       <div class="container hero-content">
         <!-- Breadcrumb -->
         <nav class="blog-breadcrumb" aria-label="Breadcrumb" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-          <a href="index.html" style="color: var(--teal-400); text-decoration: none;">Home</a>
+          <a href="/" style="color: var(--teal-400); text-decoration: none;">Home</a>
           <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
           <span style="color: var(--text-muted);">Integrations</span>
           <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
@@ -277,7 +276,7 @@
             <span class="terminal-title">Install &bull; Laravel Monolog Bridge</span>
           </div>
           <div class="terminal-body">
-            <code><span class="prompt">$</span> composer require tracernest/laravel &amp;&amp; npm i tracernest-logger</code>
+            <code><span class="prompt">$</span> npm install tracernest-logger</code>
             <button class="copy-btn" id="copy-install-btn" title="Copy command">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
               <span>Copy</span>
@@ -289,7 +288,7 @@
           <a href="#setup" class="btn btn-large btn-accent">
             <span>View 3-Step Setup Guide &darr;</span>
           </a>
-          <a href="index.html#demo" class="btn btn-large btn-outline">
+          <a href="/#demo" class="btn btn-large btn-outline">
             <span>Live Interactive Demo</span>
           </a>
         </div>
@@ -343,7 +342,7 @@
               <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             </div>
             <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Node.js &amp; Laravel Unified Tracing</h3>
-            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Correlate distributed microservice calls across PHP backends and Node.js microservices with unified <code>x-request-id</code> and <code>traceparent</code> headers in a single pane of glass.</p>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Correlate distributed microservice calls across PHP backends and Node.js microservices by capturing <code>x-request-id</code> headers directly in your unified log vault. (Automated W3C <code>traceparent</code> context propagation is scheduled for the v2.0.0 roadmap).</p>
           </div>
 
           <div class="feature-card" style="padding: 2rem;">
@@ -371,11 +370,16 @@
           <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
             Step 1: Install the Package
           </h3>
-          <p style="color: var(--text-muted); margin-bottom: 1rem;">Install the official TracerNest package via Composer and npm:</p>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Install the official TracerNest package via npm and copy the integration bridge files into your Laravel project:</p>
           <div class="blog-code-block">
             <div class="blog-code-header"><span>Terminal</span></div>
-            <pre><code>composer require tracernest/laravel
-npm install tracernest-logger</code></pre>
+            <pre><code># 1. Install TracerNest in your application
+            npm install tracernest-logger
+
+            # 2. Copy the official Laravel bridge files
+            cp node_modules/tracernest-logger/integrations/laravel/TracerNestMiddleware.php app/Http/Middleware/
+            cp node_modules/tracernest-logger/integrations/laravel/TracerNestController.php app/Http/Controllers/
+            cp node_modules/tracernest-logger/integrations/laravel/tracernest.php config/</code></pre>
           </div>
         </div>
 
@@ -396,7 +400,7 @@ npm install tracernest-logger</code></pre>
 
     'tracernest' => [
         'driver' => 'custom',
-        'via' => \TracerNest\Laravel\TracerNestLogger::class,
+        'via' => \App\Http\Controllers\TracerNestController::class,
         'level' => env('LOG_LEVEL', 'debug'),
         'path' => '/tracernest',
         'storage' => env('TRACERNEST_STORAGE', 'sqlite'),
@@ -408,34 +412,20 @@ npm install tracernest-logger</code></pre>
         <!-- Step 3 -->
         <div style="margin-bottom: 2.5rem;">
           <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem;">
-            Step 3: Register Middleware in <code>bootstrap/app.php</code>
+            Step 3: Register Route &amp; Middleware (Laravel 13)
           </h3>
-          <p style="color: var(--text-muted); margin-bottom: 1rem;">Attach TracerNest request lifecycle tracking to your global HTTP middleware stack:</p>
-          <div class="blog-code-block">
-            <div class="blog-code-header"><span>PHP (bootstrap/app.php - Laravel 13)</span></div>
-            <pre><code>use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Configuration\Middleware;
-use TracerNest\Laravel\Http\Middleware\TracerNestTelemetryMiddleware;
-
-return Application::configure(basePath: dirname(__DIR__))
-    ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
-        health: '/up',
-    )
-    ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->append(TracerNestTelemetryMiddleware::class);
-    })
-    ->create();</code></pre>
+          <p style="color: var(--text-muted); margin-bottom: 0.5rem;">1. In <code>routes/web.php</code>, load the dashboard route:</p>
+          <div class="blog-code-block" style="margin-bottom: 1.25rem;">
+            <div class="blog-code-header"><span>PHP (routes/web.php)</span></div>
+            <pre><code>require base_path('node_modules/tracernest-logger/integrations/laravel/routes.php');</code></pre>
           </div>
-        </div>
-
-        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.75rem; text-align: center;">
-          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--teal-400);">That's it! Your dashboard is live</h4>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">Navigate to <code>https://your-domain.test/tracernest</code> to inspect real-time encrypted telemetry, query durations, and exception stack traces.</p>
-          <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            <span>Star TracerNest on GitHub &rarr;</span>
-          </a>
+          <p style="color: var(--text-muted); margin-bottom: 0.5rem;">2. In <code>bootstrap/app.php</code> (Laravel 13), append the middleware:</p>
+          <div class="blog-code-block">
+            <div class="blog-code-header"><span>PHP (bootstrap/app.php)</span></div>
+            <pre><code>->withMiddleware(function (Middleware $middleware) {
+    $middleware->append(\App\Http\Middleware\TracerNestMiddleware::class);
+})</code></pre>
+          </div>
         </div>
       </div>
     </section>
@@ -486,7 +476,7 @@ return Application::configure(basePath: dirname(__DIR__))
               </tr>
               <tr>
                 <td><strong>Microservice Correlation (Node + PHP)</strong></td>
-                <td class="col-highlight"><span style="color: #10b981; font-weight: 700;">✓ Unified x-request-id</span></td>
+                <td class="col-highlight"><span style="color: #10b981; font-weight: 700;">✓ x-request-id Middleware</span></td>
                 <td><span style="color: #ef4444;">✗ Isolated Silo</span></td>
                 <td>Requires Multiple SDKs</td>
               </tr>
@@ -564,7 +554,7 @@ return Application::configure(basePath: dirname(__DIR__))
               </span>
             </summary>
             <div class="faq-answer">
-              <p>When an incoming HTTP request contains an <code>x-request-id</code> or W3C <code>traceparent</code> header, TracerNest captures and propagates that trace ID across both Laravel and Node.js microservices. In the dashboard, you can filter by correlation ID to inspect the full end-to-end journey of a transaction across multiple polyglot services.</p>
+              <p>When an incoming HTTP request contains an <code>x-request-id</code> header, the TracerNest Laravel middleware captures that identifier and attaches it to all log entries produced during the request lifecycle. In the dashboard, you can filter by correlation ID to trace issues instantly. Full automated W3C <code>traceparent</code> propagation across polyglot microservice boundaries is on the official v2.0.0 roadmap.</p>
               <p class="faq-doc-link">
                 <a href="microservices-distributed-tracing-sqlite-mysql.html">Read the distributed microservices tracing guide &rarr;</a>
               </p>
@@ -618,27 +608,24 @@ return Application::configure(basePath: dirname(__DIR__))
       <div class="footer-links">
         <div class="footer-col">
           <h4>Navigation</h4>
-          <a href="index.html#demo">Live Demo</a>
-          <a href="index.html#features">Features</a>
-          <a href="index.html#comparison">Comparison</a>
+          <a href="/#demo">Live Demo</a>
+          <a href="/#features">Features</a>
+          <a href="/#comparison">Comparison</a>
           <a href="about.html">About Us</a>
           <a href="blogs.html">Blogs</a>
           <a href="contact.html">Contact Us</a>
-          <a href="index.html#credits">Credits</a>
+          <a href="/#credits">Credits</a>
           <a href="contribute.html">Contributing</a>
         </div>
-        <!-- Dedicated Footer-only Country Pages -->
         <div class="footer-col">
-          <h4>Global Telemetry</h4>
-          <a href="united-states.html">United States 🇺🇸</a>
-          <a href="india.html">India 🇮🇳</a>
-          <a href="netherlands.html">Netherlands 🇳🇱</a>
-          <a href="poland.html">Poland 🇵🇱</a>
-          <a href="canada.html">Canada 🇨🇦</a>
-          <a href="germany.html">Germany 🇩🇪</a>
-          <a href="united-kingdom.html">United Kingdom 🇬🇧</a>
-          <a href="brazil.html">Brazil 🇧🇷</a>
-          <a href="ireland.html">Ireland 🇮🇪</a>
+          <h4>Guides &amp; Docs</h4>
+          <a href="errsole-alternative-nodejs-zero-port-telemetry.html">Errsole Alternative</a>
+          <a href="express-log-viewer-without-extra-ports.html">Express Log Viewer</a>
+          <a href="encrypt-application-logs-aes-256-gcm-nodejs.html">Log Encryption Guide</a>
+          <a href="pino-vs-winston-vs-tracernest-comparison.html">Winston vs Pino vs TracerNest</a>
+          <a href="self-hosted-logging-laravel-13-monolog-bridge.html">Laravel 13 Bridge</a>
+          <a href="zero-downtime-sqlite-to-mysql-migration.html">SQLite to MySQL Migration</a>
+          <a href="node-js-logger-zero-dependencies-guide.html">Zero-Dependency Guide</a>
         </div>
         <div class="footer-col">
           <h4>Ecosystem</h4>

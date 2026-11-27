@@ -25,12 +25,12 @@ The Problem with Traditional Log Dashboards
 
       ```javascript
 const express = require('express');
-const { tracerNest } = require('tracernest-logger');
+const { TracerNestLogger } = require('tracernest-logger');
 
 const app = express();
 
 // Single-line middleware hooks telemetry on your existing port (e.g. 3000)
-app.use(tracerNest({
+const tracer = new TracerNestLogger({
   path: '/tracernest',
   storage: 'sqlite', // or 'mysql'
   auth: { user: process.env.TN_USER, pass: process.env.TN_PASS }
@@ -235,7 +235,7 @@ The State of NPM Dependency Sprawl
 **Author:** Ankit Khandelwal
 **ReadTime:** 7 min read
 **Tags:** Infrastructure, Data Sovereignty, Global, Data Privacy
-**Summary:** How distributed engineering teams across the United States, India, Netherlands, Poland, Canada, Germany, United Kingdom, Brazil, and Ireland deploy self-hosted TracerNest nodes.
+**Summary:** How distributed engineering teams across the North America, Europe, and Asia-Pacific deploy self-hosted TracerNest nodes.
 
 Observability in a Multi-Region World
       Modern software organizations rarely deploy to a single datacenter. With traffic spanning North America, Europe, Latin America, and the Asia-Pacific region, data sovereignty and latency considerations dictate where logs must be stored:
@@ -264,12 +264,12 @@ Why Traditional Log Viewers Create Port Headaches
 
       ```javascript
 const express = require('express');
-const { tracerNest } = require('tracernest-logger');
+const { TracerNestLogger } = require('tracernest-logger');
 
 const app = express();
 
 // Attach TracerNest log viewer on /tracernest
-app.use(tracerNest({
+const tracer = new TracerNestLogger({
   path: '/tracernest',
   storage: 'sqlite',
   auth: {
@@ -369,7 +369,7 @@ The Hidden Cost of SaaS Observability
       As microservice architectures scale, SaaS APM providers (Datadog, New Relic, Dynatrace) charge aggressive per-host and per-gigabyte ingestion fees. A microservices cluster generating 20GB of logs per day can easily rack up $1,000+ monthly in SaaS bills alone.
 
       Correlation ID Propagation
-      TracerNest automatically intercepts standard tracing headers (x-request-id, traceparent, x-correlation-id). When service A calls service B, the trace identifier flows downstream, enabling complete root-cause drilldowns across containers:
+      In TracerNest v1.9.6, developers propagate correlation IDs across microservice boundaries by forwarding x-request-id headers between service hops. Full automated W3C traceparent and baggage context propagation is actively on the v2.0.0 Architecture Roadmap. When service A calls service B, the trace identifier flows downstream, enabling complete root-cause drilldowns across containers:
 
       ```javascript
 // In your service handler

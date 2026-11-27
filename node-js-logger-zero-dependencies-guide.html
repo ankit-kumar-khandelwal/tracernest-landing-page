@@ -12,16 +12,15 @@
     gtag('js', new Date());
     gtag('config', 'G-EXGDCY9J38');
   </script>
-  <title>Building a High-Performance Node.js Logger with Native Standard Libraries | TracerNest Blog</title>
+  <title>High-Performance Node.js Logger Using Native Libraries</title>
   <meta name="description" content="Explore how TracerNest was engineered using only native Node.js standard libraries: node:crypto, node:http, and node:sqlite with zero npm dependencies.">
-  <meta name="keywords" content="Node.js, Architecture, Zero-Dependencies, Performance, tracernest, nodejs logger, self-hosted telemetry">
   <meta name="author" content="Ankit Khandelwal">
   <link rel="canonical" href="https://tracernest.info/node-js-logger-zero-dependencies-guide.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Building a High-Performance Node.js Logger with Native Standard Libraries">
+  <meta property="og:title" content="High-Performance Node.js Logger Using Native Libraries">
   <meta property="og:description" content="Explore how TracerNest was engineered using only native Node.js standard libraries: node:crypto, node:http, and node:sqlite with zero npm dependencies.">
   <meta property="og:url" content="https://tracernest.info/node-js-logger-zero-dependencies-guide.html">
   <meta property="og:image" content="https://tracernest.info/assets/tracernest-logger-social-banner.png">
@@ -30,7 +29,7 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Building a High-Performance Node.js Logger with Native Standard Libraries">
+  <meta name="twitter:title" content="High-Performance Node.js Logger Using Native Libraries">
   <meta name="twitter:description" content="Explore how TracerNest was engineered using only native Node.js standard libraries: node:crypto, node:http, and node:sqlite with zero npm dependencies.">
   <meta name="twitter:image" content="https://tracernest.info/assets/tracernest-logger-social-banner.png">
 
@@ -46,7 +45,7 @@
   {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Building a High-Performance Node.js Logger with Native Standard Libraries",
+  "headline": "High-Performance Node.js Logger Using Native Libraries",
   "description": "Explore how TracerNest was engineered using only native Node.js standard libraries: node:crypto, node:http, and node:sqlite with zero npm dependencies.",
   "url": "https://tracernest.info/node-js-logger-zero-dependencies-guide.html",
   "datePublished": "2026-11-27",
@@ -106,21 +105,21 @@
   <!-- Clean Minimalist Navigation Bar (Country pages are in Footer ONLY, not in Navigation) -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="brand-logo" aria-label="TracerNest Home">
+      <a href="/" class="brand-logo" aria-label="TracerNest Home">
         <img src="assets/tracernest-logger-icon-transparent.svg" alt="TracerNest Logo" width="28" height="28" class="brand-logo-img">
         <span class="logo-text">Tracer<strong>Nest</strong></span>
-        <span class="version-badge" id="nav-version">v1.9.0</span>
+        <span class="version-badge" id="nav-version">v1.9.6</span>
       </a>
 
       <!-- Streamlined Desktop & Responsive Nav Links -->
       <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-        <a href="index.html#demo" class="nav-link-item">Demo</a>
-        <a href="index.html#features" class="nav-link-item">Features</a>
-        <a href="index.html#architecture" class="nav-link-item">Architecture</a>
+        <a href="/#demo" class="nav-link-item">Demo</a>
+        <a href="/#features" class="nav-link-item">Features</a>
+        <a href="/#architecture" class="nav-link-item">Architecture</a>
         <a href="about.html" class="nav-link-item">About Us</a>
         <a href="blogs.html" class="nav-link-item active" aria-current="page">Blogs</a>
         <a href="contact.html" class="nav-link-item">Contact Us</a>
-        <a href="index.html#credits" class="nav-link-item">Credits</a>
+        <a href="/#credits" class="nav-link-item">Credits</a>
         <div class="mobile-nav-footer">
           <a href="https://github.com/ankit-kumar-khandelwal/tracernest-logger" target="_blank" rel="noopener noreferrer" class="btn btn-github mobile-btn-full">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -185,7 +184,7 @@
         
         <!-- Breadcrumb Navigation -->
         <nav class="blog-breadcrumb" aria-label="Breadcrumb" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-          <a href="index.html" style="color: var(--teal-400); text-decoration: none;">Home</a>
+          <a href="/" style="color: var(--teal-400); text-decoration: none;">Home</a>
           <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
           <a href="blogs.html" style="color: var(--teal-400); text-decoration: none;">Blogs</a>
           <span style="margin: 0 0.5rem; color: var(--border-subtle);">&gt;</span>
@@ -239,7 +238,7 @@
       <ul>
         <li><code>node:crypto</code> — Hardware-accelerated AES-256-GCM, SHA-256, and cryptographically secure random bytes.</li>
         <li><code>node:sqlite</code> — High-performance built-in SQLite engine with synchronous WAL support.</li>
-        <li><code>node:http</code> — Native HTTP streaming and header serialization without Express or Koa dependencies.</li>
+        <li><code>node:http</code> — Native HTTP streaming and header serialization without third-party framework dependencies.</li>
       </ul>
 
       <h2>Zero Runtime Dependencies (dependencies: {})</h2>
@@ -374,27 +373,24 @@
       <div class="footer-links">
         <div class="footer-col">
           <h4>Navigation</h4>
-          <a href="index.html#demo">Live Demo</a>
-          <a href="index.html#features">Features</a>
-          <a href="index.html#comparison">Comparison</a>
+          <a href="/#demo">Live Demo</a>
+          <a href="/#features">Features</a>
+          <a href="/#comparison">Comparison</a>
           <a href="about.html">About Us</a>
           <a href="blogs.html">Blogs</a>
           <a href="contact.html">Contact Us</a>
-          <a href="index.html#credits">Credits</a>
+          <a href="/#credits">Credits</a>
           <a href="contribute.html">Contributing</a>
         </div>
-        <!-- Dedicated Footer-only Country Pages -->
         <div class="footer-col">
-          <h4>Global Telemetry</h4>
-          <a href="united-states.html">United States 🇺🇸</a>
-          <a href="india.html">India 🇮🇳</a>
-          <a href="netherlands.html">Netherlands 🇳🇱</a>
-          <a href="poland.html">Poland 🇵🇱</a>
-          <a href="canada.html">Canada 🇨🇦</a>
-          <a href="germany.html">Germany 🇩🇪</a>
-          <a href="united-kingdom.html">United Kingdom 🇬🇧</a>
-          <a href="brazil.html">Brazil 🇧🇷</a>
-          <a href="ireland.html">Ireland 🇮🇪</a>
+          <h4>Guides &amp; Docs</h4>
+          <a href="errsole-alternative-nodejs-zero-port-telemetry.html">Errsole Alternative</a>
+          <a href="express-log-viewer-without-extra-ports.html">Express Log Viewer</a>
+          <a href="encrypt-application-logs-aes-256-gcm-nodejs.html">Log Encryption Guide</a>
+          <a href="pino-vs-winston-vs-tracernest-comparison.html">Winston vs Pino vs TracerNest</a>
+          <a href="self-hosted-logging-laravel-13-monolog-bridge.html">Laravel 13 Bridge</a>
+          <a href="zero-downtime-sqlite-to-mysql-migration.html">SQLite to MySQL Migration</a>
+          <a href="node-js-logger-zero-dependencies-guide.html">Zero-Dependency Guide</a>
         </div>
         <div class="footer-col">
           <h4>Ecosystem</h4>
