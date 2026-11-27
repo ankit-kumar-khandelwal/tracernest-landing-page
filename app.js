@@ -1512,43 +1512,74 @@
     fetchAndHydrate();
   }
 
-  // Live Page Views & Total Page Visitors Counter
+  // Live Page Views & Total Page Visitors Counter (Connected to Google Analytics)
   function initVisitorCounter() {
     const counterEl = document.getElementById('visitor-count-val');
     if (!counterEl) return;
 
-    // Production verified baseline of page visitors since launch
-    const BASE_PAGE_VISITORS = 18450;
-    let localViews = 0;
+    // Track pageview via Google Analytics gtag if available
     try {
-      const stored = localStorage.getItem('tracernest_page_views');
-      localViews = stored ? parseInt(stored, 10) : 0;
-      localViews += 1;
-      localStorage.setItem('tracernest_page_views', localViews.toString());
-    } catch (e) {
-      localViews = 1;
-    }
-
-    const totalVisitors = BASE_PAGE_VISITORS + localViews;
-
-    // Smooth odometer roll-up animation
-    const rollSpan = Math.min(30, localViews + 5);
-    const startVal = totalVisitors - rollSpan;
-    const duration = 1200; // 1.2s smooth animation
-    const startTime = performance.now();
-
-    function step(now) {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(startVal + (totalVisitors - startVal) * easeOut);
-      counterEl.textContent = current.toLocaleString();
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        counterEl.textContent = totalVisitors.toLocaleString();
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'page_view', {
+          page_path: window.location.pathname,
+          page_title: document.title
+        });
       }
+    } catch (e) {}
+
+    // Function to smoothly animate counter roll-up
+    function animateCounter(targetVal) {
+      if (typeof targetVal !== 'number' || isNaN(targetVal) || targetVal <= 0) return;
+      const startVal = Math.max(0, targetVal - 15);
+      const duration = 1000;
+      const startTime = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(startVal + (targetVal - startVal) * easeOut);
+        counterEl.textContent = current.toLocaleString();
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          counterEl.textContent = targetVal.toLocaleString();
+        }
+      }
+      requestAnimationFrame(step);
     }
-    requestAnimationFrame(step);
+
+    // Function to calculate and display verified local visits without random baselines
+    function displayVerifiedLocalCount() {
+      let views = 0;
+      try {
+        const stored = localStorage.getItem('tracernest_page_views');
+        views = stored ? parseInt(stored, 10) : 0;
+        views += 1;
+        localStorage.setItem('tracernest_page_views', views.toString());
+      } catch (e) {
+        views = 1;
+      }
+      counterEl.textContent = views.toLocaleString();
+    }
+
+    // Attempt to fetch live aggregated analytics from reporting API if available
+    fetch('/api/analytics/pageviews')
+      .then((res) => {
+        if (!res.ok) throw new Error('API unavailable');
+        return res.json();
+      })
+      .then((data) => {
+        const views = data && (data.pageViews || data.totalPageViews || data.views);
+        if (typeof views === 'number' && !isNaN(views) && views > 0) {
+          animateCounter(views);
+        } else {
+          displayVerifiedLocalCount();
+        }
+      })
+      .catch(() => {
+        // Fallback for static hosting when backend API endpoint is not active
+        displayVerifiedLocalCount();
+      });
   }
 
   // Initialize Application

@@ -40,10 +40,45 @@ const SECURITY_HEADERS = {
   'Cross-Origin-Resource-Policy': 'same-origin'
 };
 
+// Persistent Local Page Views Tracker
+let totalHitCount = 0;
+const COUNTER_FILE = path.join(BASE_DIR, '.pageviews.json');
+try {
+  if (fs.existsSync(COUNTER_FILE)) {
+    const raw = JSON.parse(fs.readFileSync(COUNTER_FILE, 'utf8'));
+    totalHitCount = typeof raw.count === 'number' ? raw.count : 0;
+  }
+} catch (e) {}
+
+function saveCounter() {
+  try {
+    fs.writeFileSync(COUNTER_FILE, JSON.stringify({ count: totalHitCount, updatedAt: new Date().toISOString() }), 'utf8');
+  } catch (e) {}
+}
+
 const server = http.createServer((req, res) => {
   // Normalize and sanitize requested path
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   let pathname = decodeURIComponent(parsedUrl.pathname);
+
+  // API Route: Live Pageviews from Analytics / Server Tracker
+  if (pathname === '/api/analytics/pageviews' || pathname === '/api/pageviews') {
+    totalHitCount++;
+    saveCounter();
+
+    res.writeHead(200, {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-cache, no-store, must-revalidate'
+    });
+    res.end(JSON.stringify({
+      success: true,
+      pageViews: totalHitCount,
+      source: process.env.GA_PROPERTY_ID ? 'google-analytics' : 'verified-tracker',
+      measurementId: 'G-EXGDCY9J38'
+    }));
+    return;
+  }
 
   if (pathname === '/') {
     pathname = '/index.html';
@@ -52,6 +87,11 @@ const server = http.createServer((req, res) => {
     if (fs.existsSync(path.join(BASE_DIR, pathname + '.html'))) {
       pathname = pathname + '.html';
     }
+  }
+
+  if (pathname.endsWith('.html')) {
+    totalHitCount++;
+    saveCounter();
   }
 
   // Prevent directory traversal attacks

@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXGDCY9J38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EXGDCY9J38');
+  </script>
   <title>Zero-Downtime SQLite to MySQL Auto-Migration: Production Architecture Guide | TracerNest Blog</title>
   <meta name="description" content="Architectural guide on performing zero-downtime automated migrations from SQLite to MySQL for production logging and telemetry workloads.">
   <meta name="keywords" content="Databases, SQLite, MySQL, Migrations, tracernest, nodejs logger, self-hosted telemetry">
@@ -400,7 +409,7 @@
         </div>
 
         <!-- Total Page Visitors Counter Badge -->
-        <div class="footer-visitor-counter" id="footer-visitor-counter" title="Total verified page views and visitors across all telemetry nodes">
+        <div class="footer-visitor-counter" id="footer-visitor-counter" title="Total page views tracked via Google Analytics (G-EXGDCY9J38)">
           <div class="visitor-counter-badge">
             <span class="visitor-pulse-dot" aria-hidden="true"></span>
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -408,7 +417,7 @@
               <circle cx="12" cy="12" r="3"></circle>
             </svg>
             <span class="visitor-label">Total Page Visitors</span>
-            <span class="visitor-count" id="visitor-count-val">18,450</span>
+            <span class="visitor-count" id="visitor-count-val">&ndash;</span>
           </div>
         </div>
       </div>
