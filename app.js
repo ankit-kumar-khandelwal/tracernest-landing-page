@@ -997,57 +997,36 @@
     // Contact form replaced by direct communication channels & knowledge base
   }
 
-  // Floating Star Toast Notification
+  // Minimal Floating Star Toast Notification (Appears every time site loads)
   function initFloatingStarToast() {
     const toast = document.getElementById('floating-star-toast');
     const closeBtn = document.getElementById('toast-close-btn');
-    const starBtn = document.getElementById('toast-star-btn');
-    const reviewBtn = document.getElementById('toast-review-btn');
-    const contributeBtn = document.getElementById('toast-contribute-btn');
     if (!toast) return;
 
-    const DISMISS_KEY = 'tracernest_star_toast_dismissed';
-    try {
-      const dismissedAt = localStorage.getItem(DISMISS_KEY);
-      // Re-prompt after 7 days if previously dismissed
-      if (dismissedAt && Date.now() - parseInt(dismissedAt, 10) < 7 * 24 * 60 * 60 * 1000) {
-        return;
-      }
-    } catch (e) {}
-
-    // Display toast after a short delay (3.5 seconds)
+    // Appears every time site loads after brief 600ms entrance delay
     setTimeout(() => {
       toast.style.display = 'block';
-    }, 3500);
+      requestAnimationFrame(() => {
+        toast.classList.add('visible');
+      });
+    }, 600);
 
     function dismissToast() {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(12px)';
-      toast.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+      toast.classList.remove('visible');
       setTimeout(() => {
         toast.style.display = 'none';
-      }, 250);
-      try {
-        localStorage.setItem(DISMISS_KEY, Date.now().toString());
-      } catch (e) {}
+      }, 300);
     }
 
     if (closeBtn) closeBtn.addEventListener('click', dismissToast);
-    if (reviewBtn) {
-      reviewBtn.addEventListener('click', () => {
-        setTimeout(dismissToast, 1200);
+
+    // If user clicks anywhere on links inside, dismiss smoothly after opening link
+    const links = toast.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        setTimeout(dismissToast, 1000);
       });
-    }
-    if (starBtn) {
-      starBtn.addEventListener('click', () => {
-        setTimeout(dismissToast, 1200);
-      });
-    }
-    if (contributeBtn) {
-      contributeBtn.addEventListener('click', () => {
-        setTimeout(dismissToast, 600);
-      });
-    }
+    });
   }
 
   // Default Embedded Technical Articles (Derived from BLOGS.md for zero-latency offline/instant readiness)
