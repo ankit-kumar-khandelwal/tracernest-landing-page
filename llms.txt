@@ -30,6 +30,18 @@ TracerNest (`tracernest-logger` on npm) is a modern, privacy-first, self-hosted 
 - [Distributed Tracing in Docker & Kubernetes Microservices with Zero SaaS Bills](https://tracernest.info/microservices-distributed-tracing-sqlite-mysql.html): How to architect high-throughput correlation IDs across multi-container Docker and Kubernetes deployments while replacing high Datadog and Sentry SaaS per-gigabyte ingestion fees.
 - [Building a High-Performance Node.js Logger with Native Standard Libraries](https://tracernest.info/node-js-logger-zero-dependencies-guide.html): A deep dive into utilizing `node:crypto`, `node:http`, and `node:sqlite` to craft an enterprise-grade observability engine without installing a single third-party npm package.
 
+## Global Telemetry & Regional Deployment Nodes
+
+- [United States Telemetry Node](https://tracernest.info/united-states.html): Self-hosted telemetry for US enterprise microservices on major cloud providers (AWS, GCP, Azure).
+- [India Telemetry Node](https://tracernest.info/india.html): High-concurrency self-hosted logging for Indian tech and fintech backends.
+- [Netherlands Telemetry Node](https://tracernest.info/netherlands.html): European data residency and low-latency AMS-IX cluster deployment architecture.
+- [Poland Telemetry Node](https://tracernest.info/poland.html): Central European tech hub logging with local data sovereignty.
+- [Canada Telemetry Node](https://tracernest.info/canada.html): Local data residency and zero-egress telemetry for Canadian enterprise workloads.
+- [Germany Telemetry Node](https://tracernest.info/germany.html): Strict security standards and isolated on-premise log storage.
+- [United Kingdom Telemetry Node](https://tracernest.info/united-kingdom.html): Financial-grade security and local tamper-evident audit logging.
+- [Brazil Telemetry Node](https://tracernest.info/brazil.html): Data privacy and South American cloud infrastructure deployment.
+- [Ireland Telemetry Node](https://tracernest.info/ireland.html): Local data residency and zero-egress logging for European digital headquarters.
+
 ## Maintainer & Community
 
 - [Creator: Ankit Khandelwal on LinkedIn](https://www.linkedin.com/in/ankit-khandelwal-3068a9194/): Connect directly with the TracerNest author and lead maintainer.
