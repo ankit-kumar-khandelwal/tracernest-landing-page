@@ -492,6 +492,9 @@ return Application::configure(basePath: dirname(__DIR__))
             </summary>
             <div class="faq-answer">
               <p>TracerNest registers an internal route handler (<code>/tracernest/{any?}</code>) within Laravel's standard HTTP routing pipeline. When a request matches this route, TracerNest serves the pre-compiled dashboard assets and encrypted API responses directly through your existing web server (Nginx, Apache, or Octane) on ports 80/443 without opening any secondary ports.</p>
+              <p class="faq-doc-link">
+                <a href="express-log-viewer-without-extra-ports.html">Learn more about zero-port HTTP pipeline mounting &rarr;</a>
+              </p>
             </div>
           </details>
 
@@ -503,7 +506,10 @@ return Application::configure(basePath: dirname(__DIR__))
               </span>
             </summary>
             <div class="faq-answer">
-              <p>No. TracerNest is designed for maximum simplicity. It utilizes native SQLite with Write-Ahead Logging (WAL) or direct streaming batches to MySQL. It does not require Redis daemons, RabbitMQ queue workers, or external background agents.</p>
+              <p>No. TracerNest is designed for maximum operational simplicity. It utilizes native SQLite with Write-Ahead Logging (WAL) or direct streaming batches to MySQL. It does not require Redis daemons, RabbitMQ queue workers, or external background agents.</p>
+              <p class="faq-doc-link">
+                <a href="zero-downtime-sqlite-to-mysql-migration.html">Read the SQLite WAL &amp; MySQL architecture guide &rarr;</a>
+              </p>
             </div>
           </details>
 
@@ -516,6 +522,9 @@ return Application::configure(basePath: dirname(__DIR__))
             </summary>
             <div class="faq-answer">
               <p>TracerNest utilizes hardware-accelerated <strong>AES-256-GCM</strong> encryption. Every log payload (headers, exception stack traces, request parameters) is encrypted with a unique 96-bit initialization vector before writing to disk. The 256-bit encryption key is managed securely in <code>.master.key</code>, ensuring plaintext telemetry is never exposed in data backups or server logs.</p>
+              <p class="faq-doc-link">
+                <a href="encrypt-application-logs-aes-256-gcm-nodejs.html">Read the authenticated AES-256-GCM encryption guide &rarr;</a>
+              </p>
             </div>
           </details>
 
@@ -528,6 +537,9 @@ return Application::configure(basePath: dirname(__DIR__))
             </summary>
             <div class="faq-answer">
               <p>When an incoming HTTP request contains an <code>x-request-id</code> or W3C <code>traceparent</code> header, TracerNest captures and propagates that trace ID across both Laravel and Node.js microservices. In the dashboard, you can filter by correlation ID to inspect the full end-to-end journey of a transaction across multiple polyglot services.</p>
+              <p class="faq-doc-link">
+                <a href="microservices-distributed-tracing-sqlite-mysql.html">Read the distributed microservices tracing guide &rarr;</a>
+              </p>
             </div>
           </details>
         </div>

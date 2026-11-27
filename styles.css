@@ -3300,6 +3300,37 @@ a.btn-secondary-outline:hover {
   line-height: 1.7;
 }
 
+.faq-doc-link {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 0.875rem;
+}
+
+.faq-doc-link a {
+  color: var(--teal-500);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all var(--transition-fast);
+}
+
+.faq-doc-link a:hover {
+  color: var(--teal-400);
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+[data-theme="dark"] .faq-doc-link a {
+  color: var(--teal-300);
+}
+
+[data-theme="dark"] .faq-doc-link a:hover {
+  color: var(--teal-200);
+}
+
 /* ================= Contact Section ================= */
 .contact-card {
   background: var(--bg-card);
