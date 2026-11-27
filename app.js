@@ -997,7 +997,7 @@
     // Contact form replaced by direct communication channels & knowledge base
   }
 
-  // Floating Star Toast Notification
+  // Floating Star Toast Notification - Always loads on every reload/visit
   function initFloatingStarToast() {
     const toast = document.getElementById('floating-star-toast');
     const closeBtn = document.getElementById('toast-close-btn');
@@ -1006,19 +1006,21 @@
     const contributeBtn = document.getElementById('toast-contribute-btn');
     if (!toast) return;
 
-    const DISMISS_KEY = 'tracernest_star_toast_dismissed';
+    // Purge any past dismissal flag so it always loads on every reload/visit
     try {
-      const dismissedAt = localStorage.getItem(DISMISS_KEY);
-      // Re-prompt after 7 days if previously dismissed
-      if (dismissedAt && Date.now() - parseInt(dismissedAt, 10) < 7 * 24 * 60 * 60 * 1000) {
-        return;
-      }
+      localStorage.removeItem('tracernest_star_toast_dismissed');
+      sessionStorage.removeItem('tracernest_star_toast_dismissed');
     } catch (e) {}
 
-    // Display toast after a short delay (3.5 seconds)
+    // Reset inline styling so CSS animation plays cleanly on every reload
+    toast.style.opacity = '';
+    toast.style.transform = '';
+    toast.style.transition = '';
+
+    // Always display toast whenever site loads or reloads (snappy 1.5s entrance)
     setTimeout(() => {
       toast.style.display = 'block';
-    }, 3500);
+    }, 1500);
 
     function dismissToast() {
       toast.style.opacity = '0';
@@ -1027,9 +1029,7 @@
       setTimeout(() => {
         toast.style.display = 'none';
       }, 250);
-      try {
-        localStorage.setItem(DISMISS_KEY, Date.now().toString());
-      } catch (e) {}
+      // Intentionally do NOT persist dismissal in localStorage so it always reappears on reload
     }
 
     if (closeBtn) closeBtn.addEventListener('click', dismissToast);
